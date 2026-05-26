@@ -123,7 +123,7 @@
 
         /* Hero Layout Components */
         .hero-banner {
-            padding: 4.5rem 1.2rem 3.5rem;
+            padding: 4.5rem 1.2rem 2.5rem;
             background: linear-gradient(180deg, var(--light-green-alpha) 0%, rgba(248,250,252,0) 100%);
             text-align: center;
         }
@@ -156,6 +156,69 @@
             line-height: 1.6;
             max-width: 500px;
             margin: 0 auto 1.75rem;
+        }
+
+        /* 🏎️ AUTOMATED HERO SLIDER CONTAINER */
+        .hero-slider-wrapper {
+            max-width: 550px;
+            margin: 0.5rem auto 2.5rem;
+            padding: 0 1.2rem;
+        }
+        .slider-frame {
+            width: 100%;
+            height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+            border: 1px solid var(--border-line);
+        }
+        .slider-tape {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide-unit {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .slide-unit img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slide-caption-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+            padding: 2.5rem 1.2rem 1.2rem;
+            color: white;
+            text-align: left;
+        }
+        .slide-title-text {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+        .slide-dots-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+        }
+        .dot-node {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .dot-node.active {
+            background: var(--primary-green);
+            width: 20px;
+            border-radius: 4px;
         }
 
         /* Marketing Catalog Display Sections */
@@ -516,7 +579,7 @@
         // Master Central Data Repository
         if (!window.__WorldWebState) {
             window.__WorldWebState = {
-                currentView: 'marketing', // 'marketing' | 'dashboard' | 'detail_agric' | 'detail_housing' | 'detail_btc'
+                currentView: 'marketing', 
                 activeUser: null,
                 finances: { spendingWallet: 200000, stakedCapital: 0, accumulatedYield: 0 },
                 portfolios: []
@@ -525,12 +588,21 @@
 
         function MainAppApplication() {
             const [coreState, setCoreState] = useState({ ...window.__WorldWebState });
-            const [activeFormModal, setActiveFormModal] = useState(null); // 'login' | 'register' | null
+            const [activeFormModal, setActiveFormModal] = useState(null); 
+            const [slideIndex, setSlideIndex] = useState(0);
 
             // Form Fields
             const [userMail, setUserMail] = useState("");
             const [userPass, setUserPass] = useState("");
             const [userNameInput, setUserNameInput] = useState("");
+
+            // Slider Content Data Array
+            const SLIDER_PICS = [
+                { src: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80", tag: "📈 Global USD Currency Yield Index Matrix" },
+                { src: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600&q=80", tag: "🏙️ Premium Sovereign Assets & Dubai Landmarks" },
+                { src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80", tag: "🌊 Optimized Luxury Recreational Capital Portfolios" },
+                { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80", tag: "🏡 Elite Ultra-High-Net-Worth Residential Estates" }
+            ];
 
             useEffect(() => {
                 const styleNode = document.createElement("style");
@@ -538,7 +610,15 @@
                 document.head.appendChild(styleNode);
             }, []);
 
-            // Secure Router Auth Core Execution Hook
+            // ⏱️ Run Automated Slideshow
+            useEffect(() => {
+                if (coreState.currentView !== 'marketing') return;
+                const ticker = setInterval(() => {
+                    setSlideIndex((prev) => (prev + 1) % SLIDER_PICS.length);
+                }, 3000);
+                return () => clearInterval(ticker);
+            }, [coreState.currentView]);
+
             const processAuthExecution = (event) => {
                 event.preventDefault();
                 if (!userMail || !userPass) return;
@@ -564,6 +644,7 @@
                 };
                 window.__WorldWebState = resetSession;
                 setCoreState(resetSession);
+                setSlideIndex(0);
             };
 
             const navigateView = (viewName) => {
@@ -638,10 +719,31 @@
                                 <p className="hero-subtext">
                                     Stop letting inflation eat your savings. WorldWeb shifts your capital directly into highly lucrative, insured sectors to safeguard and compound your financial future.
                                 </p>
-                                <button className="action-btn btn-solid" style={{padding: "0.85rem 1.6rem", fontSize: "0.9rem"}} onClick={() => setActiveFormModal('register')}>
+                                <button className="action-btn btn-solid" style={{padding: "0.85rem 1.6rem", fontSize: "0.9rem", marginBottom:"1rem"}} onClick={() => setActiveFormModal('register')}>
                                     Start Investing Today
                                 </button>
                             </section>
+
+                            {/* 🏎️ THE AUTOMATED IMAGE SLIDER PORTAL SECTION */}
+                            <div className="hero-slider-wrapper">
+                                <div className="slider-frame">
+                                    <div className="slider-tape" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
+                                        {SLIDER_PICS.map((slide, index) => (
+                                            <div className="slide-unit" key={index}>
+                                                <img src={slide.src} alt={slide.tag} />
+                                                <div className="slide-caption-overlay">
+                                                    <div className="slide-title-text">{slide.tag}</div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="slide-dots-indicator">
+                                    {SLIDER_PICS.map((_, index) => (
+                                        <div className={`dot-node ${index === slideIndex ? 'active' : ''}`} key={index}></div>
+                                    ))}
+                                </div>
+                            </div>
 
                             <section className="section-header">
                                 <h2>High-Performing Managed Portfolios</h2>
@@ -821,7 +923,7 @@
                     {coreState.currentView === 'detail_btc' && (
                         <div className="detail-layout">
                             <div className="back-link" onClick={() => navigateView(coreState.activeUser ? 'dashboard' : 'marketing')}>← Back to Main Catalog</div>
-                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=80" className="detail-hero-img" alt="BTC Premium Header" />
+                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=w=800&q=80" className="detail-hero-img" alt="BTC Premium Header" />
                             <h2 className="detail-title">⚡ BTC Premium Growth Plan</h2>
                             <div style={{color:'var(--accent-orange)', fontWeight:'700', fontSize:'0.9rem'}}>Algorithmic Yield Optimization</div>
                             
@@ -920,7 +1022,7 @@
                                 <div style={{marginTop: "2rem", marginBottom: "2rem"}}>
                                     <div style={{fontWeight: 800, fontSize: "1rem", marginBottom: "0.75rem", color: "var(--text-dark)"}}>Your Active Investment Portfolios</div>
                                     {coreState.portfolios.map((item) => (
-                                        <div key={item.trackId} style={{background: "var(--light-green-alpha)", border: "1px solid rgba(5,150,105,0.15)", padding: "1rem", borderRadius: "14px", marginBottom: "0.6rem", display: "flex", justifycontent: "space-between", alignItems: "center"}}>
+                                        <div key={item.trackId} style={{background: "var(--light-green-alpha)", border: "1px solid rgba(5,150,105,0.15)", padding: "1rem", borderRadius: "14px", marginBottom: "0.6rem", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                                             <div>
                                                 <div style={{fontWeight: 700, fontSize: "0.88rem", color: "var(--dark-green)"}}>{item.title}</div>
                                                 <div style={{fontSize: "0.78rem", color: "var(--text-dark)", marginTop: "0.15rem"}}>Principal Staked: {formatNaira(item.principal)}</div>
@@ -1010,4 +1112,3 @@
     </script>
 </body>
 </html>
-
