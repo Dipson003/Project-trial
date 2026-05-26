@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldWeb Portal</title>
+    <!-- React & Babel for mobile browser compilation -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // ── SIMULATED USER DATABASE ──────────────────────────────
+        if (!window.__WWUserStore) {
+          window.__WWUserStore = {
+            profile: { name: "Chidi Okonkwo", email: "demo@worldweb.io" },
+            balances: { wallet: 250000, totalInvested: 0, totalEarnings: 0 },
+            activeInvestments: []
+          };
+        }
+
+        const fmtNGN = n => "₦" + (n || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 });
+
+        // ── CSS ARTIFACTS & STYLING ──────────────────────────────────────────────────
+        const CSS_STYLES = `
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        *,*::before,*::after{box-shrink:0;box-sizing:border-box;margin:0;padding:0;}
+        :root{--bg:#070f1e;--surface:#0f1a30;--surface-light:#172645;--border:#1e2f55;--primary:#1a56db;--accent:#3b82f6;--green:#10b981;--green-bg:rgba(16,185,129,0.1);--text:#f8fafc;--text-muted:#94a3b8;}
+        body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;padding-bottom:80px;}
+        .header{background:var(--surface);padding:1.5rem 1.2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .brand{font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#60a5fa,#1a56db);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .welcome-msg{font-size:0.8rem;color:var(--text-muted);text-align:right;}
+        .container{padding:1.2rem;}
+        
+        /* Balance Card Grid */
+        .balance-card{background:linear-gradient(135deg,#1e3a8a 0%,#0f172a 100%);border:1px solid var(--border);border-radius:16px;padding:1.4rem;margin-bottom:1.5rem;box-shadow:0 10px 25px rgba(0,0,0,0.3);}
+        .bal-label{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.25rem;}
+        .bal-val{font-size:1.8rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1rem;}
+        .bal-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:0.8rem;}
+        .sub-val{font-size:1rem;font-weight:700;}
+        
+        /* Section Header */
+        .sec-title{font-size:1.1rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;}
+        
+        /* Investment Cards */
+        .inv-grid{display:flex;flex-direction:column;gap:1rem;}
+        .inv-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;position:relative;overflow:hidden;}
+        .inv-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent);}
+        .inv-card.agri::before{background:#10b981;}
+        .inv-card.house::before{background:#f59e0b;}
+        .inv-card.btc::before{background:#f97316;}
+        .inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem;}
+        .inv-name{font-weight:700;font-size:1.05rem;}
+        .inv-roi{background:var(--green-bg);color:var(--green);font-size:0.75rem;font-weight:700;padding:0.25rem 0.6rem;border-radius:100px;}
+        .inv-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1rem;}
+        .meta-lbl{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;}
+        .meta-val{font-size:0.85rem;font-weight:600;}
+        .btn-invest{width:100%;background:var(--primary);color:white;border:none;border-radius:8px;padding:0.65rem;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;}
+        .btn-invest:hover{background:#2563eb;}
+        
+        /* Quick Actions Panel */
+        .actions-bar{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem;}
+        .btn-action{background:var(--surface-light);border:1px solid var(--border);color:white;padding:0.75rem;border-radius:10px;font-weight:600;font-size:0.85rem;cursor:pointer;text-align:center;}
+        .btn-action.primary{background:var(--primary);border:none;}
+
+        /* Bottom Menu */
+        .bottom-nav{position:fixed;bottom:0;left:0;right:0;height:60px;background:var(--surface);border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;align-items:center;text-align:center;z-index:100;}
+        .nav-item{color:var(--text-muted);font-size:0.75rem;text-decoration:none;font-weight:600;background:none;border:none;cursor:pointer;}
+        .nav-item.active{color:var(--accent);}
+        `;
+
+        function UserDashboard() {
+          const [store, setStore] = useState({ ...window.__WWUserStore });
+
+          const triggerInvestment = (planName, roi, duration, minDeposit, typeClass) => {
+            const amountInput = prompt(`Enter investment amount for ${planName} (Minimum: ${fmtNGN(minDeposit)}):`, minDeposit);
+            if (amountInput === null) return; // User canceled
+
+            const amt = parseFloat(amountInput);
+            if (isNaN(amt) || amt < minDeposit) {
+              alert(`Transaction Failed: Minimum deposit required is ${fmtNGN(minDeposit)}`);
+              return;
+            }
+
+            if (store.balances.wallet < amt) {
+              alert("Transaction Failed: Insufficient funds in your funding wallet. Please top up.");
+              return;
+            }
+
+            // Deduct and activate plan
+            const updatedWallet = store.balances.wallet - amt;
+            const updatedInvested = store.balances.totalInvested + amt;
+            
+            const newInvestment = {
+              id: "inv-" + Date.now(),
+              planName,
+              amount: amt,
+              roi,
+              expiry: duration
+            };
+
+            const updatedStore = {
+              ...store,
+              balances: {
+                ...store.balances,
+                wallet: updatedWallet,
+                totalInvested: updatedInvested
+              },
+              activeInvestments: [newInvestment, ...store.activeInvestments]
+            };
+
+            window.__WWUserStore = updatedStore;
+            setStore(updatedStore);
+            alert(`Success! Your portfolio has activated the ${planName} package.`);
+          };
+
+          return (
+            <div>
+              {/* Top Global Bar */}
+              <div className="header">
+                <div className="brand">WorldWeb App</div>
+                <div className="welcome-msg">
+                  <div>Welcome,</div>
+                  <strong style={{color:"white"}}>{store.profile.name}</strong>
+                </div>
+              </div>
+
+              <div className="container">
+                {/* Capital Metrics Card */}
+                <div className="balance-card">
+                  <div className="bal-label">Available Wallet Capital</div>
+                  <div className="bal-val">{fmtNGN(store.balances.wallet)}</div>
+                  <div className="bal-sub-grid">
+                    <div>
+                      <div className="bal-label">Active Portfolios</div>
+                      <div className="sub-val" style={{color:"var(--accent)"}}>{fmtNGN(store.balances.totalInvested)}</div>
+                    </div>
+                    <div>
+                      <div className="bal-label">Total Gains</div>
+                      <div className="sub-val" style={{color:"var(--green)"}}>{fmtNGN(store.balances.totalEarnings)}</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Gateway Rapid Controls */}
+                <div className="actions-bar">
+                  <button className="btn-action primary" onClick={() => {
+                    const dAmt = parseFloat(prompt("Enter deposit amount to simulate payment process:", "50000"));
+                    if(dAmt > 0) {
+                      const updated = { ...store, balances: { ...store.balances, wallet: store.balances.wallet + dAmt }};
+                      window.__WWUserStore = updated; setStore(updated);
+                    }
+                  }}>Fund Wallet</button>
+                  <button className="btn-action" onClick={() => alert("Withdrawal console terminal active context.")}>Withdrawal</button>
+                </div>
+
+                {/* Investment Products Section */}
+                <div className="sec-title">
+                  <span>Investment Packages Available</span>
+                </div>
+
+                <div className="inv-grid">
+                  {/* Package 1: Agriculture */}
+                  <div className="inv-card agri">
+                    <div className="inv-header">
+                      <div className="inv-name">Agriculture Asset Matrix</div>
+                      <div className="inv-roi">7% ROI</div>
+                    </div>
+                    <div className="inv-meta-grid">
+                      <div><div className="meta-lbl">Contract Term</div><div className="meta-val">3 Months</div></div>
+                      <div><div className="meta-lbl">Minimum Capital</div><div className="meta-val">{fmtNGN(100000)}</div></div>
+                    </div>
+                    <button className="btn-invest" onClick={() => triggerInvestment("Agriculture Asset Matrix", "7%", "3 Months", 100000, "agri")}>
+                      Activate Package
+                    </button>
+                  </div>
+
+                  {/* Package 2: Housing */}
+                  <div className="inv-card house">
+                    <div className="inv-header">
+                      <div className="inv-name">Housing & Real Estate Sector</div>
+                      <div className="inv-roi">10% ROI</div>
+                    </div>
+                    <div className="inv-meta-grid">
+                      <div><div className="meta-lbl">Contract Term</div><div className="meta-val">3 Months</div></div>
+                      <div><div className="meta-lbl">Minimum Capital</div><div className="meta-val">{fmtNGN(250000)}</div></div>
+                    </div>
+                    <button className="btn-invest" style={{background:"#d97706"}} onClick={() => triggerInvestment("Housing & Real Estate Sector", "10%", "3 Months", 250000, "house")}>
+                      Activate Package
+                    </button>
+                  </div>
+
+                  {/* Package 3: BTC Crypto Assets */}
+                  <div className="inv-card btc">
+                    <div className="inv-header">
+                      <div className="inv-name">BTC Premium Digital Growth</div>
+                      <div className="inv-roi">13% ROI</div>
+                    </div>
+                    <div className="inv-meta-grid">
+                      <div><div className="meta-lbl">Contract Term</div><div className="meta-val">3 Months</div></div>
+                      <div><div className="meta-lbl">Minimum Capital</div><div className="meta-val">{fmtNGN(500000)}</div></div>
+                    </div>
+                    <button className="btn-invest" style={{background:"#ea580c"}} onClick={() => triggerInvestment("BTC Premium Digital Growth", "13%", "3 Months", 500000, "btc")}>
+                      Activate Package
+                    </button>
+                  </div>
+                </div>
+
+                {/* Subscribed Plan Portfolio Feed Log */}
+                {store.activeInvestments.length > 0 && (
+                  <div style={{marginTop:"2rem"}}>
+                    <div className="sec-title">Your Running Portfolios</div>
+                    {store.activeInvestments.map((active) => (
+                      <div key={active.id} style={{background:"#111e38", border:"1px solid var(--border)", padding:"0.8rem", borderRadius:"10px", marginBottom:"0.5rem", display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+                        <div>
+                          <div style={{fontWeight:"bold", fontSize:"0.85rem"}}>{active.planName}</div>
+                          <div style={{fontSize:"0.75rem", color:"var(--text-muted)"}}>Capital locked: {fmtNGN(active.amount)}</div>
+                        </div>
+                        <div style={{textAlign:"right"}}>
+                          <div style={{color:"var(--green)", fontWeight:"bold", fontSize:"0.85rem"}}>+{active.roi} Profit</div>
+                          <div style={{fontSize:"0.75rem", color:"var(--text-muted)"}}>{active.expiry} remaining</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+              </div>
+
+              {/* Bottom Sticky Tab Controls */}
+              <div className="bottom-nav">
+                <button className="nav-item active">Dashboard</button>
+                <button className="nav-item" onClick={() => alert("Profile information schema context module.")}>Account Settings</button>
+              </div>
+            </div>
+          );
+        }
+
+        // ── APPLICATION MOUNT POINT ─────────────────────────────────────────
+        function App() {
+          useEffect(() => {
+            const s = document.createElement("style");
+            s.textContent = CSS_STYLES;
+            document.head.appendChild(s);
+          }, []);
+          return <UserDashboard />;
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+
