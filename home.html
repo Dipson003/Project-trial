@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldWeb | Premium Capital Portal</title>
-    <!-- React & Babel Frameworks for Smooth Mobile Execution -->
+    <title>WorldWeb | Unified Capital Framework</title>
+    <!-- Framework Core Engine Infrastructure -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -15,7 +15,7 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // 🇳🇬 Nigerian Currency Formatter
+        // 🇳🇬 Central Naira Currency Formatter
         const formatNaira = (amount) => {
             return "₦" + (amount || 0).toLocaleString("en-NG", { 
                 minimumFractionDigits: 2, 
@@ -23,9 +23,9 @@
             });
         };
 
-        // 🎨 Enhanced Premium White & Green Design System with Captivating Image Cards
-        const ENHANCED_STYLES = `
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        // 🎨 Premium Unified Design System Stylesheet Matrix
+        const UNIFIED_STYLES = `
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap');
         
         *, *::before, *::after {
             box-sizing: border-box;
@@ -53,7 +53,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Fixed Brand Header */
+        /* Fixed Navigation Header */
         .main-header {
             height: 70px;
             background: var(--surface-white);
@@ -121,7 +121,7 @@
             padding: 0.4rem 0.8rem;
         }
 
-        /* Clean Hero Showcase */
+        /* Hero Layout Components */
         .hero-banner {
             padding: 4.5rem 1.2rem 3.5rem;
             background: linear-gradient(180deg, var(--light-green-alpha) 0%, rgba(248,250,252,0) 100%);
@@ -158,7 +158,7 @@
             margin: 0 auto 1.75rem;
         }
 
-        /* Section Headings */
+        /* Marketing Catalog Display Sections */
         .section-header {
             text-align: center;
             padding: 0 1.2rem;
@@ -176,7 +176,6 @@
             margin-top: 0.3rem;
         }
 
-        /* --- PRE-AUTH CAPTIVATING SERVICE CARDS WITH IMAGES --- */
         .catalog-grid {
             padding: 0 1.2rem;
             display: flex;
@@ -213,7 +212,6 @@
             padding: 0.35rem 0.85rem;
             border-radius: 100px;
             color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
         .card-badge-overlay.green { background: var(--primary-green); }
         .card-badge-overlay.amber { background: var(--accent-amber); }
@@ -227,9 +225,6 @@
             font-size: 1.15rem;
             color: var(--text-dark);
             margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
         }
         .card-body-text {
             font-size: 0.88rem;
@@ -237,7 +232,6 @@
             line-height: 1.6;
             margin-bottom: 1.25rem;
         }
-        
         .card-metrics-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -245,25 +239,110 @@
             padding: 0.75rem 1rem;
             border-radius: 12px;
             border: 1px solid var(--border-line);
-        }
-        .metric-block span {
-            display: block;
+            margin-bottom: 1rem;
         }
         .metric-label {
+            display: block;
             font-size: 0.68rem;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.02em;
         }
         .metric-val {
+            display: block;
             font-size: 0.88rem;
             font-weight: 800;
             color: var(--text-dark);
             margin-top: 0.1rem;
         }
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border-line);
+            background: var(--surface-white);
+            color: var(--text-dark);
+            transition: all 0.2s ease;
+        }
+        .read-more-btn:hover {
+            background: var(--light-green-alpha);
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
 
-        /* Authentication Modals */
+        /* 📑 EXCLUSIVE INVESTMENT DETAILS LAYOUT */
+        .detail-layout {
+            padding: 2rem 1.2rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--primary-green);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+        .detail-hero-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .detail-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+        .detail-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin: 1.25rem 0 2rem;
+        }
+        .detail-meta-card {
+            background: var(--surface-white);
+            border: 1px solid var(--border-line);
+            padding: 0.85rem;
+            border-radius: 12px;
+        }
+        .exclusive-content-box h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin: 1.5rem 0 0.6rem;
+            color: var(--text-dark);
+        }
+        .exclusive-content-box p {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.65;
+            margin-bottom: 1rem;
+        }
+        .exclusive-bullet-list {
+            margin: 1rem 0 1.5rem 1.25rem;
+        }
+        .exclusive-bullet-list li {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Security Overlays & Popups */
         .overlay-blur {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -288,7 +367,6 @@
             font-size: 1.4rem;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 0.3rem;
         }
         .auth-header-sub {
             font-size: 0.85rem;
@@ -304,7 +382,6 @@
             font-weight: 700;
             margin-bottom: 0.4rem;
             color: var(--text-dark);
-            letter-spacing: 0.03em;
         }
         .text-field {
             width: 100%;
@@ -313,11 +390,9 @@
             border-radius: 10px;
             font-family: inherit;
             font-size: 0.9rem;
-            transition: all 0.2s;
         }
         .text-field:focus {
             outline: 2px solid var(--primary-green);
-            border-color: transparent;
         }
         .submit-btn {
             width: 100%;
@@ -329,7 +404,6 @@
             font-weight: 700;
             font-size: 0.9rem;
             cursor: pointer;
-            margin-top: 0.5rem;
         }
         .switch-prompt {
             text-align: center;
@@ -343,7 +417,7 @@
             cursor: pointer;
         }
 
-        /* ── INTERNAL USER PORTAL PORTION ── */
+        /* ── VERIFIED USER PORTAL AREA ── */
         .portal-layout {
             padding: 1.2rem;
             max-width: 600px;
@@ -355,7 +429,6 @@
             border: 1px solid var(--border-line);
             padding: 1.1rem;
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
         }
         .naira-wallet-card {
             background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
@@ -363,20 +436,17 @@
             border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 10px 25px rgba(4,120,87,0.15);
         }
         .wallet-title {
             font-size: 0.75rem;
             color: rgba(255,255,255,0.8);
             text-transform: uppercase;
             font-weight: 700;
-            letter-spacing: 0.05em;
         }
         .wallet-amount {
             font-size: 2rem;
             font-weight: 800;
             margin: 0.3rem 0 1.1rem;
-            letter-spacing: -0.02em;
         }
         .wallet-split {
             display: grid;
@@ -388,14 +458,11 @@
         .split-label {
             font-size: 0.72rem;
             color: rgba(255,255,255,0.7);
-            font-weight: 600;
         }
         .split-value {
             font-size: 1rem;
             font-weight: 700;
-            margin-top: 0.1rem;
         }
-        
         .interactive-row {
             background: var(--surface-white);
             border: 1px solid var(--border-line);
@@ -405,20 +472,13 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.8rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
         }
 
-        /* Premium Reusable Footer */
+        /* Corporate Footer */
         .corporate-footer {
             background: var(--text-dark);
             color: #f1f5f9;
             padding: 3rem 1.2rem 2rem;
-        }
-        .footer-branding h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: white;
         }
         .footer-branding p {
             font-size: 0.82rem;
@@ -430,7 +490,6 @@
             font-size: 0.78rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
             color: var(--primary-green);
             margin-bottom: 0.6rem;
         }
@@ -445,12 +504,6 @@
             color: #cbd5e1;
             text-decoration: none;
         }
-        .contact-anchor span {
-            color: #94a3b8;
-            font-weight: 700;
-            width: 55px;
-            display: inline-block;
-        }
         .footer-copyright-bar {
             border-top: 1px solid rgba(255,255,255,0.08);
             padding-top: 1.25rem;
@@ -460,9 +513,10 @@
         }
         `;
 
-        // Mock State Session Sync Variable
+        // Master Central Data Repository
         if (!window.__WorldWebState) {
             window.__WorldWebState = {
+                currentView: 'marketing', // 'marketing' | 'dashboard' | 'detail_agric' | 'detail_housing' | 'detail_btc'
                 activeUser: null,
                 finances: { spendingWallet: 200000, stakedCapital: 0, accumulatedYield: 0 },
                 portfolios: []
@@ -473,42 +527,50 @@
             const [coreState, setCoreState] = useState({ ...window.__WorldWebState });
             const [activeFormModal, setActiveFormModal] = useState(null); // 'login' | 'register' | null
 
-            // Input Control Hooks
+            // Form Fields
             const [userMail, setUserMail] = useState("");
             const [userPass, setUserPass] = useState("");
             const [userNameInput, setUserNameInput] = useState("");
 
             useEffect(() => {
                 const styleNode = document.createElement("style");
-                styleNode.textContent = ENHANCED_STYLES;
+                styleNode.textContent = UNIFIED_STYLES;
                 document.head.appendChild(styleNode);
             }, []);
 
+            // Secure Router Auth Core Execution Hook
             const processAuthExecution = (event) => {
                 event.preventDefault();
-                if (!userMail || !userPass || (activeFormModal === 'register' && !userNameInput)) {
-                    alert("Please provide valid information in all input fields.");
-                    return;
-                }
+                if (!userMail || !userPass) return;
 
                 const resolvedProfileName = activeFormModal === 'register' ? userNameInput : "Verified Investor Account";
-                const modifiedState = {
+                const userSession = {
                     ...coreState,
+                    currentView: 'dashboard',
                     activeUser: { name: resolvedProfileName, email: userMail }
                 };
                 
-                window.__WorldWebState = modifiedState;
-                setCoreState(modifiedState);
+                window.__WorldWebState = userSession;
+                setCoreState(userSession);
                 setActiveFormModal(null);
-
-                // Reset forms
                 setUserMail(""); setUserPass(""); setUserNameInput("");
             };
 
             const processSignOut = () => {
-                const clearState = { ...coreState, activeUser: null };
-                window.__WorldWebState = clearState;
-                setCoreState(clearState);
+                const resetSession = {
+                    ...coreState,
+                    currentView: 'marketing',
+                    activeUser: null
+                };
+                window.__WorldWebState = resetSession;
+                setCoreState(resetSession);
+            };
+
+            const navigateView = (viewName) => {
+                const updated = { ...coreState, currentView: viewName };
+                window.__WorldWebState = updated;
+                setCoreState(updated);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
             const deployInvestmentCapital = (title, yieldRate, durationTerm, thresholdMin) => {
@@ -517,16 +579,16 @@
 
                 const parsedAmount = parseFloat(promptValue);
                 if (isNaN(parsedAmount) || parsedAmount < thresholdMin) {
-                    alert(`Action Terminated: Minimum entry requirements stand at ${formatNaira(thresholdMin)}`);
+                    alert(`Error: Minimum allocation requirements stand at ${formatNaira(thresholdMin)}`);
                     return;
                 }
 
                 if (coreState.finances.spendingWallet < parsedAmount) {
-                    alert("Action Terminated: Your available spending wallet balance is insufficient.");
+                    alert("Error: Your current naira capital wallet balance is insufficient.");
                     return;
                 }
 
-                const stateWithNewInvestment = {
+                const updatedFinances = {
                     ...coreState,
                     finances: {
                         ...coreState.finances,
@@ -536,37 +598,39 @@
                     portfolios: [{ title, yieldRate, durationTerm, principal: parsedAmount, trackId: Date.now() }, ...coreState.portfolios]
                 };
 
-                window.__WorldWebState = stateWithNewInvestment;
-                setCoreState(stateWithNewInvestment);
-                alert(`Success! You have activated the ${title} portfolio plan.`);
+                window.__WorldWebState = updatedFinances;
+                setCoreState(updatedFinances);
+                alert(`Success! Activated your ${title} contract layout.`);
             };
 
             return (
                 <div>
-                    {/* GLOBAL CORPORATE HEADER */}
+                    {/* UNIVERSAL CORE SYSTEM NAVIGATION BRAND BAR */}
                     <header className="main-header">
                         <a href="#" className="brand-logo" onClick={(e) => { e.preventDefault(); processSignOut(); }}>
                             <div className="logo-box">W</div>
                             <span className="brand-name">WorldWeb</span>
                         </a>
                         <div className="header-buttons">
-                            {!coreState.activeUser ? (
+                            {(coreState.currentView === 'marketing' || coreState.currentView.startsWith('detail_')) && !coreState.activeUser && (
                                 <>
                                     <button className="action-btn btn-outline" onClick={() => setActiveFormModal('login')}>Sign In</button>
                                     <button className="action-btn btn-solid" onClick={() => setActiveFormModal('register')}>Get Started</button>
                                 </>
-                            ) : (
+                            )}
+                            {coreState.activeUser && (
                                 <div style={{display: "flex", alignItems: "center", gap: "0.6rem"}}>
-                                    <span style={{fontSize: "0.75rem", fontWeight: 700, color: "var(--primary-green)"}}>● Online</span>
+                                    <button className="action-btn btn-outline" style={{fontSize:'0.75rem'}} onClick={() => navigateView('dashboard')}>Dashboard</button>
                                     <button className="action-btn btn-danger" onClick={processSignOut}>Log Out</button>
                                 </div>
                             )}
                         </div>
                     </header>
 
-                    {/* INTERACTIVE FLOW CONTROLLER */}
-                    {!coreState.activeUser ? (
-                        /* VIEW 1: PRE-AUTHENTICATION MARKETING HOME LANDING PAGE */
+                    {/* DYNAMIC VIEW ROUTER DISPATCHER */}
+                    
+                    {/* VIEW 1: PRE-AUTHENTICATION MARKETING HOME LANDING PAGE */}
+                    {coreState.currentView === 'marketing' && (
                         <div>
                             <section className="hero-banner">
                                 <div className="hero-tag">Official Secured Asset Management Platform</div>
@@ -585,16 +649,15 @@
                             </section>
 
                             <section className="catalog-grid">
-                                {/* PRODUCT 1: AGRICULTURE */}
                                 <div className="product-card">
                                     <div className="card-image-box">
-                                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad451?auto=format&fit=crop&w=600&q=80" alt="Industrialized Agriculture" />
+                                        <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80" alt="Industrial Agriculture Field" />
                                         <div className="card-badge-overlay green">7% ROI • 3 Mos</div>
                                     </div>
                                     <div className="card-info-content">
                                         <div className="card-title">🌾 Industrial Agriculture Hub</div>
                                         <p className="card-body-text">
-                                            Farming is the foundation of global food security. Your funds buy heavy-duty machinery and elite fertilizers for fully mechanized corn and poultry setups. Skip weather uncertainties—our seasonal harvest sales are completely corporate-insured, ensuring your fixed payout drops straight into your wallet.
+                                            Farming is the foundation of global food security. Your funds buy heavy-duty machinery and elite fertilizers for fully mechanized setups. Skip weather uncertainties—our seasonal harvest sales are completely corporate-insured...
                                         </p>
                                         <div className="card-metrics-row">
                                             <div className="metric-block">
@@ -606,19 +669,21 @@
                                                 <span className="metric-val" style={{color:"var(--primary-green)"}}>Very Low</span>
                                             </div>
                                         </div>
+                                        <button className="read-more-btn" onClick={() => navigateView('detail_agric')}>
+                                            Read More Detailed Info →
+                                        </button>
                                     </div>
                                 </div>
 
-                                {/* PRODUCT 2: REAL ESTATE */}
                                 <div className="product-card">
                                     <div className="card-image-box">
-                                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Modern Apartments Layout" />
+                                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Luxury Real Estate Complexes" />
                                         <div className="card-badge-overlay amber">10% ROI • 3 Mos</div>
                                     </div>
                                     <div className="card-info-content">
                                         <div className="card-title">🏢 Luxury Real Estate Matrix</div>
                                         <p className="card-body-text">
-                                            Real estate remains the ultimate shield against rising economic inflation. We pool user funds to finalize fast-turnaround luxury apartments and premium rental complexes. Your capital yields continuous micro-dividends derived from highly verified corporate tenancy agreements and structural land appreciation flips.
+                                            Real estate remains the ultimate shield against rising economic inflation. We pool user funds to finalize fast-turnaround luxury apartments and premium rental complexes. Your capital yields continuous micro-dividends...
                                         </p>
                                         <div className="card-metrics-row">
                                             <div className="metric-block">
@@ -630,19 +695,21 @@
                                                 <span className="metric-val" style={{color:"var(--accent-amber)"}}>Balanced</span>
                                             </div>
                                         </div>
+                                        <button className="read-more-btn" onClick={() => navigateView('detail_housing')}>
+                                            Read More Detailed Info →
+                                        </button>
                                     </div>
                                 </div>
 
-                                {/* PRODUCT 3: CRYPTO */}
                                 <div className="product-card">
                                     <div className="card-image-box">
-                                        <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600&q=80" alt="Cryptocurrency charts" />
+                                        <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600&q=80" alt="Crypto Technical Analysis Grid" />
                                         <div className="card-badge-overlay orange">13% ROI • 3 Mos</div>
                                     </div>
                                     <div className="card-info-content">
                                         <div className="card-title">⚡ BTC Premium Growth Plan</div>
                                         <p className="card-body-text">
-                                            Harness high-speed digital market movements without taking personal trading losses. Our server arrays run automated arbitrage scripts, locking micro-gains across global crypto exchanges 24/7. Built-in downside stop limits cushion your seed principal completely while catching rapid digital asset growth.
+                                            Harness high-speed digital market movements without taking personal trading losses. Our server arrays run automated arbitrage scripts, locking micro-gains across global crypto exchanges 24/7...
                                         </p>
                                         <div className="card-metrics-row">
                                             <div className="metric-block">
@@ -654,12 +721,148 @@
                                                 <span className="metric-val" style={{color:"var(--accent-orange)"}}>Moderate</span>
                                             </div>
                                         </div>
+                                        <button className="read-more-btn" onClick={() => navigateView('detail_btc')}>
+                                            Read More Detailed Info →
+                                        </button>
                                     </div>
                                 </div>
                             </section>
                         </div>
-                    ) : (
-                        /* VIEW 2: POST-AUTHENTICATION SECURED USER REAL-TIME DASHBOARD */
+                    )}
+
+                    {/* VIEW: EXCLUSIVE AGRICULTURE HUB DETAILS */}
+                    {coreState.currentView === 'detail_agric' && (
+                        <div className="detail-layout">
+                            <div className="back-link" onClick={() => navigateView(coreState.activeUser ? 'dashboard' : 'marketing')}>← Back to Main Catalog</div>
+                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80" className="detail-hero-img" alt="Agriculture Hub Header" />
+                            <h2 className="detail-title">🌾 Industrial Agriculture Hub</h2>
+                            <div style={{color:'var(--primary-green)', fontWeight:'700', fontSize:'0.9rem'}}>Fixed Return Asset Strategy</div>
+                            
+                            <div className="detail-meta-grid">
+                                <div className="detail-meta-card">
+                                    <span className="metric-label">Quarterly Yield Rate</span>
+                                    <span className="metric-val" style={{color:'var(--primary-green)', fontSize:'1.1rem'}}>7.00% Guaranteed</span>
+                                </div>
+                                <div className="detail-meta-card">
+                                    <span className="metric-label">Lock-In Period</span>
+                                    <span className="metric-val" style={{fontSize:'1.1rem'}}>90 Days (3 Months)</span>
+                                </div>
+                            </div>
+
+                            <div className="exclusive-content-box">
+                                <h3>Operational Core Strategy</h3>
+                                <p>
+                                    Our Industrial Agriculture framework is built around highly mechanized, fast-turnaround commercial farming setups located across optimized regional hubs. By pooling capital from verified participants, we acquire bulk inputs—such as specialized high-yield seeds, commercial feed mixes, and state-of-the-art processing infrastructure—at steep industrial discounts.
+                                </p>
+                                
+                                <h3>Risk Mitigation & Protection Architecture</h3>
+                                <p>
+                                    Unlike traditional artisanal farming, our operations completely bypass standard seasonal dependencies. We utilize comprehensive automated irrigation networks and secure storage vaults to prevent crop degradation or supply chain blockages. 
+                                </p>
+                                <ul className="exclusive-bullet-list">
+                                    <li><strong>Corporate Insurance Backing:</strong> 100% of the raw capital principal is completely insured against rare climate deviations and environmental adjustments.</li>
+                                    <li><strong>Contracted Off-Takers:</strong> 100% of the harvest cycles are pre-sold to major commercial processing conglomerates, locking in fixed corporate payouts before seeds even hit the soil.</li>
+                                    <li><strong>Strict Capital Ring-Fencing:</strong> Capital allocated to this matrix is legally blocked from alternative speculative deployments.</li>
+                                </ul>
+
+                                {!coreState.activeUser ? (
+                                    <button className="submit-btn" style={{marginTop:'1.5rem'}} onClick={() => setActiveFormModal('register')}>Create Account to Activate Contract</button>
+                                ) : (
+                                    <button className="submit-btn" style={{marginTop:'1.5rem', background:'var(--primary-green)'}} onClick={() => deployInvestmentCapital("Agriculture Asset Matrix", "7%", "3 Months", 100000)}>Allocate Capital From Wallet Instantly</button>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* VIEW: EXCLUSIVE LUXURY REAL ESTATE DETAILS */}
+                    {coreState.currentView === 'detail_housing' && (
+                        <div className="detail-layout">
+                            <div className="back-link" onClick={() => navigateView(coreState.activeUser ? 'dashboard' : 'marketing')}>← Back to Main Catalog</div>
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" className="detail-hero-img" alt="Real Estate Header" />
+                            <h2 className="detail-title">🏢 Luxury Real Estate Matrix</h2>
+                            <div style={{color:'var(--accent-amber)', fontWeight:'700', fontSize:'0.9rem'}}>Structural Appreciation Protocol</div>
+                            
+                            <div className="detail-meta-grid">
+                                <div className="detail-meta-card">
+                                    <span className="metric-label">Quarterly Yield Rate</span>
+                                    <span className="metric-val" style={{color:'var(--accent-amber)', fontSize:'1.1rem'}}>10.00% Fixed</span>
+                                </div>
+                                <div className="detail-meta-card">
+                                    <span className="metric-label">Lock-In Period</span>
+                                    <span className="metric-val" style={{fontSize:'1.1rem'}}>90 Days (3 Months)</span>
+                                </div>
+                            </div>
+
+                            <div className="exclusive-content-box">
+                                <h3>Operational Core Strategy</h3>
+                                <p>
+                                    Real estate remains the ultimate historical vehicle for maintaining purchasing power amidst heavy macroeconomic inflationary pressures. The Luxury Real Estate Matrix leverages collective purchasing power to take over, finish, and commercialize high-end urban multi-family residential setups and modern co-working hubs.
+                                </p>
+                                
+                                <h3>Revenue Distribution Flow</h3>
+                                <p>
+                                    Your institutional investment funds are funneled directly into concluding architectural development phases and interior custom fixtures. Returns are generated rapidly through two separate premium operational avenues:
+                                </p>
+                                <ul className="exclusive-bullet-list">
+                                    <li><strong>Corporate Tenancy Leases:</strong> High-ticket multi-year rentals negotiated directly with corporate executives and international tech contractors, generating bulletproof rental yield distributions.</li>
+                                    <li><strong>Targeted Flip Arbitrage:</strong> Capitalizing on immediate land appreciation by selling off off-plan properties to high-net-worth buyers at institutional premiums.</li>
+                                </ul>
+
+                                {!coreState.activeUser ? (
+                                    <button className="submit-btn" style={{marginTop:'1.5rem', background:'var(--accent-amber)'}} onClick={() => setActiveFormModal('register')}>Register & Access Asset Class</button>
+                                ) : (
+                                    <button className="submit-btn" style={{marginTop:'1.5rem', background:'var(--accent-amber)'}} onClick={() => deployInvestmentCapital("Housing & Real Estate Sector", "10%", "3 Months", 250000)}>Deploy Capital via Wallet Account</button>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* VIEW: EXCLUSIVE BTC GROWTH DETAILS */}
+                    {coreState.currentView === 'detail_btc' && (
+                        <div className="detail-layout">
+                            <div className="back-link" onClick={() => navigateView(coreState.activeUser ? 'dashboard' : 'marketing')}>← Back to Main Catalog</div>
+                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=80" className="detail-hero-img" alt="BTC Premium Header" />
+                            <h2 className="detail-title">⚡ BTC Premium Growth Plan</h2>
+                            <div style={{color:'var(--accent-orange)', fontWeight:'700', fontSize:'0.9rem'}}>Algorithmic Yield Optimization</div>
+                            
+                            <div className="detail-meta-grid">
+                                <div className="detail-meta-card">
+                                    <span className="metric-label">Quarterly Yield Rate</span>
+                                    <span className="metric-val" style={{color:'var(--accent-orange)', fontSize:'1.1rem'}}>13.00% High-Performance</span>
+                                </div>
+                                <div className="detail-meta-card">
+                                    <span className="metric-label">Lock-In Period</span>
+                                    <span className="metric-val" style={{fontSize:'1.1rem'}}>90 Days (3 Months)</span>
+                                </div>
+                            </div>
+
+                            <div className="exclusive-content-box">
+                                <h3>Operational Core Strategy</h3>
+                                <p>
+                                    Navigating the cryptocurrency market manually subjects retail investors to severe emotional volatility and sudden structural downswings. The BTC Premium Growth Plan sidesteps directional market risk by utilizing advanced, high-frequency computing arrays that perform automated crypto market arbitrage.
+                                </p>
+                                
+                                <h3>How Arbitrage Mitigates Risk</h3>
+                                <p>
+                                    Our system does not predict whether Bitcoin goes up or down. Instead, our servers continuously cross-reference pricing matrices across over 40 global top-tier crypto digital asset exchanges simultaneously.
+                                </p>
+                                <ul className="exclusive-bullet-list">
+                                    <li><strong>Instant Micro-Arbs:</strong> Buying asset batches on Exchange A where price is low, and instantly selling on Exchange B where price is high within a single fraction of a millisecond.</li>
+                                    <li><strong>Algorithmic Downside Caps:</strong> Strict programmatic stop-loss guardrails prevent directional market drops from affecting the user's underlying entry capital.</li>
+                                    <li><strong>Naira Settlement:</strong> All crypto-native yield optimizations are automatically extracted and converted right back into secure naira cash balances daily.</li>
+                                </ul>
+
+                                {!coreState.activeUser ? (
+                                    <button className="submit-btn" style={{marginTop:'1.5rem', background:'var(--accent-orange)'}} onClick={() => setActiveFormModal('register')}>Register Account & Trade Instantly</button>
+                                ) : (
+                                    <button className="submit-btn" style={{marginTop:'1.5rem', background:'var(--accent-orange)'}} onClick={() => deployInvestmentCapital("BTC Premium Digital Growth", "13%", "3 Months", 500000)}>Deploy Capital via Wallet Account</button>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* VIEW 2: VERIFIED USER REGULAR ACCOUNT PORTAL VIEW */}
+                    {coreState.currentView === 'dashboard' && (
                         <div className="portal-layout">
                             <div className="welcome-widget">
                                 <div style={{fontSize: "0.8rem", color: "var(--text-muted)"}}>Client Portal Profile</div>
@@ -667,7 +870,6 @@
                                 <div style={{fontSize: "0.72rem", color: "var(--primary-green)", fontWeight: 600, marginTop: "0.2rem"}}>Status Account: Fully Verified</div>
                             </div>
 
-                            {/* Nigerian Naira Wallet Metric Component */}
                             <div className="naira-wallet-card">
                                 <div className="wallet-title">Available Funding Balance</div>
                                 <div className="wallet-amount">{formatNaira(coreState.finances.spendingWallet)}</div>
@@ -685,15 +887,14 @@
 
                             <div className="section-header" style={{textAlign: "left", padding: 0, margin: "1.5rem 0 1rem"}}>
                                 <h2 style={{fontSize: "1.1rem"}}>Select Service to Invest</h2>
-                                <p style={{textAlign: "left", fontSize: "0.8rem"}}>Tap an instrument below to allocate your naira balance instantly:</p>
+                                <p style={{textAlign: "left", fontSize: "0.8rem"}}>Tap an instrument below to allocate your naira balance or read exclusive breakdowns:</p>
                             </div>
 
-                            {/* Real-time Interactive Investment Terminals */}
                             <div style={{display: "flex", flexDirection: "column", gap: "0.8rem", marginBottom: "3rem"}}>
                                 <div className="interactive-row">
                                     <div>
                                         <div style={{fontWeight: 800, fontSize: "0.95rem", color: "var(--text-dark)"}}>🌾 Agriculture Hub (7%)</div>
-                                        <div style={{fontSize: "0.8rem", color: "var(--text-muted)"}}>Min Entry: {formatNaira(100000)} • 3 Mos</div>
+                                        <div style={{fontSize: "0.8rem", color: "var(--text-muted)", cursor:'pointer', textDecoration:'underline'}} onClick={() => navigateView('detail_agric')}>Read Exclusive Info →</div>
                                     </div>
                                     <button className="action-btn btn-solid" style={{fontSize: "0.75rem", padding: "0.5rem 1rem"}} onClick={() => deployInvestmentCapital("Agriculture Asset Matrix", "7%", "3 Months", 100000)}>Invest</button>
                                 </div>
@@ -701,7 +902,7 @@
                                 <div className="interactive-row">
                                     <div>
                                         <div style={{fontWeight: 800, fontSize: "0.95rem", color: "var(--text-dark)"}}>🏢 Housing Sector (10%)</div>
-                                        <div style={{fontSize: "0.8rem", color: "var(--text-muted)"}}>Min Entry: {formatNaira(250000)} • 3 Mos</div>
+                                        <div style={{fontSize: "0.8rem", color: "var(--text-muted)", cursor:'pointer', textDecoration:'underline'}} onClick={() => navigateView('detail_housing')}>Read Exclusive Info →</div>
                                     </div>
                                     <button className="action-btn btn-solid" style={{fontSize: "0.75rem", padding: "0.5rem 1rem", background: "var(--accent-amber)"}} onClick={() => deployInvestmentCapital("Housing & Real Estate Sector", "10%", "3 Months", 250000)}>Invest</button>
                                 </div>
@@ -709,18 +910,17 @@
                                 <div className="interactive-row">
                                     <div>
                                         <div style={{fontWeight: 800, fontSize: "0.95rem", color: "var(--text-dark)"}}>⚡ BTC Digital Growth (13%)</div>
-                                        <div style={{fontSize: "0.8rem", color: "var(--text-muted)"}}>Min Entry: {formatNaira(500000)} • 3 Mos</div>
+                                        <div style={{fontSize: "0.8rem", color: "var(--text-muted)", cursor:'pointer', textDecoration:'underline'}} onClick={() => navigateView('detail_btc')}>Read Exclusive Info →</div>
                                     </div>
                                     <button className="action-btn btn-solid" style={{fontSize: "0.75rem", padding: "0.5rem 1rem", background: "var(--accent-orange)"}} onClick={() => deployInvestmentCapital("BTC Premium Digital Growth", "13%", "3 Months", 500000)}>Invest</button>
                                 </div>
                             </div>
 
-                            {/* Active Custom Portfolios Render Log */}
                             {coreState.portfolios.length > 0 && (
                                 <div style={{marginTop: "2rem", marginBottom: "2rem"}}>
                                     <div style={{fontWeight: 800, fontSize: "1rem", marginBottom: "0.75rem", color: "var(--text-dark)"}}>Your Active Investment Portfolios</div>
                                     {coreState.portfolios.map((item) => (
-                                        <div key={item.trackId} style={{background: "var(--light-green-alpha)", border: "1px solid rgba(5,150,105,0.15)", padding: "1rem", borderRadius: "14px", marginBottom: "0.6rem", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                                        <div key={item.trackId} style={{background: "var(--light-green-alpha)", border: "1px solid rgba(5,150,105,0.15)", padding: "1rem", borderRadius: "14px", marginBottom: "0.6rem", display: "flex", justifycontent: "space-between", alignItems: "center"}}>
                                             <div>
                                                 <div style={{fontWeight: 700, fontSize: "0.88rem", color: "var(--dark-green)"}}>{item.title}</div>
                                                 <div style={{fontSize: "0.78rem", color: "var(--text-dark)", marginTop: "0.15rem"}}>Principal Staked: {formatNaira(item.principal)}</div>
@@ -736,11 +936,11 @@
                         </div>
                     )}
 
-                    {/* DYNAMIC REGISTRATION & LOGIN MODAL BOX */}
+                    {/* CORE SYSTEM AUTHENTICATION OVERLAY PROMPT WINDOWS */}
                     {activeFormModal && (
                         <div className="overlay-blur">
                             <div className="auth-container">
-                                <div style={{display: "flex", justifyValue: "space-between", alignItems: "flex-start"}}>
+                                <div style={{display: "flex", justifyContent: "space-between", alignItems: "flex-start"}}>
                                     <div style={{width:"90%"}}>
                                         <div className="auth-header-title">{activeFormModal === 'login' ? "Secure Sign In" : "Register Profile"}</div>
                                         <div className="auth-header-sub">Access WorldWeb Capital Management</div>
@@ -777,7 +977,7 @@
                         </div>
                     )}
 
-                    {/* CORPORATE FOOTER (FIRST CONFIGURATION) */}
+                    {/* CORE REUSABLE CORPORATE SYSTEM FOOTER BLOCK */}
                     <footer className="corporate-footer">
                         <div className="footer-branding">
                             <h3>WorldWeb</h3>
@@ -786,9 +986,15 @@
                         <div>
                             <div className="footer-meta-title">Contact Us Details</div>
                             <div className="footer-contacts-list">
-                                <a href="tel:+2348123456789" className="contact-anchor"><span>Number:</span> +234 (0) 812 345 6789</a>
-                                <a href="mailto:support@worldweb.io" className="contact-anchor"><span>Email:</span> support@worldweb.io</a>
-                                <a href="#" className="contact-anchor"><span>Name:</span> WorldWeb International</a>
+                                <span className="contact-anchor" style={{color: '#cbd5e1', fontSize: '0.82rem'}}>
+                                    <strong style={{color: '#94a3b8', width: '55px', display: 'inline-block'}}>Number:</strong> +234 (0) 812 345 6789
+                                </span><br/>
+                                <span className="contact-anchor" style={{color: '#cbd5e1', fontSize: '0.82rem'}}>
+                                    <strong style={{color: '#94a3b8', width: '55px', display: 'inline-block'}}>Email:</strong> support@worldweb.io
+                                </span><br/>
+                                <span className="contact-anchor" style={{color: '#cbd5e1', fontSize: '0.82rem'}}>
+                                    <strong style={{color: '#94a3b8', width: '55px', display: 'inline-block'}}>Name:</strong> WorldWeb International
+                                </span>
                             </div>
                         </div>
                         <div className="footer-copyright-bar">
