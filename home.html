@@ -4,30 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorldWeb | Unified Capital Framework</title>
-    <!-- Framework Core Engine Infrastructure -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-</head>
-<body>
-    <div id="root"></div>
-
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        // 🇳🇬 Central Naira Currency Formatter
-        const formatNaira = (amount) => {
-            return "₦" + (amount || 0).toLocaleString("en-NG", { 
-                minimumFractionDigits: 2, 
-                maximumFractionDigits: 2 
-            });
-        };
-
-        // 🎨 Premium Unified Design System Stylesheet
-        const UNIFIED_STYLES = `
+    
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
             --bg-color: #f8fafc;
@@ -43,358 +26,203 @@
         }
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); background-color: var(--bg-color); -webkit-font-smoothing: antialiased; }
 
-        /* Header Navigation */
-        .main-header { height: 70px; background: var(--surface-white); border-bottom: 1px solid var(--border-line); display: flex; align-items: center; justify-content: space-between; padding: 0 1.2rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.01); }
-        .brand-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        /* Header */
+        .main-header { height: 70px; background: var(--surface-white); border-bottom: 1px solid var(--border-line); display: flex; align-items: center; justify-content: space-between; padding: 0 1.2rem; position: sticky; top: 0; z-index: 1000; }
+        .brand-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; cursor: pointer; }
         .logo-box { width: 36px; height: 36px; background: var(--primary-green); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.15rem; }
         .brand-name { font-weight: 800; font-size: 1.15rem; color: var(--text-dark); letter-spacing: -0.03em; }
-        .header-buttons { display: flex; gap: 0.5rem; align-items: center; }
-        .action-btn { font-family: inherit; font-size: 0.8rem; font-weight: 700; padding: 0.5rem 0.9rem; border-radius: 8px; cursor: pointer; border: none; transition: all 0.2s ease; }
+        .header-buttons { display: flex; gap: 0.5rem; }
+        .action-btn { font-family: inherit; font-size: 0.8rem; font-weight: 700; padding: 0.5rem 0.9rem; border-radius: 8px; cursor: pointer; border: none; }
         .btn-outline { color: var(--primary-green); background: var(--light-green-alpha); border: 1px solid var(--primary-green); }
         .btn-solid { background: var(--primary-green); color: white; }
-        .btn-danger { background: #ef4444; color: white; font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+        .btn-danger { background: #ef4444; color: white; }
 
-        /* Hero & Slider */
-        .hero-banner { padding: 4.5rem 1.2rem 1rem; background: linear-gradient(180deg, var(--light-green-alpha) 0%, rgba(248,250,252,0) 100%); text-align: center; }
-        .hero-headline { font-size: 2.1rem; font-weight: 800; color: var(--text-dark); letter-spacing: -0.04em; line-height: 1.25; margin-bottom: 1rem; }
+        /* Hero */
+        .hero-banner { padding: 4rem 1.2rem 2rem; background: linear-gradient(180deg, var(--light-green-alpha) 0%, rgba(248,250,252,0) 100%); text-align: center; }
+        .hero-headline { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
         .hero-headline span { color: var(--primary-green); }
-        .hero-slider-wrapper { max-width: 550px; margin: 0.5rem auto 2.5rem; padding: 0 1.2rem; }
-        .slider-frame { width: 100%; height: 250px; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08); border: 1px solid var(--border-line); }
-        .slider-tape { display: flex; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .slide-unit { min-width: 100%; height: 100%; position: relative; }
-        .slide-unit img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-caption-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%); padding: 2.5rem 1.2rem 1.2rem; color: white; text-align: left; }
 
-        /* Section Headlines */
-        .section-title { font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-        .section-desc { font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 2rem; padding: 0 1.5rem; line-height: 1.5; }
+        /* Slider */
+        .slider-wrapper { max-width: 550px; margin: 0 auto 3rem; padding: 0 1.2rem; }
+        .slider-container { width: 100%; height: 250px; border-radius: 20px; overflow: hidden; position: relative; border: 1px solid var(--border-line); }
+        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s ease-in-out; }
+        .slide { min-width: 100%; height: 100%; position: relative; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 2rem 1rem 1rem; color: white; font-weight: 700; }
 
-        /* Grid & Cards */
+        /* Catalog */
         .catalog-grid { padding: 0 1.2rem; display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 4rem; }
-        .product-card { background: var(--surface-white); border: 1px solid var(--border-line); border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03); cursor: pointer; }
-        .card-image-box { width: 100%; height: 190px; position: relative; }
-        .card-image-box img { width: 100%; height: 100%; object-fit: cover; }
-        .card-info-content { padding: 1.5rem; }
-        .card-badge { position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.95); padding: 0.35rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; color: var(--primary-green); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .card-badge.orange { color: var(--accent-orange); }
+        .product-card { background: white; border-radius: 24px; border: 1px solid var(--border-line); overflow: hidden; cursor: pointer; }
+        .img-box { width: 100%; height: 200px; position: relative; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .badge { position: absolute; top: 1rem; right: 1rem; background: white; padding: 0.4rem 0.8rem; border-radius: 50px; font-weight: 800; font-size: 0.75rem; color: var(--primary-green); }
+        .card-body { padding: 1.5rem; }
+        .read-more { width: 100%; padding: 0.8rem; margin-top: 1rem; border: 1px solid var(--border-line); border-radius: 10px; background: #f8fafc; font-weight: 700; cursor: pointer; }
 
-        /* Market Section */
+        /* Market Charts */
         .market-section { background: #0f172a; padding: 3rem 1.2rem; color: white; }
-        .market-header { text-align: center; margin-bottom: 2rem; }
-        .market-header h2 { font-size: 1.5rem; font-weight: 800; }
+        .chart-box { border-radius: 16px; overflow: hidden; margin-top: 2rem; }
 
-        /* Footer */
-        .corporate-footer { background: #020617; color: #94a3b8; padding: 3rem 1.2rem 2rem; border-top: 1px solid #1e293b; }
-        .footer-branding h3 { color: white; margin-bottom: 0.5rem; }
-        .footer-copyright-bar { border-top: 1px solid #1e293b; margin-top: 2rem; padding-top: 1.2rem; text-align: center; font-size: 0.75rem; }
-
-        /* Detail Views */
-        .detail-layout { padding: 2rem 1.2rem; max-width: 650px; margin: 0 auto; min-height: 80vh; }
-        .back-link { color: var(--primary-green); font-weight: 700; cursor: pointer; display: block; margin-bottom: 1rem; font-size: 0.9rem; }
-        .detail-hero-img { width: 100%; height: 240px; border-radius: 20px; object-fit: cover; margin-bottom: 1.5rem; }
-        .info-block { background: var(--surface-white); border: 1px solid var(--border-line); padding: 1.25rem; border-radius: 16px; margin: 1rem 0; }
-
-        /* Dashboard Portal */
+        /* Dashboard */
         .portal-layout { padding: 1.2rem; max-width: 600px; margin: 0 auto; min-height: 80vh; }
-        .naira-wallet-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 10px 25px rgba(4, 120, 87, 0.2); }
+        .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .dashboard-row { background: white; padding: 1.1rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; border: 1px solid var(--border-line); }
 
-        /* Auth Overlays */
-        .overlay-blur { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
-        .auth-container { background: white; padding: 2.2rem; border-radius: 24px; width: 100%; max-width: 410px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .close-modal-btn { position: absolute; top: 1.2rem; right: 1.2rem; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: bold; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
-        .text-field { width: 100%; padding: 0.85rem; border: 1px solid #e2e8f0; border-radius: 12px; margin: 0.5rem 0 1.25rem; font-family: inherit; font-size: 0.9rem; }
-        .text-field:focus { outline: 2px solid var(--primary-green); border-color: transparent; }
-        .submit-btn { width: 100%; padding: 0.9rem; background: var(--primary-green); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.95rem; }
-        `;
+        /* Auth */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
+        .modal-card { background: white; width: 100%; max-width: 400px; padding: 2rem; border-radius: 24px; position: relative; }
+        .close-btn { position: absolute; top: 1rem; right: 1rem; border: none; background: #f1f5f9; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer; }
+        .input-field { width: 100%; padding: 0.9rem; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; font-family: inherit; }
+        .submit-btn { width: 100%; padding: 1rem; background: var(--primary-green); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
 
-        // 🏦 Global State Tree Integration
-        if (!window.__WorldWebState) {
-            window.__WorldWebState = {
-                currentView: 'marketing', 
-                activeUser: null,
-                finances: { spendingWallet: 250000, stakedCapital: 0, accumulatedYield: 0 },
-                portfolios: []
-            };
-        }
+        footer { background: #020617; color: #94a3b8; padding: 3rem 1.2rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
 
-        function MainApp() {
-            const [state, setState] = useState({ ...window.__WorldWebState });
-            const [activeFormModal, setActiveFormModal] = useState(null); 
-            const [slideIndex, setSlideIndex] = useState(0);
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-            // Authentication Capture Buffers
-            const [userMail, setUserMail] = useState("");
-            const [userPass, setUserPass] = useState("");
-            const [userNameInput, setUserNameInput] = useState("");
+        const formatNaira = (num) => "₦" + (num || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 });
 
-            const SLIDER_PICS = [
-                { src: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80", tag: "📈 Global USD Currency Yield Index" },
-                { src: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600&q=80", tag: "🏙️ Premium Sovereign Asset Assets" },
-                { src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80", tag: "🌊 Optimized Luxury Portfolios" },
-                { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80", tag: "🏡 Elite Residential Estates" }
+        function App() {
+            const [view, setView] = useState('home');
+            const [modal, setModal] = useState(null);
+            const [slideIdx, setSlideIdx] = useState(0);
+            const [user, setUser] = useState(null);
+            const [wallet, setWallet] = useState(250000);
+
+            const slides = [
+                { url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600", title: "Global Market USD Trends" },
+                { url: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600", title: "Burj Khalifa Sovereign Assets" },
+                { url: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600", title: "Premium Leisure Jet Ski Portfolios" },
+                { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600", title: "Luxury Residential Estates" }
             ];
 
             useEffect(() => {
-                const styleNode = document.createElement("style");
-                styleNode.textContent = UNIFIED_STYLES;
-                document.head.appendChild(styleNode);
-            }, []);
+                if (view === 'home') {
+                    const timer = setInterval(() => setSlideIdx(p => (p + 1) % slides.length), 3000);
+                    return () => clearInterval(timer);
+                }
+            }, [view]);
 
-            // 🏎️ Automatic Slider Logic
             useEffect(() => {
-                if (state.currentView !== 'marketing') return;
-                const ticker = setInterval(() => setSlideIndex(p => (p + 1) % SLIDER_PICS.length), 3000);
-                return () => clearInterval(ticker);
-            }, [state.currentView]);
-
-            // 📊 Automated Real-Time TradingView Render Engine
-            useEffect(() => {
-                if (state.currentView === 'marketing' && window.TradingView) {
-                    new TradingView.MediumWidget({
-                        "symbols": [["Bitcoin", "BINANCE:BTCUSDT|1D"], ["Gold", "OANDA:XAUUSD|1D"], ["USD / Naira", "FX_IDC:USDNGN|1D"]],
-                        "width": "100%", "height": 400, "colorTheme": "dark", "container_id": "market_chart"
+                if (view === 'home' && window.TradingView) {
+                    new window.TradingView.MediumWidget({
+                        "symbols": [["BTC", "BINANCE:BTCUSDT|1D"], ["Gold", "OANDA:XAUUSD|1D"], ["USD/NGN", "FX_IDC:USDNGN|1D"]],
+                        "width": "100%", "height": 400, "colorTheme": "dark", "container_id": "chart_div"
                     });
                 }
-            }, [state.currentView]);
+            }, [view]);
 
-            const navigateView = (view) => {
-                const upd = { ...state, currentView: view };
-                window.__WorldWebState = upd;
-                setState(upd);
-                window.scrollTo(0, 0);
-            };
-
-            const processAuth = (e) => {
-                e.preventDefault();
-                const name = activeFormModal === 'register' ? userNameInput : "Chidi Okonkwo";
-                const upd = { ...state, currentView: 'dashboard', activeUser: { name, email: userMail } };
-                window.__WorldWebState = upd;
-                setState(upd);
-                setActiveFormModal(null);
-            };
-
-            const processLogout = () => {
-                const upd = { ...state, currentView: 'marketing', activeUser: null, portfolios: [] };
-                window.__WorldWebState = upd;
-                setState(upd);
-            };
-
-            const invest = (title, rate, term, min) => {
-                if (state.finances.spendingWallet < min) return alert("Insufficient Balance in Spending Wallet");
-                const upd = { ...state, 
-                    finances: { ...state.finances, spendingWallet: state.finances.spendingWallet - min, stakedCapital: state.finances.stakedCapital + min },
-                    portfolios: [{ title, rate, term, principal: min, id: Date.now() }, ...state.portfolios]
-                };
-                window.__WorldWebState = upd;
-                setState(upd);
-                alert(`${title} Activated Successfully!`);
-                navigateView('dashboard');
-            };
+            const login = () => { setUser({name: 'Investor'}); setModal(null); setView('dashboard'); };
+            const logout = () => { setUser(null); setView('home'); };
 
             return (
                 <div>
                     <header className="main-header">
-                        <a href="#" className="brand-logo" onClick={(e) => { e.preventDefault(); navigateView(state.activeUser ? 'dashboard' : 'marketing'); }}>
+                        <div className="brand-logo" onClick={() => setView(user ? 'dashboard' : 'home')}>
                             <div className="logo-box">W</div>
                             <span className="brand-name">WorldWeb</span>
-                        </a>
+                        </div>
                         <div className="header-buttons">
-                            {!state.activeUser ? (
+                            {!user ? (
                                 <>
-                                    <button className="action-btn btn-outline" style={{border:'none'}} onClick={() => setActiveFormModal('login')}>Sign In</button>
-                                    <button className="action-btn btn-solid" onClick={() => setActiveFormModal('register')}>Get Started</button>
+                                    <button className="action-btn btn-outline" onClick={() => setModal('login')}>Sign In</button>
+                                    <button className="action-btn btn-solid" onClick={() => setModal('signup')}>Get Started</button>
                                 </>
                             ) : (
-                                <button className="action-btn btn-danger" onClick={processLogout}>Log Out</button>
+                                <button className="action-btn action-btn btn-danger" style={{border:'none', borderRadius:'8px', fontWeight:700, padding:'0.5rem 1rem'}} onClick={logout}>Log Out</button>
                             )}
                         </div>
                     </header>
 
-                    {/* MARKETING FRONT-FACING VIEW */}
-                    {state.currentView === 'marketing' && (
-                        <div>
+                    {view === 'home' && (
+                        <main>
                             <section className="hero-banner">
                                 <h1 className="hero-headline">Multiply Wealth Through <span>Proven Portfolios</span></h1>
-                                <p style={{fontSize:'0.9rem', color:'var(--text-muted)', marginBottom:'1.5rem', lineHeight:'1.5', padding:'0 1rem'}}>
-                                    Stop letting inflation eat your savings. WorldWeb shifts your capital directly into highly lucrative, insured sectors to safeguard and compound your financial future.
-                                </p>
-                                <button className="action-btn btn-solid" style={{padding: "0.85rem 1.6rem", marginBottom:"1.5rem"}} onClick={() => setActiveFormModal('register')}>Start Investing Today</button>
+                                <button className="action-btn btn-solid" style={{padding:'1rem 2rem'}} onClick={() => setModal('signup')}>Start Investing Today</button>
                             </section>
 
-                            <div className="hero-slider-wrapper">
-                                <div className="slider-frame">
-                                    <div className="slider-tape" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
-                                        {SLIDER_PICS.map((s, i) => (
-                                            <div className="slide-unit" key={i}>
-                                                <img src={s.src} alt={s.tag} />
-                                                <div className="slide-caption-overlay"><div style={{fontWeight:800}}>{s.tag}</div></div>
+                            <div className="slider-wrapper">
+                                <div className="slider-container">
+                                    <div className="slider-track" style={{ transform: `translateX(-${slideIdx * 100}%)` }}>
+                                        {slides.map((s, i) => (
+                                            <div className="slide" key={i}>
+                                                <img src={s.url} />
+                                                <div className="slide-overlay">{s.title}</div>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
                             </div>
 
-                            <h2 className="section-title">Available Structured Instruments</h2>
-                            <p className="section-desc">Select an asset class backed by automated risk management guidelines.</p>
-
-                            <section className="catalog-grid">
-                                {/* AGRIC ASSET MATRIX CARD */}
-                                <div className="product-card" onClick={() => navigateView('detail_agric')}>
-                                    <div className="card-image-box">
-                                        <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80" />
-                                        <span className="card-badge">7% Fixed ROI • 3 Mos</span>
-                                    </div>
-                                    <div className="card-info-content">
-                                        <h3 style={{marginBottom:'0.5rem'}}>Agriculture Asset Matrix</h3>
-                                        <p style={{fontSize:'0.85rem', color:'#64748b', lineHeight:'1.4'}}>Direct capital scaling into modern industrialized farming projects. Secure quarterly liquid allocations tied to real, physical harvest values.</p>
-                                    </div>
+                            <div className="catalog-grid">
+                                <div className="product-card" onClick={() => setView('agric')}>
+                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600" /><div className="badge">7% ROI</div></div>
+                                    <div className="card-body"><h3>Agriculture Asset Matrix</h3><button className="read-more">View Details</button></div>
                                 </div>
-
-                                {/* BTC PREMIUM GROWTH CARD */}
-                                <div className="product-card" onClick={() => navigateView('detail_btc')}>
-                                    <div className="card-image-box">
-                                        <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600&q=80" />
-                                        <span className="card-badge orange">13% Fixed ROI • 3 Mos</span>
-                                    </div>
-                                    <div className="card-info-content">
-                                        <h3 style={{marginBottom:'0.5rem'}}>BTC Premium Digital Growth</h3>
-                                        <p style={{fontSize:'0.85rem', color:'#64748b', lineHeight:'1.4'}}>Automated algorithmic trading parameters executing on high-liquidity digital assets. Engineered for fast performance with systemic risk limiters.</p>
-                                    </div>
+                                <div className="product-card" onClick={() => setView('btc')}>
+                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600" /><div className="badge" style={{color:'var(--accent-orange)'}}>13% ROI</div></div>
+                                    <div className="card-body"><h3>BTC Digital Growth</h3><button className="read-more">View Details</button></div>
                                 </div>
-                            </section>
+                            </div>
 
-                            {/* LIVE MARKET SECTION */}
                             <section className="market-section">
-                                <div className="market-header">
-                                    <h2>Global Market Performance</h2>
-                                    <p style={{color:'#94a3b8', fontSize:'0.85rem', marginTop:'0.25rem'}}>Real-time price tracking for institutional assets</p>
-                                </div>
-                                <div id="market_chart" style={{borderRadius:'16px', overflow:'hidden'}}></div>
+                                <h2 style={{textAlign:'center'}}>Live Market Intel</h2>
+                                <div id="chart_div" className="chart-box"></div>
                             </section>
-                        </div>
+                        </main>
                     )}
 
-                    {/* AGRIC DETAIL VIEW */}
-                    {state.currentView === 'detail_agric' && (
-                        <div className="detail-layout">
-                            <span className="back-link" onClick={() => navigateView(state.activeUser ? 'dashboard' : 'marketing')}>← Back to Main Framework</span>
-                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80" className="detail-hero-img" />
-                            <h2>Agriculture Asset Matrix</h2>
-                            <div className="info-block">
-                                <p style={{color:'var(--primary-green)', fontWeight:700, marginBottom:'0.5rem'}}>Return Yield Parameters</p>
-                                <div style={{display:'flex', justifyContent:'space-between', fontSize:'0.9rem'}}><span style={{color:'#64748b'}}>Fixed ROI:</span><span className="metric-val">7.00%</span></div>
-                                <div style={{display:'flex', justifyContent:'space-between', fontSize:'0.9rem', marginTop:'0.4rem'}}><span style={{color:'#64748b'}}>Lock Duration:</span><span className="metric-val">3 Months</span></div>
-                                <div style={{display:'flex', justifyContent={spaceBetween:true}, fontSize:'0.9rem', marginTop:'0.4rem'}}><span style={{color:'#64748b'}}>Minimum Capital requirement:</span><span className="metric-val">₦100,000.00</span></div>
-                            </div>
-                            <p style={{margin:'1rem 0', lineHeight:'1.6', fontSize:'0.9rem', color:'#334155'}}>Direct capital scaling into modern industrialized farming projects. Secure quarterly liquid allocations tied to real, physical harvest values. Fully protected by tier-1 insurance underwriters to safeguard underlying capital structures.</p>
-                            <button className="submit-btn" style={{marginTop:'1rem'}} onClick={() => state.activeUser ? invest("Agric Asset Matrix", "7%", "3 Mos", 100000) : setActiveFormModal('register')}>
-                                {state.activeUser ? "Invest ₦100,000 Now" : "Sign Up to Deploy Capital"}
+                    {(view === 'agric' || view === 'btc') && (
+                        <div style={{padding:'2rem 1.2rem', maxWidth:'600px', margin:'0 auto', minHeight:'80vh'}}>
+                            <span onClick={() => setView(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
+                            <h2 style={{marginTop:'1.5rem'}}>{view === 'agric' ? 'Agriculture Asset Matrix' : 'BTC Digital Growth'}</h2>
+                            <p style={{margin:'1rem 0', lineHeight:1.7}}>Exclusive high-yield investment structures managed by WorldWeb capital. All underlying seed capital is corporate-insured to ensure principal protection.</p>
+                            <button className="submit-btn" onClick={() => user ? setView('dashboard') : setModal('signup')}>
+                                {user ? "Allocate Funds From Wallet" : "Sign Up to Invest"}
                             </button>
                         </div>
                     )}
 
-                    {/* BTC DETAIL VIEW */}
-                    {state.currentView === 'detail_btc' && (
-                        <div className="detail-layout">
-                            <span className="back-link" onClick={() => navigateView(state.activeUser ? 'dashboard' : 'marketing')}>← Back to Main Framework</span>
-                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=80" className="detail-hero-img" />
-                            <h2>BTC Premium Digital Growth</h2>
-                            <div className="info-block">
-                                <p style={{color:'var(--accent-orange)', fontWeight:700, marginBottom:'0.5rem'}}>Digital Performance Metrics</p>
-                                <div style={{display:'flex', justifyContent:'space-between', fontSize:'0.9rem'}}><span style={{color:'#64748b'}}>Fixed ROI:</span><span className="metric-val" style={{color:'var(--accent-orange)'}}>13.00%</span></div>
-                                <div style={{display:'flex', justifyContent:'space-between', fontSize:'0.9rem', marginTop:'0.4rem'}}><span style={{color:'#64748b'}}>Lock Duration:</span><span className="metric-val">3 Months</span></div>
-                                <div style={{display:'flex', justifyContent:'space-between', fontSize:'0.9rem', marginTop:'0.4rem'}}><span style={{color:'#64748b'}}>Minimum Capital requirement:</span><span className="metric-val">₦200,000.00</span></div>
-                            </div>
-                            <p style={{margin:'1rem 0', lineHeight:'1.6', fontSize:'0.9rem', color:'#334155'}}>Automated algorithmic trading parameters executing on high-liquidity digital assets. Engineered for fast performance with systemic risk limiters. Maximizes alpha extraction using quantitative execution methodologies.</p>
-                            <button className="submit-btn" style={{backgroundColor:'var(--accent-orange)', marginTop:'1rem'}} onClick={() => state.activeUser ? invest("BTC Premium Growth", "13%", "3 Mos", 200000) : setActiveFormModal('register')}>
-                                {state.activeUser ? "Invest ₦200,000 Now" : "Sign Up to Deploy Capital"}
-                            </button>
-                        </div>
-                    )}
-
-                    {/* USER DASHBOARD PORTAL */}
-                    {state.currentView === 'dashboard' && (
+                    {view === 'dashboard' && (
                         <div className="portal-layout">
-                            <div style={{marginBottom:'1.5rem'}}>
-                                <h2 style={{fontSize:'1.3rem', fontWeight:800}}>Welcome back, {state.activeUser.name}</h2>
-                                <p style={{fontSize:'0.8rem', color:'var(--text-muted)'}}>{state.activeUser.email}</p>
-                            </div>
-                            <div className="naira-wallet-card">
-                                <div style={{fontSize:'0.75rem', opacity:0.85, fontWeight:700, letterSpacing:'0.05em'}}>SPENDING WALLET BALANCE</div>
-                                <div style={{fontSize:'2rem', fontWeight:800, margin:'0.5rem 0 1.2rem'}}>{formatNaira(state.finances.spendingWallet)}</div>
-                                <div style={{display:'flex', gap:'2rem', borderTop:'1px solid rgba(255,255,255,0.15)', paddingTop:'1rem'}}>
-                                    <div><small style={{fontSize:'0.65rem', opacity:0.8, display:'block', marginBottom:'0.2rem'}}>STAKED CAPITAL</small><div style={{fontWeight:700, fontSize:'1rem'}}>{formatNaira(state.finances.stakedCapital)}</div></div>
-                                    <div><small style={{fontSize:'0.65rem', opacity:0.8, display:'block', marginBottom:'0.2rem'}}>TOTAL GAINS</small><div style={{fontWeight:700, fontSize:'1rem', color:'#34d399'}}>{formatNaira(state.finances.accumulatedYield)}</div></div>
+                            <h2 style={{marginBottom:'1rem'}}>Welcome back, Investor</h2>
+                            <div className="naira-card">
+                                <div style={{fontSize:'0.8rem', opacity:0.8}}>WALLET BALANCE</div>
+                                <div style={{fontSize:'2rem', fontWeight:800, margin:'0.5rem 0'}}>{formatNaira(wallet)}</div>
+                                <div style={{display:'flex', gap:'1.5rem', borderTop:'1px solid rgba(255,255,255,0.2)', paddingTop:'1rem'}}>
+                                    <div><small>STAKED</small><div>₦0.00</div></div>
+                                    <div><small>TOTAL GAINS</small><div style={{color:'#34d399'}}>₦0.00</div></div>
                                 </div>
                             </div>
-
-                            <h3 style={{fontSize:'1.1rem', fontWeight:800, marginBottom:'1rem'}}>Active Investment Portfolios</h3>
-                            {state.portfolios.length === 0 ? (
-                                <div style={{background:'white', border:'1px dashed #cbd5e1', padding:'2.5rem 1rem', borderRadius:'16px', textAlign:'center', color:'var(--text-muted)'}}>
-                                    <p style={{fontSize:'0.9rem', marginBottom:'1rem'}}>You have no active investments running.</p>
-                                    <button className="action-btn btn-solid" onClick={() => navigateView('marketing')}>Browse Marketplace</button>
-                                </div>
-                            ) : (
-                                state.portfolios.map(p => (
-                                    <div key={p.id} style={{background:'white', padding:'1.2rem', borderRadius:'16px', marginBottom:'1rem', border:'1px solid #e2e8f0', display:'flex', justifyContent:'space-between', alignItems:'center', boxShadow:'0 4px 12px rgba(0,0,0,0.01)'}}>
-                                        <div>
-                                            <strong style={{fontSize:'0.95rem', display:'block', marginBottom:'0.25rem'}}>{p.title}</strong>
-                                            <span style={{fontSize:'0.85rem', color:'var(--text-muted)'}}>Principal: {formatNaira(p.principal)}</span>
-                                        </div>
-                                        <div style={{textAlign:'right'}}>
-                                            <span style={{color:'var(--primary-green)', fontWeight:800, display:'block', fontSize:'0.95rem'}}>+{p.rate} Yield</span>
-                                            <span style={{fontSize:'0.75rem', background:'#f1f5f9', padding:'0.2rem 0.5rem', borderRadius:'5px', display:'inline-block', marginTop:'0.25rem', color:'var(--text-muted)'}}>{p.term}</span>
-                                        </div>
-                                    </div>
-                                ))
-                            )}
+                            <h3>Investment Marketplace</h3>
+                            <div className="dashboard-row" onClick={() => setView('agric')}>
+                                <div><strong>Agriculture Matrix</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>7% Fixed ROI</div></div>
+                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem'}}>Invest</button>
+                            </div>
+                            <div className="dashboard-row" onClick={() => setView('btc')}>
+                                <div><strong>BTC Growth Plan</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>13% Fixed ROI</div></div>
+                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem', background:'var(--accent-orange)'}}>Invest</button>
+                            </div>
                         </div>
                     )}
 
-                    <footer className="corporate-footer">
-                        <div className="footer-branding">
-                            <h3 style={{letterSpacing:'-0.03em'}}>WorldWeb</h3>
-                            <p style={{fontSize:'0.8rem', color:'#64748b', marginTop:'0.4rem', lineHeight:'1.5'}}>Building secure alternative financial channels connecting public investor capital to optimized institutional asset growth vectors.</p>
-                            <div style={{marginTop:'1.5rem', fontSize:'0.8rem', color:'#64748b'}}>
-                                <div><strong>Number:</strong> +234 (0) 812 345 6789</div>
-                                <div><strong>Email:</strong> support@worldweb.io</div>
-                                <div><strong>Name:</strong> WorldWeb International</div>
-                            </div>
-                        </div>
-                        <div className="footer-copyright-bar">© 2026 WorldWeb International Inc. All Rights Reserved.</div>
+                    <footer>
+                        <h3>WorldWeb</h3>
+                        <p>© 2026 WorldWeb International Inc.</p>
                     </footer>
 
-                    {/* MODAL AUTHENTICATION GATE (SIGN UP / LOG IN) WITH CANCEL BUTTON */}
-                    {activeFormModal && (
-                        <div className="overlay-blur">
-                            <div className="auth-container">
-                                <button className="close-modal-btn" onClick={() => setActiveFormModal(null)}>×</button>
-                                <h2 style={{fontSize:'1.35rem', fontWeight:800, letterSpacing:'-0.02em', marginBottom:'0.5rem'}}>{activeFormModal === 'login' ? "Sign In to WorldWeb" : "Create Investment Account"}</h2>
-                                <p style={{fontSize:'0.8rem', color:'var(--text-muted)', marginBottom:'1.5rem'}}>{activeFormModal === 'login' ? "Access your unified capital performance metrics." : "Deploy structures into optimized highly-vetted channels."}</p>
-                                
-                                <form onSubmit={processAuth}>
-                                    {activeFormModal === 'register' && (
-                                        <div>
-                                            <label style={{fontSize:'0.75rem', fontWeight:700, color:'var(--text-dark)'}}>FULL NAME</label>
-                                            <input type="text" placeholder="John Doe" className="text-field" required onChange={e => setUserNameInput(e.target.value)} />
-                                        </div>
-                                    )}
-                                    <label style={{fontSize:'0.75rem', fontWeight:700, color:'var(--text-dark)'}}>EMAIL ADDRESS</label>
-                                    <input type="email" placeholder="name@example.com" className="text-field" required onChange={e => setUserMail(e.target.value)} />
-                                    
-                                    <label style={{fontSize:'0.75rem', fontWeight:700, color:'var(--text-dark)'}}>ACCOUNT PASSWORD</label>
-                                    <input type="password" placeholder="••••••••" className="text-field" required onChange={e => setUserPass(e.target.value)} />
-                                    
-                                    <button type="submit" className="submit-btn">{activeFormModal === 'login' ? "Authenticate securely" : "Create Free Account"}</button>
-                                </form>
-                                
-                                <p style={{textAlign:'center', marginTop:'1.25rem', fontSize:'0.85rem', color:'var(--text-muted)'}}>
-                                    {activeFormModal === 'login' ? (
-                                        <span>New to the framework? <strong style={{color:'var(--primary-green)', cursor:'pointer'}} onClick={() => setActiveFormModal('register')}>Sign up here</strong></span>
-                                    ) : (
-                                        <span>Already registered? <strong style={{color:'var(--primary-green)', cursor:'pointer'}} onClick={() => setActiveFormModal('login')}>Sign in here</strong></span>
-                                    )}
-                                </p>
+                    {modal && (
+                        <div className="modal-overlay">
+                            <div className="modal-card">
+                                <button className="close-btn" onClick={() => setModal(null)}>×</button>
+                                <h2 style={{marginBottom:'1rem'}}>{modal === 'login' ? 'Sign In' : 'Create Account'}</h2>
+                                <input type="email" placeholder="Email" className="input-field" />
+                                <input type="password" placeholder="Password" className="input-field" />
+                                <button className="submit-btn" onClick={login}>Continue</button>
                             </div>
                         </div>
                     )}
@@ -403,7 +231,7 @@
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<MainApp />);
+        root.render(<App />);
     </script>
 </body>
 </html>
