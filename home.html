@@ -35,60 +35,22 @@
         .btn-solid:hover { background: #047857; }
         .btn-danger { background: #ef4444; color: white; }
 
-        /* Hero Section with Fixed Background & Animation */
-        .hero-banner { 
-            position: relative;
-            padding: 5rem 1.2rem; 
-            text-align: center; 
-            /* Updated to a reliable URL of a professional businessman */
-            background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.8); /* Dark tint for text readability */
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        .hero-headline { 
-            font-size: 2.2rem; 
-            font-weight: 800; 
-            margin-bottom: 1rem; 
-            line-height: 1.2; 
-            color: white;
-            opacity: 0;
-            animation: slideUpFade 0.8s ease-out forwards;
-        }
-        .hero-headline span { 
-            color: #34d399; 
-            display: inline-block;
-            opacity: 0;
-            animation: slideUpFade 0.8s ease-out forwards 0.4s;
-        }
-        .hero-btn {
-            opacity: 0;
-            animation: slideUpFade 0.8s ease-out forwards 0.8s;
-            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
-        }
+        /* Hero Section */
+        .hero-banner { position: relative; padding: 5rem 1.2rem; text-align: center; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; overflow: hidden; margin-bottom: 2rem; }
+        .hero-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.8); }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-headline { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; color: white; opacity: 0; animation: slideUpFade 0.8s ease-out forwards; }
+        .hero-headline span { color: #34d399; display: inline-block; opacity: 0; animation: slideUpFade 0.8s ease-out forwards 0.4s; }
+        .hero-btn { opacity: 0; animation: slideUpFade 0.8s ease-out forwards 0.8s; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4); }
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Slider */
+        /* Slider & Catalog */
         .slider-wrapper { max-width: 550px; margin: 0 auto 3rem; padding: 0 1.2rem; }
         .slider-container { width: 100%; height: 250px; border-radius: 20px; overflow: hidden; position: relative; border: 1px solid var(--border-line); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s ease-in-out; }
         .slide { min-width: 100%; height: 100%; position: relative; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 2rem 1rem 1rem; color: white; font-weight: 700; }
-
-        /* Catalog */
         .catalog-grid { padding: 0 1.2rem; display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto; }
         .product-card { background: white; border-radius: 24px; border: 1px solid var(--border-line); overflow: hidden; }
         .img-box { width: 100%; height: 190px; position: relative; }
@@ -98,48 +60,40 @@
         .read-more { width: 100%; padding: 0.8rem; margin-top: 1rem; border: 1px solid var(--border-line); border-radius: 10px; background: #f8fafc; font-weight: 700; cursor: pointer; color: var(--text-dark); transition: background 0.2s; }
         .read-more:hover { background: var(--primary-green); color: white; border-color: var(--primary-green); }
 
-        /* Improved Market Chart Section */
+        /* Market Chart */
         .market-section { background: #0f172a; padding: 3rem 1.2rem; color: white; text-align: center; }
-        .chart-box { 
-            border-radius: 16px; 
-            overflow: hidden; 
-            margin-top: 1.5rem; 
-            height: 350px; /* Reduced and strictly enforced height */
-            max-width: 600px; 
-            margin-left: auto; 
-            margin-right: auto; 
-            background: #1e293b;
-        }
+        .chart-box { border-radius: 16px; overflow: hidden; margin-top: 1.5rem; height: 350px; max-width: 600px; margin-left: auto; margin-right: auto; background: #1e293b; }
 
-        /* Details View */
+        /* Detailed Views & Dashboard */
         .detail-view { padding: 2rem 1.2rem; max-width: 600px; margin: 0 auto; min-height: 80vh; }
         .info-header { font-size: 0.75rem; font-weight: 800; color: var(--primary-green); letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; }
         .detail-desc { line-height: 1.7; color: #334155; margin-bottom: 1.5rem; font-size: 0.95rem; }
         .metric-box { background: #f1f5f9; padding: 1.2rem; border-radius: 16px; margin-bottom: 2rem; }
-
-        /* Dashboard */
         .dashboard-layout { padding: 2rem 1.2rem; max-width: 600px; margin: 0 auto; min-height: 80vh; }
         .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 20px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .dash-row { background: white; padding: 1.1rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; border: 1px solid var(--border-line); }
+        .bonus-card { background: rgba(16, 185, 129, 0.08); border: 1px dashed var(--primary-green); padding: 1.5rem; border-radius: 16px; text-align: center; margin-bottom: 2rem; }
         
-        /* Welcome Bonus Card */
-        .bonus-card {
-            background: rgba(16, 185, 129, 0.08);
-            border: 1px dashed var(--primary-green);
-            padding: 1.5rem;
-            border-radius: 16px;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        /* Modals */
+        /* Modals & Inputs */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
         .modal-card { background: white; width: 100%; max-width: 400px; padding: 2rem; border-radius: 24px; position: relative; }
         .close-btn { position: absolute; top: 1rem; right: 1rem; border: none; background: #f1f5f9; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer; }
         .input-field { width: 100%; padding: 0.9rem; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; font-family: inherit; font-size: 0.95rem; }
-        .submit-btn { width: 100%; padding: 1rem; background: var(--primary-green); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; }
+        .submit-btn { width: 100%; padding: 1rem; background: var(--primary-green); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; transition: 0.2s; }
+        .submit-btn:hover { background: #047857; }
         .code-inputs { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
         .code-box { width: 45px; height: 50px; border: 1px solid #cbd5e1; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: 700; }
+
+        /* Alert Popups */
+        .alert-popup {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: #0f172a; color: white; padding: 1rem 1.5rem;
+            border-radius: 16px; font-weight: 700; z-index: 3000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: flex; align-items: center; gap: 0.8rem;
+            animation: slideDownAlert 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes slideDownAlert { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
 
         footer { background: #020617; color: #94a3b8; padding: 3rem 1.2rem; text-align: center; }
     </style>
@@ -149,7 +103,6 @@
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-
         const formatNaira = (num) => "₦" + (num || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 });
 
         function App() {
@@ -157,6 +110,7 @@
             const [modal, setModal] = useState(null);
             const [slideIdx, setSlideIdx] = useState(0);
             const [user, setUser] = useState(null);
+            const [alertMsg, setAlertMsg] = useState(null);
 
             const slides = [
                 { url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600", title: "Live Market Intelligence" },
@@ -165,7 +119,6 @@
                 { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600", title: "Premium Residential Estates" }
             ];
 
-            // Auto-slide functionality
             useEffect(() => {
                 if (view === 'home') {
                     const timer = setInterval(() => setSlideIdx(p => (p + 1) % slides.length), 3000);
@@ -173,66 +126,48 @@
                 }
             }, [view]);
 
-            // Properly formatted TradingView integration
             useEffect(() => {
                 if (view === 'home' && window.TradingView) {
                     new window.TradingView.MediumWidget({
-                        "symbols": [
-                            ["BTC", "BINANCE:BTCUSDT|1D"], 
-                            ["Gold", "OANDA:XAUUSD|1D"], 
-                            ["USD/NGN", "FX_IDC:USDNGN|1D"]
-                        ],
-                        "chartOnly": false,
-                        "width": "100%",
-                        "height": 350,
-                        "locale": "en",
-                        "colorTheme": "dark",
-                        "autosize": false,
-                        "showVolume": false,
-                        "hideDateRanges": false,
-                        "hideMarketStatus": false,
-                        "scalePosition": "right",
-                        "scaleMode": "Normal",
-                        "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-                        "fontSize": "10",
-                        "noTimeScale": false,
-                        "valuesTracking": "1",
-                        "changeMode": "price-and-percent",
-                        "chartType": "line",
-                        "container_id": "chart_div"
+                        "symbols": [["BTC", "BINANCE:BTCUSDT|1D"], ["Gold", "OANDA:XAUUSD|1D"], ["USD/NGN", "FX_IDC:USDNGN|1D"]],
+                        "chartOnly": false, "width": "100%", "height": 350, "locale": "en", "colorTheme": "dark",
+                        "autosize": false, "scalePosition": "right", "scaleMode": "Normal", "chartType": "line", "container_id": "chart_div"
                     });
                 }
             }, [view]);
 
-            // Auth Functions
-            const handleLogin = () => { 
-                setUser({ name: 'Investor', balance: 0, bonusClaimed: false }); 
-                setModal(null); 
-                setView('dashboard'); 
-                window.scrollTo(0,0); 
-            };
-            
-            const handleSignupSubmit = () => {
-                setModal('verification'); // Trigger email verification step
+            // Utility Functions
+            const showAlert = (msg) => {
+                setAlertMsg(msg);
+                setTimeout(() => setAlertMsg(null), 4000);
             };
 
-            const handleVerificationComplete = () => {
-                setUser({ name: 'Investor', balance: 0, bonusClaimed: false }); 
-                setModal(null);
-                setView('dashboard');
-                window.scrollTo(0,0);
-            };
-
+            const handleLogin = () => { setUser({ name: 'Investor', balance: 0, bonusClaimed: false }); setModal(null); setView('dashboard'); window.scrollTo(0,0); };
+            const handleSignupSubmit = () => { setModal('verification'); };
+            const handleVerificationComplete = () => { setUser({ name: 'Investor', balance: 0, bonusClaimed: false }); setModal(null); setView('dashboard'); window.scrollTo(0,0); };
             const logout = () => { setUser(null); setView('home'); window.scrollTo(0,0); };
             const navigate = (v) => { setView(v); window.scrollTo(0,0); };
 
-            // Bonus Claim Function
             const claimBonus = () => {
                 setUser(prev => ({ ...prev, balance: prev.balance + 10000, bonusClaimed: true }));
+                showAlert('🎉 Congratulations! ₦10,000 Welcome Bonus Claimed!');
+            };
+
+            const submitDeposit = () => {
+                showAlert('⏳ Pending Confirmation. We will verify your deposit shortly.');
+                setTimeout(() => navigate('dashboard'), 3000);
+            };
+
+            const submitWithdrawal = () => {
+                showAlert('✅ Your money is on the way. Thank you.');
+                setTimeout(() => navigate('dashboard'), 3000);
             };
 
             return (
                 <div>
+                    {/* Dynamic Alert Component */}
+                    {alertMsg && <div className="alert-popup">{alertMsg}</div>}
+
                     <header className="main-header">
                         <div className="brand-logo" onClick={() => navigate(user ? 'dashboard' : 'home')}>
                             <div className="logo-box">W</div>
@@ -252,7 +187,6 @@
 
                     {view === 'home' && (
                         <main>
-                            {/* Updated Hero Banner */}
                             <section className="hero-banner">
                                 <div className="hero-overlay"></div>
                                 <div className="hero-content">
@@ -261,7 +195,6 @@
                                 </div>
                             </section>
 
-                            {/* Slider Maintained */}
                             <div className="slider-wrapper">
                                 <div className="slider-container">
                                     <div className="slider-track" style={{ transform: `translateX(-${slideIdx * 100}%)` }}>
@@ -275,43 +208,21 @@
                                 </div>
                             </div>
 
-                            {/* Investment Catalog Maintained */}
                             <div className="catalog-grid">
                                 <div className="product-card">
-                                    <div className="img-box">
-                                        <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600" />
-                                        <div className="badge">7% ROI • 3 Mos</div>
-                                    </div>
-                                    <div className="card-body">
-                                        <h3>Agriculture Asset Matrix</h3>
-                                        <button className="read-more" onClick={() => navigate('agric')}>Read More Details →</button>
-                                    </div>
+                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600" /><div className="badge">7% ROI • 3 Mos</div></div>
+                                    <div className="card-body"><h3>Agriculture Asset Matrix</h3><button className="read-more" onClick={() => navigate('agric')}>Read More Details →</button></div>
                                 </div>
-
                                 <div className="product-card">
-                                    <div className="img-box">
-                                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600" />
-                                        <div className="badge">11% ROI • 6 Mos</div>
-                                    </div>
-                                    <div className="card-body">
-                                        <h3>Prime Real Estate Assets</h3>
-                                        <button className="read-more" onClick={() => navigate('estate')}>Read More Details →</button>
-                                    </div>
+                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600" /><div className="badge">11% ROI • 6 Mos</div></div>
+                                    <div className="card-body"><h3>Prime Real Estate Assets</h3><button className="read-more" onClick={() => navigate('estate')}>Read More Details →</button></div>
                                 </div>
-
                                 <div className="product-card">
-                                    <div className="img-box">
-                                        <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600" />
-                                        <div className="badge" style={{color:'var(--accent-orange)'}}>13% ROI • 3 Mos</div>
-                                    </div>
-                                    <div className="card-body">
-                                        <h3>BTC Digital Growth</h3>
-                                        <button className="read-more" onClick={() => navigate('btc')}>Read More Details →</button>
-                                    </div>
+                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600" /><div className="badge" style={{color:'var(--accent-orange)'}}>13% ROI • 3 Mos</div></div>
+                                    <div className="card-body"><h3>BTC Digital Growth</h3><button className="read-more" onClick={() => navigate('btc')}>Read More Details →</button></div>
                                 </div>
                             </div>
 
-                            {/* Corrected Chart Component */}
                             <section className="market-section">
                                 <h2>Live Market Intelligence</h2>
                                 <p style={{fontSize:'0.85rem', color:'#94a3b8', marginTop:'0.5rem'}}>Real-time data feeds from global markets</p>
@@ -320,65 +231,83 @@
                         </main>
                     )}
 
-                    {/* DETAILED PAGES MAINTAINED */}
-                    {view === 'agric' && (
+                    {/* INVESTMENT DETAIL PAGES MAINTAINED */}
+                    {['agric', 'estate', 'btc'].includes(view) && (
                         <div className="detail-view">
                             <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>Agriculture Asset Matrix</h2>
-                            <span className="info-header" style={{marginTop:'1rem'}}>THE OPPORTUNITY</span>
+                            <img src={
+                                view === 'agric' ? "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800" :
+                                view === 'estate' ? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800" :
+                                "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800"
+                            } style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
+                            
+                            <h2>{view === 'agric' ? "Agriculture Asset Matrix" : view === 'estate' ? "Prime Real Estate Assets" : "BTC Digital Growth Plan"}</h2>
+                            <span className="info-header" style={{marginTop:'1rem'}}>{view === 'btc' ? "ALGORITHMIC ALPHA" : "STRATEGIC GROWTH"}</span>
+                            
                             <p className="detail-desc">
-                                Our Industrial Agriculture framework targets high-yield mechanised commercial farming setups. Your capital is deployed to acquire bulk seeds, irrigation hardware, and industrial-scale processing tools. 
-                                <br/><br/>
-                                <strong>Safety First:</strong> Every cycle is 100% pre-sold to major commercial food conglomerates, ensuring a fixed corporate payout. Furthermore, all principal capital is backed by tier-1 agricultural insurance underwriters.
+                                {view === 'agric' && "Our Industrial Agriculture framework targets high-yield mechanised commercial farming setups. Your capital is deployed to acquire bulk seeds and irrigation hardware. Every cycle is 100% pre-sold."}
+                                {view === 'estate' && "WorldWeb connects individual capital to high-value sovereign property developments. We focus on undervalued land-banking and commercial retail structures. Your returns are generated from active leases."}
+                                {view === 'btc' && "Navigate the digital asset space without the stress of volatility. Our system utilizes automated high-frequency arbitrage algorithms extracting profit from market inefficiencies daily."}
                             </p>
+
                             <div className="metric-box">
-                                <div style={{display:'flex', justifyContent:'space-between'}}><span>Fixed Yield:</span><strong>7.00%</strong></div>
-                                <div style={{display:'flex', justifyContent:'space-between', marginTop:'0.5rem'}}><span>Term:</span><strong>90 Days</strong></div>
+                                <div style={{display:'flex', justifyContent:'space-between'}}><span>Fixed Yield:</span><strong>{view === 'agric' ? "7.00%" : view === 'estate' ? "11.00%" : "13.00%"}</strong></div>
+                                <div style={{display:'flex', justifyContent:'space-between', marginTop:'0.5rem'}}><span>Term:</span><strong>{view === 'estate' ? "180 Days" : "90 Days"}</strong></div>
                             </div>
-                            <button className="submit-btn" onClick={() => user ? navigate('dashboard') : setModal('signup')}>Invest in Agric Now</button>
+                            <button className="submit-btn" style={{background: view === 'btc' ? 'var(--accent-orange)' : ''}} onClick={() => user ? navigate('dashboard') : setModal('signup')}>Invest Now</button>
                         </div>
                     )}
 
-                    {view === 'estate' && (
+                    {/* DEPOSIT PAGE */}
+                    {view === 'deposit' && (
                         <div className="detail-view">
-                            <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>Prime Real Estate Assets</h2>
-                            <span className="info-header" style={{marginTop:'1rem'}}>STRATEGIC GROWTH</span>
-                            <p className="detail-desc">
-                                WorldWeb connects individual capital to high-value sovereign property developments. We focus on undervalued land-banking and commercial retail structures in fast-developing urban corridors.
-                                <br/><br/>
-                                <strong>Performance:</strong> By pooling capital, we acquire institutional-grade properties that offer significantly higher rental yields and appreciation than standard residential homes. Your returns are generated from active lease agreements and equity growth.
-                            </p>
-                            <div className="metric-box">
-                                <div style={{display:'flex', justifyContent:'space-between'}}><span>Fixed Yield:</span><strong>11.00%</strong></div>
-                                <div style={{display:'flex', justifyContent:'space-between', marginTop:'0.5rem'}}><span>Term:</span><strong>180 Days</strong></div>
+                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back to Dashboard</span>
+                            <h2 style={{marginTop:'1.5rem', marginBottom:'0.5rem'}}>Deposit Funds (BTC)</h2>
+                            <p style={{fontSize:'0.9rem', color:'#64748b', marginBottom:'1.5rem'}}>Send Bitcoin to the secure network address below to fund your wallet.</p>
+                            
+                            <div className="metric-box" style={{textAlign:'center'}}>
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" alt="BTC QR" style={{margin:'0 auto 1rem', display:'block', borderRadius:'10px', border:'4px solid white'}} />
+                                <span style={{fontSize:'0.8rem', color:'#64748b', display:'block', marginBottom:'0.3rem'}}>Official BTC Deposit Address</span>
+                                <strong style={{fontSize:'0.95rem', wordBreak:'break-all', userSelect:'all', color:'var(--text-dark)'}}>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</strong>
                             </div>
-                            <button className="submit-btn" onClick={() => user ? navigate('dashboard') : setModal('signup')}>Invest in Real Estate Now</button>
+
+                            <div style={{background:'white', padding:'1.5rem', borderRadius:'16px', border:'1px solid var(--border-line)'}}>
+                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', display:'block'}}>Transaction Hash (TxID)</label>
+                                <input type="text" placeholder="Paste your TX Hash here" className="input-field" />
+                                
+                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', marginTop:'0.5rem', display:'block'}}>Upload Payment Evidence</label>
+                                <input type="file" className="input-field" accept="image/*" style={{padding:'0.6rem'}} />
+                                
+                                <button className="submit-btn" style={{marginTop:'1rem'}} onClick={submitDeposit}>Submit Verification</button>
+                            </div>
                         </div>
                     )}
 
-                    {view === 'btc' && (
+                    {/* WITHDRAW PAGE */}
+                    {view === 'withdraw' && (
                         <div className="detail-view">
-                            <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>BTC Digital Growth Plan</h2>
-                            <span className="info-header" style={{marginTop:'1rem'}}>ALGORITHMIC ALPHA</span>
-                            <p className="detail-desc">
-                                Navigate the digital asset space without the stress of volatility. Our system utilizes automated high-frequency arbitrage algorithms that identify millisecond price differences across 40+ global tier-1 exchanges.
-                                <br/><br/>
-                                <strong>Execution:</strong> This strategy extracts profit from "market inefficiencies" rather than guessing if the price will go up or down. Your principal remains stable while we harvest market alpha daily.
-                            </p>
-                            <div className="metric-box">
-                                <div style={{display:'flex', justifyContent:'space-between'}}><span>Fixed Yield:</span><strong>13.00%</strong></div>
-                                <div style={{display:'flex', justifyContent:'space-between', marginTop:'0.5rem'}}><span>Term:</span><strong>90 Days</strong></div>
+                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back to Dashboard</span>
+                            <h2 style={{marginTop:'1.5rem', marginBottom:'0.5rem'}}>Withdraw Funds (BTC)</h2>
+                            <p style={{fontSize:'0.9rem', color:'#64748b', marginBottom:'1.5rem'}}>Securely withdraw your available balance to an external BTC wallet.</p>
+
+                            <div className="naira-card" style={{marginBottom:'1.5rem'}}>
+                                <div style={{fontSize:'0.8rem', opacity:0.8}}>AVAILABLE TO WITHDRAW</div>
+                                <div style={{fontSize:'2.2rem', fontWeight:800, margin:'0.5rem 0'}}>{formatNaira(user?.balance)}</div>
                             </div>
-                            <button className="submit-btn" style={{background:'var(--accent-orange)'}} onClick={() => user ? navigate('dashboard') : setModal('signup')}>Invest in BTC Now</button>
+
+                            <div style={{background:'white', padding:'1.5rem', borderRadius:'16px', border:'1px solid var(--border-line)'}}>
+                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', display:'block'}}>Withdrawal Amount (₦)</label>
+                                <input type="number" placeholder="Enter amount to withdraw" className="input-field" />
+
+                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', marginTop:'1rem', display:'block'}}>Destination BTC Address</label>
+                                <input type="text" placeholder="Enter your external BTC address" className="input-field" />
+                                
+                                <button className="submit-btn" style={{marginTop:'1.5rem'}} onClick={submitWithdrawal}>Confirm Withdrawal</button>
+                            </div>
                         </div>
                     )}
 
-                    {/* NEW USER DASHBOARD WITH ZERO BALANCE & BONUS FEATURE */}
+                    {/* DASHBOARD */}
                     {view === 'dashboard' && user && (
                         <div className="dashboard-layout">
                             <h2 style={{marginBottom:'1rem'}}>Welcome back, {user.name}</h2>
@@ -390,6 +319,16 @@
                                     <div><small>STAKED</small><div>₦0.00</div></div>
                                     <div><small>TOTAL GAINS</small><div style={{color:'#34d399'}}>₦0.00</div></div>
                                 </div>
+                            </div>
+
+                            {/* DEPOSIT & WITHDRAW ACTION BUTTONS */}
+                            <div style={{display:'flex', gap:'1rem', marginBottom:'2rem'}}>
+                                <button className="action-btn btn-solid" style={{flex:1, padding:'1rem', fontSize:'0.95rem'}} onClick={() => navigate('deposit')}>
+                                    ↓ Deposit
+                                </button>
+                                <button className="action-btn btn-outline" style={{flex:1, padding:'1rem', fontSize:'0.95rem', background:'white'}} onClick={() => navigate('withdraw')}>
+                                    ↑ Withdraw
+                                </button>
                             </div>
 
                             {/* Welcome Bonus Section */}
@@ -422,7 +361,7 @@
                         <p style={{marginTop:'1.5rem'}}>© 2026 WorldWeb International Inc.</p>
                     </footer>
 
-                    {/* ENHANCED AUTH MODALS (LOGIN, SIGNUP, VERIFICATION) */}
+                    {/* AUTH MODALS */}
                     {modal === 'login' && (
                         <div className="modal-overlay">
                             <div className="modal-card">
@@ -432,7 +371,6 @@
                                 <input type="email" placeholder="Email Address" className="input-field" />
                                 <input type="password" placeholder="Account Password" className="input-field" />
                                 <button className="submit-btn" onClick={handleLogin}>Log In to Dashboard</button>
-                                <p style={{textAlign:'center', marginTop:'1rem', fontSize:'0.8rem', cursor:'pointer', color:'var(--primary-green)'}} onClick={() => setModal('signup')}>Don't have an account? Sign Up</p>
                             </div>
                         </div>
                     )}
@@ -446,7 +384,7 @@
                                 <input type="text" placeholder="Full Name" className="input-field" />
                                 <input type="email" placeholder="Email Address" className="input-field" />
                                 <input type="password" placeholder="Create Password" className="input-field" />
-                                <input type="password" placeholder="Confirm Password" className="input-field" /> {/* New Confirm Password field */}
+                                <input type="password" placeholder="Confirm Password" className="input-field" />
                                 <button className="submit-btn" onClick={handleSignupSubmit}>Create Account</button>
                             </div>
                         </div>
@@ -457,15 +395,14 @@
                             <div className="modal-card" style={{textAlign:'center'}}>
                                 <button className="close-btn" onClick={() => setModal(null)}>×</button>
                                 <h2 style={{marginBottom:'0.5rem'}}>Verify Email</h2>
-                                <p style={{fontSize:'0.85rem', color:'#64748b', marginBottom:'1.5rem'}}>We sent a secure 4-digit pin to your email for verification.</p>
+                                <p style={{fontSize:'0.85rem', color:'#64748b', marginBottom:'1.5rem'}}>We sent a secure 4-digit pin to your email.</p>
                                 <div className="code-inputs">
                                     <input type="text" maxLength="1" className="code-box" defaultValue="4" />
                                     <input type="text" maxLength="1" className="code-box" defaultValue="8" />
                                     <input type="text" maxLength="1" className="code-box" defaultValue="2" />
                                     <input type="text" maxLength="1" className="code-box" defaultValue="9" />
                                 </div>
-                                <button className="submit-btn" onClick={handleVerificationComplete}>Verify & Access Dashboard</button>
-                                <p style={{marginTop:'1rem', fontSize:'0.8rem', color:'#64748b'}}>Didn't receive it? <span style={{color:'var(--primary-green)', cursor:'pointer'}}>Resend Code</span></p>
+                                <button className="submit-btn" onClick={handleVerificationComplete}>Verify & Access</button>
                             </div>
                         </div>
                     )}
