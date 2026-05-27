@@ -110,16 +110,16 @@
         .content-block { line-height: 1.7; color: #334155; margin-bottom: 1.2rem; font-size: 0.95rem; }
         .metric-box { background: #f1f5f9; padding: 1.2rem; border-radius: 16px; margin-bottom: 2rem; }
 
-        /* Premium Furnished Enticing Investment Configuration Styles */
+        /* Premium Investment Form Layouts */
         .premium-investment-card { background: white; border-radius: 28px; border: 1px solid var(--border-line); padding: 2.2rem 1.8rem; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04); margin-top: 1.5rem; }
         .asset-summary-banner { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 1.2rem 1.5rem; border-radius: 16px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .investment-input-group { margin-bottom: 1.5rem; position: relative; }
-        .investment-label { display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.03em; }
+        .investment-input-group { margin-bottom: 1.2rem; position: relative; }
+        .investment-label { display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.03em; }
         .investment-input { width: 100%; padding: 1rem 1.2rem; border: 2px solid #e2e8f0; border-radius: 14px; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--text-dark); background: #f8fafc; transition: all 0.2s; }
         .investment-input:focus { border-color: var(--primary-green); outline: none; background: white; }
         .investment-input:disabled { background: #f1f5f9; color: #94a3b8; border-color: #e2e8f0; cursor: not-allowed; }
         .premium-terms-box { border: 1px solid #cbd5e1; border-radius: 14px; padding: 1.1rem; background: #f8fafc; height: 110px; overflow-y: auto; font-size: 0.8rem; color: #475569; line-height: 1.6; margin-bottom: 1.2rem; }
-        .checkbox-label { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.88rem; font-weight: 600; color: #334155; cursor: pointer; user-select: none; line-height: 1.4; }
+        .checkbox-label { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; user-select: none; line-height: 1.4; }
         .checkbox-label input { width: 18px; height: 18px; accent-color: var(--primary-green); margin-top: 0.1rem; }
 
         /* Dashboard UI Elements */
@@ -134,10 +134,11 @@
         .status-success { background: #d1fae5; color: #059669; }
 
         /* Modals Setup */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
-        .modal-card { background: white; width: 100%; max-width: 430px; padding: 2.2rem; border-radius: 26px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .close-btn { position: absolute; top: 1.2rem; right: 1.2rem; border: none; background: #f1f5f9; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .input-field { width: 100%; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; font-family: inherit; font-size: 0.95rem; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; overflow-y: auto; }
+        .modal-card { background: white; width: 100%; max-width: 440px; padding: 2.2rem; border-radius: 26px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.15); margin: auto; }
+        .close-btn { position: absolute; top: 1.2rem; right: 1.2rem; border: none; background: #f1f5f9; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
+        .input-field { width: 100%; padding: 1rem; border: 1px solid #cbd5e1; border-radius: 12px; margin-bottom: 1rem; font-family: inherit; font-size: 0.95rem; font-weight: 500; background: #f8fafc; }
+        .input-field:focus { border-color: var(--primary-green); outline: none; background: white; }
         
         .submit-btn { width: 100%; padding: 1.1rem; background: var(--primary-green); color: white; border: none; border-radius: 14px; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 0.5rem; transition: all 0.2s; }
         .submit-btn:hover { background: #047857; }
@@ -147,11 +148,11 @@
         .btn-group { display: flex; gap: 1.2rem; margin-top: 1.8rem; }
         .half-btn { flex: 1; padding: 1.1rem; border-radius: 14px; border: none; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
 
-        /* The Cancel Error Message Red Alert Box */
-        .error-banner { background: #fee2e2; color: #dc2626; padding: 1rem; border-radius: 12px; font-weight: 700; font-size: 0.88rem; text-align: center; margin-top: 1.2rem; border: 1px solid #fca5a5; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-
+        /* Error/Alert Banners */
+        .error-banner { background: #fee2e2; color: #dc2626; padding: 1rem; border-radius: 12px; font-weight: 700; font-size: 0.88rem; text-align: center; margin-top: 0.8rem; margin-bottom: 0.8rem; border: 1px solid #fca5a5; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
         .premium-alert { text-align: center; }
         .premium-alert .icon-box { width: 75px; height: 75px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); color: var(--primary-green); font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+        
         footer { background: #020617; color: #94a3b8; padding: 3.5rem 1.2rem; text-align: center; border-top: 1px solid #1e293b; }
     </style>
 </head>
@@ -175,6 +176,13 @@
             const [investAmount, setInvestAmount] = useState('');
             const [termsAgreed, setTermsAgreed] = useState(false);
             const [errorMsg, setErrorMsg] = useState('');
+
+            // Registration Form Secure Elements
+            const [regName, setRegName] = useState('');
+            const [regEmail, setRegEmail] = useState('');
+            const [regPassword, setRegPassword] = useState('');
+            const [regConfirmPassword, setRegConfirmPassword] = useState('');
+            const [regAgreed, setRegAgreed] = useState(false);
 
             // Wallet Action Entries
             const [depositInput, setDepositInput] = useState('');
@@ -205,11 +213,33 @@
                 setModal(null); setView('dashboard'); 
             };
             
-            const handleSignupSubmit = () => { setModal('verification'); };
+            const handleSignupSubmit = () => { 
+                setErrorMsg('');
+                if (!regName || !regEmail || !regPassword || !regConfirmPassword) {
+                    setErrorMsg('All registration entry segments are strictly required.');
+                    return;
+                }
+                if (regPassword !== regConfirmPassword) {
+                    setErrorMsg('Security matching mismatch: Passwords do not align.');
+                    return;
+                }
+                if (regPassword.length < 6) {
+                    setErrorMsg('Security threshold failed: Password must be at least 6 characters.');
+                    return;
+                }
+                if (!regAgreed) {
+                    setErrorMsg('You must agree to the data protection system architecture rules.');
+                    return;
+                }
+                setErrorMsg('');
+                setModal('verification'); 
+            };
+
             const handleVerificationComplete = () => { 
-                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 0, bonusClaimed: false }); 
+                setUser({ name: regName || 'Ijaola Oluwatosin', email: regEmail || 'ijaola@worldweb.io', balance: 0, bonusClaimed: false }); 
                 setModal(null); setView('dashboard'); 
             };
+
             const logout = () => { setUser(null); setView('home'); };
 
             const claimBonus = () => {
@@ -218,7 +248,6 @@
                 triggerAlert('Bonus Claimed!', 'Congratulations! ₦10,000 Welcome Bonus has been credited.', '🎁');
             };
 
-            // Dynamic live addition updates to state wallet balances
             const submitDeposit = () => {
                 const amt = Number(depositInput);
                 if (!amt || amt <= 0) return;
@@ -229,7 +258,6 @@
                 navigate('dashboard');
             };
 
-            // Dynamic live subtraction checks from state wallet balances
             const submitWithdrawal = () => {
                 const amt = Number(withdrawInput);
                 if (!amt || amt <= 0) return;
@@ -289,8 +317,8 @@
                         <div className="header-buttons">
                             {!user ? (
                                 <>
-                                    <button className="action-btn btn-outline" onClick={() => setModal('login')}>Sign In</button>
-                                    <button className="action-btn btn-solid" onClick={() => setModal('signup')}>Get Started</button>
+                                    <button className="action-btn btn-outline" onClick={() => { setErrorMsg(''); setModal('login'); }}>Sign In</button>
+                                    <button className="action-btn btn-solid" onClick={() => { setErrorMsg(''); setModal('signup'); }}>Get Started</button>
                                 </>
                             ) : (
                                 <button className="action-btn btn-solid" onClick={() => navigate('dashboard')}>Dashboard</button>
@@ -309,7 +337,7 @@
                         </div>
                         <span className="nav-link" onClick={() => navigate('home')}>🏠 Home</span>
                         <span className="nav-link" onClick={() => navigate('about')}>ℹ️ About Us</span>
-                        <span className="nav-link" onClick={() => navigate('terms')}>📋 Terms & Conditions</span>
+                        <span className="nav-link" onClick={() => navigate('terms')}>📋 Our Terms</span>
                         <hr style={{borderColor:'#f1f5f9'}}/>
                         {user ? (
                             <>
@@ -317,7 +345,7 @@
                                 <span className="nav-link" style={{color:'#ef4444'}} onClick={logout}>🚪 Log Out</span>
                             </>
                         ) : (
-                            <span className="nav-link" onClick={() => { setMenuOpen(false); setModal('login'); }}>Sign In</span>
+                            <span className="nav-link" onClick={() => { setMenuOpen(false); setErrorMsg(''); setModal('login'); }}>Sign In</span>
                         )}
                     </div>
 
@@ -329,7 +357,7 @@
                                 <div className="hero-overlay"></div>
                                 <div className="hero-content">
                                     <h1 className="hero-headline">Multiply Capital Through<br/><span>Proven Portfolios</span></h1>
-                                    <button className="action-btn btn-solid" style={{padding:'1rem 2.5rem', fontSize:'0.9rem', marginTop:'1rem'}} onClick={() => setModal('signup')}>Start Investing Today</button>
+                                    <button className="action-btn btn-solid" style={{padding:'1rem 2.5rem', fontSize:'0.9rem', marginTop:'1rem'}} onClick={() => { setErrorMsg(''); setModal('signup'); }}>Start Investing Today</button>
                                 </div>
                             </section>
 
@@ -363,46 +391,70 @@
                         </main>
                     )}
 
-                    {/* AGRIC DISCLOSURE VIEW */}
+                    {/* AGRIC DISCLOSURE VIEW - RESTORED INVESTMENT INFO */}
                     {view === 'agric' && (
                         <div className="page-container">
                             <span onClick={() => navigate('home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
                             <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
                             <h2>Agriculture Asset Matrix</h2>
                             <span className="info-header" style={{marginTop:'0.5rem'}}>7% ROI in 3 Months</span>
-                            <p className="content-block">Secure reliable and sustainable short-term investments backed by modern agronomy metrics.</p>
+                            
+                            <div className="metric-box">
+                                <p className="content-block" style={{marginBottom: '0.5rem'}}><strong>Minimum Funding Limit:</strong> ₦50,000.00</p>
+                                <p className="content-block" style={{marginBottom: 0}}><strong>Payout Interval:</strong> End of 90 Days Cycle Lockup</p>
+                            </div>
+                            
+                            <p className="content-block">Secure reliable and sustainable short-term investments backed by modern agronomy metrics. Capital is allocated systematically into automated poultry configurations, commercial cash-crop cultivation systems, and strategic regional distribution pipelines designed to hedge inflation risks cleanly.</p>
+                            <p className="content-block">By utilizing optimized supply chain routes, our network ensures capital safety while maximizing continuous crop yields over standard quarter blocks.</p>
+                            
                             <button className="submit-btn" onClick={() => openInvestmentPage('agriculture matrix')}>Invest in Plan Now</button>
                         </div>
                     )}
 
-                    {/* ESTATE DISCLOSURE VIEW */}
+                    {/* ESTATE DISCLOSURE VIEW - RESTORED INVESTMENT INFO */}
                     {view === 'estate' && (
                         <div className="page-container">
                             <span onClick={() => navigate('home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
                             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
                             <h2>Prime Real Estate Assets</h2>
                             <span className="info-header" style={{marginTop:'0.5rem'}}>10% ROI in 3 Months</span>
-                            <p className="content-block">Gain premium exposure to top-tier commercial development frameworks models globally.</p>
+                            
+                            <div className="metric-box">
+                                <p className="content-block" style={{marginBottom: '0.5rem'}}><strong>Minimum Funding Limit:</strong> ₦150,000.00</p>
+                                <p className="content-block" style={{marginBottom: 0}}><strong>Payout Interval:</strong> End of 90 Days Cycle Lockup</p>
+                            </div>
+
+                            <p className="content-block">Gain premium exposure to top-tier commercial development frameworks models globally. Capital resources back physical luxury acquisitions, hospitality developments, and high-yield property renovations in thriving corporate zones.</p>
+                            <p className="content-block">This tier provides an insulated investment infrastructure that protects standard principal parameters while deploying equity structures into fractional real estate portfolios.</p>
+                            
                             <button className="submit-btn" onClick={() => openInvestmentPage('prime real estate')}>Invest in Plan Now</button>
                         </div>
                     )}
 
-                    {/* BTC DISCLOSURE VIEW */}
+                    {/* BTC DISCLOSURE VIEW - RESTORED INVESTMENT INFO */}
                     {view === 'btc' && (
                         <div className="page-container">
                             <span onClick={() => navigate('home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
                             <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
                             <h2>BTC Digital Growth</h2>
                             <span className="info-header" style={{marginTop:'0.5rem', color:'var(--accent-orange)'}}>13% ROI in 3 Months</span>
-                            <p className="content-block">Maximize allocation growth trajectories through specialized algorithmic crypto frameworks.</p>
+                            
+                            <div className="metric-box" style={{background: 'rgba(234, 88, 12, 0.05)'}}>
+                                <p className="content-block" style={{marginBottom: '0.5rem'}}><strong>Minimum Funding Limit:</strong> ₦200,000.00</p>
+                                <p className="content-block" style={{marginBottom: 0}}><strong>Payout Interval:</strong> End of 90 Days Cycle Lockup</p>
+                            </div>
+
+                            <p className="content-block">Maximize allocation growth trajectories through specialized algorithmic crypto frameworks. Funds feed high-frequency automated liquidity pools and collateralized lending networks across major decentralized financial institutions.</p>
+                            <p className="content-block">Our digital pipeline manages volatility parameters directly, allowing standard users to collect premium block rewards seamlessly without tracking spot price shifts.</p>
+                            
                             <button className="submit-btn" style={{background:'var(--accent-orange)'}} onClick={() => openInvestmentPage('bitcoin digital growth')}>Invest in Plan Now</button>
                         </div>
                     )}
 
-                    {/* BEAUTIFULLY FURNISHED ENTICING INVESTMENT CARD ALLOCATION VIEW */}
+                    {/* PREMIUM FURNISHED ENTICING INVESTMENT CARD ALLOCATION VIEW */}
                     {view === 'invest-form' && user && (
                         <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--text-muted)', fontWeight:700, cursor:'pointer', fontSize:'0.9rem'}}>← Return to Dashboard</span>
+                            <span onClick={() => navigate('dashboard')} style={{color(--text-muted)', fontWeight:700, cursor:'pointer', fontSize:'0.9rem'}}>← Return to Dashboard</span>
                             
                             <div className="premium-investment-card">
                                 <h2 style={{fontSize:'1.6rem', fontWeight:800, color: 'var(--text-dark)', marginBottom:'0.3rem'}}>Capital Investment Node</h2>
@@ -537,21 +589,52 @@
                         <div className="modal-overlay">
                             <div className="modal-card">
                                 <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2>Welcome Back</h2>
-                                <input type="email" placeholder="Email Address" className="input-field" style={{marginTop:'1rem'}} />
+                                <h2 style={{marginBottom:'0.5rem'}}>Welcome Back</h2>
+                                <p style={{fontSize:'0.85rem', color:'var(--text-muted)', marginBottom:'1.5rem'}}>Access your private investment dashboard environment.</p>
+                                <input type="email" placeholder="Email Address" className="input-field" />
                                 <input type="password" placeholder="Account Password" className="input-field" />
                                 <button className="submit-btn" onClick={handleLogin}>Log In</button>
                             </div>
                         </div>
                     )}
 
+                    {/* HIGH-SECURITY REGISTER MODAL CONFIGURATION */}
                     {modal === 'signup' && (
                         <div className="modal-overlay">
                             <div className="modal-card">
                                 <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2>Create Account</h2>
-                                <input type="text" placeholder="Full Name" className="input-field" style={{marginTop:'1rem'}} />
-                                <input type="email" placeholder="Email" className="input-field" />
+                                <h2 style={{fontSize:'1.4rem', fontWeight:800, marginBottom:'0.3rem'}}>Create Corporate Account</h2>
+                                <p style={{fontSize:'0.85rem', color:'var(--text-muted)', marginBottom:'1.5rem'}}>Establish standard encrypted capital node profiles.</p>
+                                
+                                <div className="investment-input-group">
+                                    <label className="investment-label">Full Account Legal Name</label>
+                                    <input type="text" placeholder="e.g. John Doe" className="input-field" value={regName} onChange={(e)=>setRegName(e.target.value)} style={{marginBottom:0}} />
+                                </div>
+
+                                <div className="investment-input-group">
+                                    <label className="investment-label">Corporate Email Node</label>
+                                    <input type="email" placeholder="name@domain.com" className="input-field" value={regEmail} onChange={(e)=>setRegEmail(e.target.value)} style={{marginBottom:0}} />
+                                </div>
+
+                                <div className="investment-input-group">
+                                    <label className="investment-label">Account Security Password</label>
+                                    <input type="password" placeholder="Choose strong secure password" className="input-field" value={regPassword} onChange={(e)=>setRegPassword(e.target.value)} style={{marginBottom:0}} />
+                                </div>
+
+                                <div className="investment-input-group">
+                                    <label className="investment-label">Confirm Passkey String</label>
+                                    <input type="password" placeholder="Repeat security password string" className="input-field" value={regConfirmPassword} onChange={(e)=>setRegConfirmPassword(e.target.value)} style={{marginBottom:0}} />
+                                </div>
+
+                                <div style={{margin:'1rem 0'}}>
+                                    <label className="checkbox-label">
+                                        <input type="checkbox" checked={regAgreed} onChange={(e)=>setRegAgreed(e.target.checked)} />
+                                        <span>I certify registration requirements and agree to full internal database ledger protocols.</span>
+                                    </label>
+                                </div>
+
+                                {errorMsg && <div className="error-banner">{errorMsg}</div>}
+
                                 <button className="submit-btn" onClick={handleSignupSubmit}>Register Profile</button>
                             </div>
                         </div>
@@ -561,6 +644,7 @@
                         <div className="modal-overlay">
                             <div className="modal-card" style={{textAlign:'center'}}>
                                 <h2>Verify Email Entry</h2>
+                                <p style={{fontSize:'0.85rem', color:'var(--text-muted)', marginTop:'0.5rem'}}>A security sequence code token has been generated below.</p>
                                 <div className="code-inputs" style={{marginTop:'1.5rem'}}>
                                     <input type="text" maxLength="1" className="code-box" defaultValue="5" readOnly />
                                     <input type="text" maxLength="1" className="code-box" defaultValue="7" readOnly />
