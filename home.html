@@ -3,253 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldWeb | Premium Capital Framework</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <title>WorldWeb | Unified Capital</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg-color: #f8fafc;
-            --surface-white: #ffffff;
-            --primary-green: #059669;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --border-line: #e2e8f0;
-            --accent-orange: #ea580c;
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f8fafc; 
+            color: #0f172a; 
+            overflow-x: hidden;
         }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); background-color: var(--bg-color); -webkit-font-smoothing: antialiased; }
 
-        /* Header - Generous Spacing */
-        .main-header { height: 85px; background: var(--surface-white); border-bottom: 1px solid var(--border-line); display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; position: sticky; top: 0; z-index: 1000; }
-        .brand-logo { display: flex; align-items: center; gap: 1rem; cursor: pointer; }
-        .logo-box { width: 42px; height: 42px; background: var(--primary-green); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.3rem; }
-        .brand-name { font-weight: 800; font-size: 1.3rem; color: var(--text-dark); letter-spacing: -0.03em; }
-        
-        .desktop-nav { display: none; gap: 3.5rem; align-items: center; margin-left: auto; margin-right: 4rem; }
-        .nav-link { color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: color 0.2s; }
-        .nav-link:hover { color: var(--primary-green); }
-        
-        .header-buttons { display: flex; gap: 1.5rem; align-items: center; }
-        .menu-toggle { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-dark); }
-        
-        @media(min-width: 1024px) { .desktop-nav { display: flex; } }
-
-        .action-btn { font-family: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.7rem 1.4rem; border-radius: 10px; cursor: pointer; border: none; }
-        .btn-outline { color: var(--primary-green); background: rgba(5, 150, 105, 0.06); border: 1px solid var(--primary-green); }
-        .btn-solid { background: var(--primary-green); color: white; transition: 0.2s; }
-        .btn-solid:hover { background: #047857; }
-        .btn-danger { background: #ef4444; color: white; }
-
-        /* Right-Sided Menu */
-        .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; backdrop-filter: blur(2px); }
-        .right-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 320px; background: white; z-index: 1600; padding: 3rem 2rem; display: flex; flex-direction: column; gap: 1.8rem; box-shadow: -10px 0 30px rgba(0,0,0,0.1); animation: slideRight 0.3s ease-out; }
-        @keyframes slideRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
-
-        /* Hero */
-        .hero-banner { position: relative; padding: 8rem 1.5rem; text-align: center; overflow: hidden; background-color: #0f172a; }
-        .hero-motion-bg { 
-            position: absolute; inset: 0; 
-            background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover; background-position: center;
-            animation: panBackground 20s linear infinite alternate; opacity: 0.4;
+        /* Fixed Navigation Spacing */
+        .header { 
+            height: 80px; 
+            background: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 40px; 
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(15, 23, 42, 0.95)); }
-        .hero-content { position: relative; z-index: 1; }
-        .hero-headline { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; color: white; }
-        @keyframes panBackground { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-item { font-weight: 600; color: #0f172a; cursor: pointer; text-decoration: none; }
+        .nav-item:hover { color: #059669; }
 
-        /* Premium Investment UI */
-        .investment-card { background: white; border-radius: 30px; border: 1px solid var(--border-line); padding: 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.03); margin-top: 1rem; }
-        .asset-header { background: #0f172a; color: white; padding: 1.5rem; border-radius: 18px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-label { display: block; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); margin-bottom: 0.6rem; text-transform: uppercase; }
-        .form-input { width: 100%; padding: 1.1rem; border: 2px solid #f1f5f9; border-radius: 15px; font-family: inherit; font-size: 1rem; font-weight: 600; background: #f8fafc; }
-        .form-input:focus { border-color: var(--primary-green); outline: none; background: white; }
-        .terms-scroll { border: 1px solid #e2e8f0; border-radius: 15px; padding: 1.2rem; background: #fdfdfd; height: 120px; overflow-y: auto; font-size: 0.85rem; color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; }
+        /* Right Sided Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 300px;
+            background: white;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            transform: translateX(100%);
+            transition: 0.3s ease;
+        }
+        .mobile-menu.open { transform: translateX(0); }
 
-        /* Dashboard UI */
-        .naira-card { background: linear-gradient(135deg, #065f46 0%, #047857 100%); color: white; border-radius: 25px; padding: 2rem; margin-bottom: 2rem; }
-        .dash-row { background: white; padding: 1.3rem; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border: 1px solid var(--border-line); }
-        .history-box { background: white; border: 1px solid var(--border-line); border-radius: 22px; padding: 1.8rem; margin-top: 2rem; }
-        .status-badge { padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; }
-        .successful { background: #d1fae5; color: #065f46; }
-        .pending { background: #fef3c7; color: #92400e; }
+        /* Investment Page Styling - Furnished */
+        .invest-container { max-width: 600px; margin: 40px auto; padding: 20px; }
+        .invest-card { 
+            background: white; 
+            border-radius: 24px; 
+            padding: 30px; 
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .asset-box {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 12px; font-weight: 800; margin-bottom: 8px; color: #64748b; }
+        .input-field { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #f1f5f9; 
+            border-radius: 12px; 
+            font-size: 16px; 
+            font-weight: 600;
+        }
+        .terms-box {
+            height: 100px;
+            overflow-y: auto;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-        /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
-        .modal-card { background: white; width: 100%; max-width: 440px; padding: 2.5rem; border-radius: 28px; position: relative; text-align: center; }
-        .error-msg { background: #fee2e2; color: #b91c1c; padding: 1rem; border-radius: 12px; font-weight: 700; margin-top: 1rem; border: 1px solid #fecaca; }
-        
-        .slider-container { width: 100%; height: 260px; border-radius: 24px; overflow: hidden; position: relative; margin: 0 auto 3rem; max-width: 600px; }
-        .slider-track { display: flex; transition: transform 0.6s ease-in-out; height: 100%; }
-        .slide { min-width: 100%; position: relative; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        /* Dashboard & Balance */
+        .balance-card {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            padding: 30px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+        }
+        .btn { 
+            padding: 12px 24px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            border: none;
+            transition: 0.2s;
+        }
+        .btn-primary { background: #059669; color: white; width: 100%; }
+        .btn-outline { background: white; color: #059669; border: 1px solid #059669; }
 
-        footer { background: #020617; color: #64748b; padding: 4rem 1rem; text-align: center; }
+        .error-banner {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
-        const fmt = (n) => "₦" + Number(n).toLocaleString();
+        const { useState } = React;
 
-        function App() {
-            const [view, setView] = useState('home');
-            const [modal, setModal] = useState(null);
+        const App = () => {
+            const [page, setPage] = useState('home');
             const [user, setUser] = useState(null);
             const [menuOpen, setMenuOpen] = useState(false);
-            const [slideIdx, setSlideIdx] = useState(0);
-            const [activePlan, setActivePlan] = useState(null);
-            
-            // Inputs
             const [amount, setAmount] = useState('');
-            const [agreed, setAgreed] = useState(false);
+            const [activePlan, setActivePlan] = useState('');
             const [error, setError] = useState('');
-            const [history, setHistory] = useState([
-                { id: 1, label: 'Welcome Credit', val: 5000, status: 'Successful', date: 'System' }
-            ]);
 
-            const slides = [
-                "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600",
-                "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600",
-                "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600"
-            ];
-
-            useEffect(() => {
-                if (view === 'home') {
-                    const t = setInterval(() => setSlideIdx(s => (s + 1) % slides.length), 3000);
-                    return () => clearInterval(t);
+            // Balance Logic
+            const handleDeposit = () => {
+                const val = parseFloat(amount);
+                if(val > 0) {
+                    setUser({...user, balance: user.balance + val});
+                    setAmount('');
+                    setPage('dashboard');
+                    alert("Deposit added to balance!");
                 }
-            }, [view]);
-
-            const nav = (v) => { setView(v); setMenuOpen(false); setError(''); window.scrollTo(0,0); };
-
-            // Auth
-            const login = () => { 
-                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 150000 }); 
-                setModal(null); nav('dashboard'); 
             };
 
-            // Wallet Logic
-            const doDeposit = () => {
-                const val = Number(amount);
-                if (!val || val <= 0) return;
-                setUser(u => ({ ...u, balance: u.balance + val }));
-                setHistory([{ id: Date.now(), label: 'Capital Deposit', val, status: 'Successful', date: 'Just now' }, ...history]);
-                setAmount('');
-                setModal('success-alert');
+            const handleWithdraw = () => {
+                const val = parseFloat(amount);
+                if(val > 0 && val <= user.balance) {
+                    setUser({...user, balance: user.balance - val});
+                    setAmount('');
+                    setPage('dashboard');
+                    alert("Withdrawal subtracted from balance!");
+                } else {
+                    alert("Insufficient funds");
+                }
             };
 
-            const doWithdraw = () => {
-                const val = Number(amount);
-                if (!val || val > user.balance) { alert("Invalid Amount"); return; }
-                setUser(u => ({ ...u, balance: u.balance - val }));
-                setHistory([{ id: Date.now(), label: 'Withdrawal', val, status: 'Pending', date: 'Processing' }, ...history]);
-                setAmount('');
-                setModal('success-alert');
-            };
-
-            const initInvest = (p) => { 
-                if(!user) { setModal('signup'); return; }
-                setActivePlan(p); setAmount(''); setAgreed(false); nav('invest-form'); 
-            };
-
-            const confirmInvest = () => {
-                const val = Number(amount);
-                if (val <= 0 || val > user.balance) { setError("Check balance or amount"); return; }
-                if (!agreed) { setError("Please agree to terms"); return; }
-                setModal('confirm-final');
-            };
-
-            const finalizeInvest = () => {
-                const val = Number(amount);
-                setUser(u => ({ ...u, balance: u.balance - val }));
-                setHistory([{ id: Date.now(), label: `Invest: ${activePlan}`, val, status: 'Successful', date: 'Cycle Active' }, ...history]);
-                setModal(null);
-                alert("Thank you for trusting us, we will verify your deposit and update, kindly exercise patience");
-                nav('dashboard');
+            const finalizeInvestment = () => {
+                const val = parseFloat(amount);
+                if(val > 0 && val <= user.balance) {
+                    setUser({...user, balance: user.balance - val});
+                    alert("Thank you for trusting us, we will verify your deposit and update, kindly exercise patience");
+                    setPage('dashboard');
+                } else {
+                    setError("Insufficient balance to invest");
+                }
             };
 
             return (
                 <div>
-                    <header className="main-header">
-                        <div className="brand-logo" onClick={() => nav('home')}>
-                            <div className="logo-box">W</div>
-                            <span className="brand-name">WorldWeb</span>
+                    {/* Header */}
+                    <div className="header">
+                        <div style={{fontWeight:800, fontSize:22, color:'#059669'}} onClick={() => setPage('home')}>WorldWeb</div>
+                        <div className="nav-links">
+                            <div className="nav-item" onClick={() => setPage('home')}>Home</div>
+                            <div className="nav-item" onClick={() => setPage('about')}>About</div>
+                            <div className="nav-item" onClick={() => setPage('terms')}>Terms</div>
                         </div>
-                        <nav className="desktop-nav">
-                            <span className="nav-link" onClick={() => nav('home')}>Home</span>
-                            <span className="nav-link" onClick={() => nav('about')}>About</span>
-                            <span className="nav-link" onClick={() => nav('terms')}>Terms</span>
-                        </nav>
-                        <div className="header-buttons">
-                            {!user ? <button className="action-btn btn-solid" onClick={() => setModal('login')}>Sign In</button> : <button className="action-btn btn-outline" onClick={() => nav('dashboard')}>Dashboard</button>}
-                            <button className="menu-toggle" onClick={() => setMenuOpen(true)}>☰</button>
+                        <div>
+                            {user ? (
+                                <button className="btn btn-outline" onClick={() => setPage('dashboard')}>Dashboard</button>
+                            ) : (
+                                <button className="btn btn-primary" onClick={() => setUser({name: 'Ijaola', balance: 50000})}>Login</button>
+                            )}
+                            <button style={{marginLeft:15, background:'none', border:'none', fontSize:24, cursor:'pointer'}} onClick={() => setMenuOpen(true)}>☰</button>
                         </div>
-                    </header>
+                    </div>
 
-                    {menuOpen && (
-                        <>
-                            <div className="drawer-overlay" onClick={() => setMenuOpen(false)}></div>
-                            <div className="right-drawer">
-                                <h3 onClick={() => setMenuOpen(false)}>Close ×</h3>
-                                <span className="nav-link" onClick={() => nav('home')}>🏠 Home</span>
-                                <span className="nav-link" onClick={() => nav('about')}>📖 About</span>
-                                <span className="nav-link" onClick={() => nav('terms')}>📋 Terms</span>
-                                {user ? <span className="nav-link" style={{color:'red'}} onClick={() => {setUser(null); nav('home');}}>Logout</span> : <span className="nav-link" onClick={() => setModal('login')}>Login</span>}
-                            </div>
-                        </>
+                    {/* Right Menu */}
+                    <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+                        <div style={{textAlign:'right', fontSize:24, cursor:'pointer'}} onClick={() => setMenuOpen(false)}>×</div>
+                        <div className="nav-item" onClick={() => {setPage('home'); setMenuOpen(false)}}>🏠 Home</div>
+                        <div className="nav-item" onClick={() => {setPage('dashboard'); setMenuOpen(false)}}>💼 Dashboard</div>
+                        <div className="nav-item" onClick={() => {setPage('about'); setMenuOpen(false)}}>ℹ️ About</div>
+                        <hr/>
+                        <div className="nav-item" style={{color:'red'}} onClick={() => {setUser(null); setPage('home'); setMenuOpen(false)}}>Logout</div>
+                    </div>
+
+                    {/* Pages */}
+                    {page === 'home' && (
+                        <div style={{textAlign:'center', padding:100}}>
+                            <h1>Multiply Your Capital</h1>
+                            <p style={{margin:'20px 0', color:'#64748b'}}>Secure investment portfolios for the modern era.</p>
+                            <button className="btn btn-primary" style={{width:'auto'}} onClick={() => {setActivePlan('Agric Matrix'); setPage('invest');}}>Start Investing</button>
+                        </div>
                     )}
 
-                    {view === 'home' && (
-                        <main>
-                            <section className="hero-banner">
-                                <div className="hero-motion-bg"></div>
-                                <div className="hero-overlay"></div>
-                                <div className="hero-content">
-                                    <h1 className="hero-headline">Professional Global<br/>Investment Assets</h1>
-                                    <button className="action-btn btn-solid" style={{padding:'1rem 2rem'}} onClick={() => setModal('signup')}>Get Started</button>
-                                </div>
-                            </section>
-
-                            <div className="slider-container" style={{marginTop:'-50px', zIndex:5}}>
-                                <div className="slider-track" style={{ transform: `translateX(-${slideIdx * 100}%)` }}>
-                                    {slides.map((s, i) => <div className="slide" key={i}><img src={s} /></div>)}
-                                </div>
+                    {page === 'dashboard' && user && (
+                        <div style={{maxWidth:600, margin:'40px auto', padding:20}}>
+                            <div className="balance-card">
+                                <p style={{opacity:0.8, fontSize:14, fontWeight:600}}>CURRENT BALANCE</p>
+                                <h1 style={{fontSize:42}}>₦{user.balance.toLocaleString()}</h1>
                             </div>
-
-                            <div style={{maxWidth:'600px', margin:'0 auto', padding:'2rem'}}>
-                                <div className="dash-row">
-                                    <div><strong>Agric Matrix</strong><p>7% ROI</p></div>
-                                    <button className="action-btn btn-solid" onClick={() => initInvest('Agric Matrix')}>Invest</button>
-                                </div>
-                                <div className="dash-row">
-                                    <div><strong>Real Estate</strong><p>10% ROI</p></div>
-                                    <button className="action-btn btn-solid" onClick={() => initInvest('Real Estate')}>Invest</button>
-                                </div>
+                            <div style={{display:'flex', gap:15}}>
+                                <button className="btn btn-primary" onClick={() => setPage('deposit')}>Deposit</button>
+                                <button className="btn btn-outline" onClick={() => setPage('withdraw')}>Withdraw</button>
                             </div>
-                        </main>
+                        </div>
                     )}
 
-                    {view === 'dashboard' && user && (
-                        <div style={{maxWidth:'600px', margin:'0 auto', padding:'2rem'}}>
-                            <div className="naira-card">
-                                <p>AVAILABLE BALANCE</p>
-                                <h1 style={{fontSize:'2.5rem'}}>{fmt(user.balance)}</h1>
+                    {page === 'deposit' && (
+                        <div className="invest-container">
+                            <h2>Deposit Funds</h2>
+                            <input className="input-field" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount to add" style={{marginTop:20}} />
+                            <button className="btn btn-primary" style={{marginTop:20}} onClick={handleDeposit}>Confirm Deposit</button>
+                        </div>
+                    )}
+
+                    {page === 'withdraw' && (
+                        <div className="invest-container">
+                            <h2>Withdraw Funds</h2>
+                            <input className="input-field" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount to subtract" style={{marginTop:20}} />
+                            <button className="btn btn-primary" style={{marginTop:20}} onClick={handleWithdraw}>Request Withdrawal</button>
+                        </div>
+                    )}
+
+                    {page === 'invest' && user && (
+                        <div className="invest-container">
+                            <div className="invest-card">
+                                <div className="asset-box">
+                                    <div>
+                                        <p style={{fontSize:10, opacity:0.7}}>ASSET CLASS</p>
+                                        <p style={{fontWeight:800}}>{activePlan}</p>
+                                    </div>
+                                    <div style={{textAlign:'right'}}>
+                                        <p style={{fontSize:10, opacity:0.7}}>AVAILABLE</p>
+                                        <p style={{fontWeight:800}}>₦{user.balance.toLocaleString()}</p>
+                                    </div>
+                                </div>
+                                <div className="input-group">
+                                    <label>INVESTMENT AMOUNT (₦)</label>
+                                    <input className="input-field" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="50,000" />
+                                </div>
+                                <div className="terms-box">
+                                    This capital allocation is subject to a 3-month lock-in period. ROI is calculated daily. By clicking proceed, you agree to the WorldWeb asset management framework.
+                                </div>
+                                <button className="btn btn-primary" onClick={finalizeInvestment}>Complete Investment</button>
+                                {error && <div className="error-banner">sorry ❌ {error}</div>}
                             </div>
-                            <div style={{display:'flex', gap:'1rem', marginBottom:'2rem'}}>
-                                <button className="action-btn btn-solid" style={{flex:1}} onClick={() => nav('deposit')}>Deposit</button>
-                                <button className="action-btn btn-outline" style={{flex:1, background:'white'}} onClick={() => nav('withdraw')}>Withdraw</button>
-                            </div>
-                            
-                            <h3 style={{marginBottom:'1rem'}}>Active Ledger</h3>
-                            <div className="history-box">
-                                {history.map(h => (
-                                    <div className="history-item dash-row" key={h.id} style={{border:'none', borderBottom:'1px solid #eee', borderRadius:0}}>
-                                        <div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
