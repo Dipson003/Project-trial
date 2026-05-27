@@ -56,6 +56,7 @@
         /* Interactive Inputs & Button System */
         .input-field { width: 100%; padding: 0.85rem 1rem; border: 1px solid #cbd5e1; border-radius: 12px; margin-bottom: 1.25rem; font-family: inherit; font-size: 1rem; background: #f8fafc; transition: all 0.2s; }
         .input-field:focus { outline: none; border-color: var(--primary-green); background: var(--surface-white); }
+        
         .submit-btn { width: 100%; padding: 1rem; background: var(--primary-green); color: white; border: none; border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; justify-content: center; }
         .submit-btn:hover { background: #047857; }
         .back-nav-btn { background: none; border: none; color: var(--primary-green); font-weight: 700; font-size: 0.95rem; cursor: pointer; display: inline-flex; align-items: center; margin-bottom: 1rem; }
@@ -64,15 +65,25 @@
         .error-banner { background: #fee2e2; color: var(--danger-red); padding: 0.8rem 1rem; border-radius: 12px; margin-bottom: 1.25rem; font-size: 0.85rem; text-align: center; border: 1px solid #fca5a5; font-weight: 600; }
 
         /* Dynamic Private User Interface */
-        .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 24px; padding: 1.75rem; margin-bottom: 2rem; box-shadow: 0 10px 15px -3px rgba(4, 120, 87, 0.2); }
+        .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 24px; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: 0 10px 15px -3px rgba(4, 120, 87, 0.2); }
         .naira-label { opacity: 0.85; font-size: 0.9rem; font-weight: 500; }
-        .naira-amount { font-size: 2.3rem; font-weight: 800; margin-top: 0.25rem; letter-spacing: -1px; }
+        .naira-amount { font-size: 2.3rem; font-weight: 800; margin-top: 0.25rem; letter-spacing: -1px; margin-bottom: 1.25rem; }
+        
+        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .btn-translucent { background: rgba(255, 255, 255, 0.15); color: white; border: none; border-radius: 12px; padding: 0.75rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+        .btn-translucent:hover { background: rgba(255, 255, 255, 0.25); }
+
+        /* Bonus Card Notification */
+        .bonus-box { background: #fff7ed; border: 1px dashed var(--accent-orange); padding: 1.25rem; border-radius: 16px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .bonus-info h4 { font-size: 1rem; font-weight: 700; color: #9a3412; }
+        .bonus-info p { font-size: 0.8rem; color: #c2410c; }
+        .bonus-btn { background: var(--accent-orange); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
+        .bonus-btn:hover { background: #ea580c; }
         
         .dash-row { background: white; padding: 1.2rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border: 1px solid var(--border-line); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
         .dash-row:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .dash-info h4 { font-size: 1rem; font-weight: 700; color: var(--text-dark); }
         .dash-info span { font-size: 0.8rem; color: var(--text-muted); }
-        .view-action-tag { color: var(--primary-green); font-weight: 700; font-size: 0.9rem; }
         
         .empty-portfolio-box { text-align: center; padding: 2rem 1rem; border: 2px dashed var(--border-line); border-radius: 16px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; background: white; }
 
@@ -125,7 +136,11 @@
             const [user, setUser] = useState(null);
             const [activePlanKey, setActivePlanKey] = useState(null);
             const [errorMsg, setErrorMsg] = useState('');
+            
+            // Transaction inputs
             const [fundingAmount, setFundingAmount] = useState('');
+            const [depositAmount, setDepositAmount] = useState('');
+            const [withdrawAmount, setWithdrawAmount] = useState('');
 
             // Registration Account Inputs
             const [regName, setRegName] = useState('');
@@ -151,15 +166,61 @@
                     return;
                 }
 
-                // Provisioning test account structure with standard platform initial test limits
                 setUser({
                     name: regName,
                     email: regEmail,
-                    balance: 750000.00,
+                    balance: 0.00, // Starts fresh, incentivizing claiming the welcome bonus or depositing
+                    bonusClaimed: false,
                     portfolio: []
                 });
                 
                 setModal(null);
+                navigateTo('dashboard');
+            };
+
+            const claimWelcomeBonus = () => {
+                if (user.bonusClaimed) return;
+                setUser(prev => ({
+                    ...prev,
+                    balance: prev.balance + 10000.00,
+                    bonusClaimed: true
+                }));
+                alert("Success! Your ₦10,000 Welcome Bonus has been credited to your wallet balance.");
+            };
+
+            const processDeposit = (e) => {
+                e.preventDefault();
+                const amt = parseFloat(depositAmount);
+                if (isNaN(amt) || amt <= 0) {
+                    alert("Please specify a valid deposit amount.");
+                    return;
+                }
+                setUser(prev => ({
+                    ...prev,
+                    balance: prev.balance + amt
+                }));
+                alert(`Transaction Approved: ${formatNaira(amt)} has been successfully added to your liquid capital.`);
+                setDepositAmount('');
+                navigateTo('dashboard');
+            };
+
+            const processWithdrawal = (e) => {
+                e.preventDefault();
+                const amt = parseFloat(withdrawAmount);
+                if (isNaN(amt) || amt <= 0) {
+                    alert("Please specify a valid withdrawal amount.");
+                    return;
+                }
+                if (amt > user.balance) {
+                    alert("Execution rejected: Insufficient funds available to complete this withdrawal request.");
+                    return;
+                }
+                setUser(prev => ({
+                    ...prev,
+                    balance: prev.balance - amt
+                }));
+                alert(`Processing: ${formatNaira(amt)} has been routed to your registered bank settlement clearing network.`);
+                setWithdrawAmount('');
                 navigateTo('dashboard');
             };
 
@@ -251,7 +312,7 @@
                         </main>
                     )}
 
-                    {/* VIEW: AGRICULTURE ANALYSIS METRICS */}
+                    /* VIEW: AGRICULTURE ANALYSIS METRICS */
                     {view === 'agric' && (
                         <div className="page-container">
                             <button className="back-nav-btn" onClick={() => navigateTo('home')}>← Return to Catalog</button>
@@ -269,7 +330,7 @@
                         </div>
                     )}
 
-                    {/* VIEW: REAL ESTATE ANALYSIS METRICS */}
+                    /* VIEW: REAL ESTATE ANALYSIS METRICS */
                     {view === 'estate' && (
                         <div className="page-container">
                             <button className="back-nav-btn" onClick={() => navigateTo('home')}>← Return to Catalog</button>
@@ -287,7 +348,7 @@
                         </div>
                     )}
 
-                    {/* VIEW: BITCOIN FRAMEWORK METRICS */}
+                    /* VIEW: BITCOIN FRAMEWORK METRICS */
                     {view === 'btc' && (
                         <div className="page-container">
                             <button className="back-nav-btn" onClick={() => navigateTo('home')}>← Return to Catalog</button>
@@ -313,7 +374,22 @@
                             <div className="naira-card">
                                 <p className="naira-label">Total Liquid Wallet Balance</p>
                                 <h1 className="naira-amount">{formatNaira(user.balance)}</h1>
+                                <div className="action-grid">
+                                    <button className="btn-translucent" onClick={() => navigateTo('deposit')}>Deposit</button>
+                                    <button className="btn-translucent" onClick={() => navigateTo('withdraw')}>Withdraw</button>
+                                </div>
                             </div>
+
+                            {/* WELCOME BONUS WIDGET */}
+                            {!user.bonusClaimed && (
+                                <div className="bonus-box">
+                                    <div className="bonus-info">
+                                        <h4>🎁 ₦10,000 Welcome Bonus</h4>
+                                        <p>Claim your onboarding platform incentive</p>
+                                    </div>
+                                    <button className="bonus-btn" onClick={claimWelcomeBonus}>Claim</button>
+                                </div>
+                            )}
 
                             <h3 style={{fontSize: '1.2rem', fontWeight: 700, marginBottom: '1rem'}}>Active Capital Asset Commitments</h3>
                             
@@ -324,7 +400,6 @@
                             ) : (
                                 user.portfolio.map((item, index) => (
                                     <div className="dash-row" key={index} onClick={() => {
-                                        // Auto-mapping backward link logic matching the key patterns
                                         const keyRef = item.assetTitle.includes("Agric") ? 'agric' : item.assetTitle.includes("Estate") ? 'estate' : 'btc';
                                         setActivePlanKey(keyRef);
                                         navigateTo(keyRef);
@@ -377,6 +452,51 @@
                                     </div>
                                     
                                     <button type="submit" className="submit-btn">Confirm Core Deployment Order</button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* VIEW: DEPOSIT MANAGEMENT */}
+                    {view === 'deposit' && user && (
+                        <div className="page-container">
+                            <button className="back-nav-btn" onClick={() => navigateTo('dashboard')}>← Return to Dashboard</button>
+                            <div style={{background: 'white', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-line)'}}>
+                                <h3 className="card-title" style={{fontSize: '1.5rem', marginBottom: '1rem'}}>Deposit Capital</h3>
+                                <form onSubmit={processDeposit}>
+                                    <label className="investment-label">Amount to Add (₦)</label>
+                                    <input 
+                                        type="number" 
+                                        className="input-field" 
+                                        placeholder="0.00" 
+                                        value={depositAmount} 
+                                        onChange={e => setDepositAmount(e.target.value)} 
+                                        required 
+                                    />
+                                    <button type="submit" className="submit-btn">Confirm Deposit Order</button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* VIEW: WITHDRAWAL MANAGEMENT */}
+                    {view === 'withdraw' && user && (
+                        <div className="page-container">
+                            <button className="back-nav-btn" onClick={() => navigateTo('dashboard')}>← Return to Dashboard</button>
+                            <div style={{background: 'white', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-line)'}}>
+                                <h3 className="card-title" style={{fontSize: '1.5rem', marginBottom: '0.5rem'}}>Withdraw Capital</h3>
+                                <p style={{fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1.5rem'}}>Available balance: {formatNaira(user.balance)}</p>
+                                <form onSubmit={processWithdrawal}>
+                                    <label className="investment-label">Amount to Extract (₦)</label>
+                                    <input 
+                                        type="number" 
+                                        className="input-field" 
+                                        placeholder="0.00" 
+                                        value={withdrawAmount} 
+                                        onChange={e => setWithdrawAmount(e.target.value)} 
+                                        required 
+                                    />
+                                    <button type="submit" className="submit-btn">Authorize Withdrawal</button>
                                 </form>
                             </div>
                         </div>
