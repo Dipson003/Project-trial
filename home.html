@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldWeb | Unified Capital Framework</title>
+    <title>WorldWeb | Premium Capital Framework</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -23,137 +23,73 @@
         }
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); background-color: var(--bg-color); -webkit-font-smoothing: antialiased; }
 
-        /* Header & Navigation - Optimized Spacing */
-        .main-header { height: 80px; background: var(--surface-white); border-bottom: 1px solid var(--border-line); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; position: sticky; top: 0; z-index: 1000; }
-        .brand-logo { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; }
-        .logo-box { width: 40px; height: 40px; background: var(--primary-green); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.25rem; }
-        .brand-name { font-weight: 800; font-size: 1.25rem; color: var(--text-dark); letter-spacing: -0.03em; }
+        /* Header - Generous Spacing */
+        .main-header { height: 85px; background: var(--surface-white); border-bottom: 1px solid var(--border-line); display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; position: sticky; top: 0; z-index: 1000; }
+        .brand-logo { display: flex; align-items: center; gap: 1rem; cursor: pointer; }
+        .logo-box { width: 42px; height: 42px; background: var(--primary-green); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.3rem; }
+        .brand-name { font-weight: 800; font-size: 1.3rem; color: var(--text-dark); letter-spacing: -0.03em; }
         
-        .desktop-nav { display: none; gap: 2.5rem; align-items: center; margin-left: auto; margin-right: 3rem; }
-        .nav-link { color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+        .desktop-nav { display: none; gap: 3.5rem; align-items: center; margin-left: auto; margin-right: 4rem; }
+        .nav-link { color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: color 0.2s; }
         .nav-link:hover { color: var(--primary-green); }
         
-        .header-buttons { display: flex; gap: 1.2rem; align-items: center; }
-        .menu-toggle { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-dark); padding: 0.2rem; display: flex; align-items: center; justify-content: center; }
+        .header-buttons { display: flex; gap: 1.5rem; align-items: center; }
+        .menu-toggle { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-dark); }
         
-        @media(min-width: 950px) {
-            .desktop-nav { display: flex; }
-        }
+        @media(min-width: 1024px) { .desktop-nav { display: flex; } }
 
-        .action-btn { font-family: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.6rem 1.2rem; border-radius: 10px; cursor: pointer; border: none; transition: all 0.2s; }
+        .action-btn { font-family: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.7rem 1.4rem; border-radius: 10px; cursor: pointer; border: none; }
         .btn-outline { color: var(--primary-green); background: rgba(5, 150, 105, 0.06); border: 1px solid var(--primary-green); }
-        .btn-outline:hover { background: rgba(5, 150, 105, 0.12); }
-        .btn-solid { background: var(--primary-green); color: white; }
-        .btn-solid:hover { background: #047857; transform: translateY(-1px); }
+        .btn-solid { background: var(--primary-green); color: white; transition: 0.2s; }
+        .btn-solid:hover { background: #047857; }
         .btn-danger { background: #ef4444; color: white; }
-        .btn-danger:hover { background: #dc2626; }
 
-        /* Right-Sided Mobile Menu Drawer */
+        /* Right-Sided Menu */
         .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; backdrop-filter: blur(2px); }
-        .right-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 300px; background: white; z-index: 1600; padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: -5px 0 25px rgba(0,0,0,0.15); animation: slideRight 0.3s ease-out; }
+        .right-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 320px; background: white; z-index: 1600; padding: 3rem 2rem; display: flex; flex-direction: column; gap: 1.8rem; box-shadow: -10px 0 30px rgba(0,0,0,0.1); animation: slideRight 0.3s ease-out; }
         @keyframes slideRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
-        /* Hero Section with Motion Background (Nice Moving Cars) */
-        .hero-banner { position: relative; padding: 7rem 1.5rem; text-align: center; overflow: hidden; margin-bottom: 2rem; background-color: #0f172a; }
+        /* Hero */
+        .hero-banner { position: relative; padding: 8rem 1.5rem; text-align: center; overflow: hidden; background-color: #0f172a; }
         .hero-motion-bg { 
             position: absolute; inset: 0; 
             background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80');
             background-size: cover; background-position: center;
-            animation: panBackground 25s linear infinite alternate;
-            opacity: 0.35;
+            animation: panBackground 20s linear infinite alternate; opacity: 0.4;
         }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(15, 23, 42, 0.9)); }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(15, 23, 42, 0.95)); }
         .hero-content { position: relative; z-index: 1; }
-        .hero-headline { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; color: white; letter-spacing: -0.02em; }
-        .hero-headline span { color: #34d399; }
-        
-        @keyframes panBackground {
-            0% { background-position: left center; transform: scale(1); }
-            100% { background-position: right center; transform: scale(1.1); }
-        }
+        .hero-headline { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; color: white; }
+        @keyframes panBackground { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
 
-        /* Slider Section */
-        .slider-wrapper { max-width: 600px; margin: 0 auto 3rem; padding: 0 1.2rem; }
-        .slider-container { width: 100%; height: 260px; border-radius: 24px; overflow: hidden; position: relative; border: 1px solid var(--border-line); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
-        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s ease-in-out; }
-        .slide { min-width: 100%; height: 100%; position: relative; }
+        /* Premium Investment UI */
+        .investment-card { background: white; border-radius: 30px; border: 1px solid var(--border-line); padding: 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.03); margin-top: 1rem; }
+        .asset-header { background: #0f172a; color: white; padding: 1.5rem; border-radius: 18px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; font-size: 0.8rem; font-weight: 800; color: var(--text-muted); margin-bottom: 0.6rem; text-transform: uppercase; }
+        .form-input { width: 100%; padding: 1.1rem; border: 2px solid #f1f5f9; border-radius: 15px; font-family: inherit; font-size: 1rem; font-weight: 600; background: #f8fafc; }
+        .form-input:focus { border-color: var(--primary-green); outline: none; background: white; }
+        .terms-scroll { border: 1px solid #e2e8f0; border-radius: 15px; padding: 1.2rem; background: #fdfdfd; height: 120px; overflow-y: auto; font-size: 0.85rem; color: #64748b; line-height: 1.6; margin-bottom: 1.5rem; }
+
+        /* Dashboard UI */
+        .naira-card { background: linear-gradient(135deg, #065f46 0%, #047857 100%); color: white; border-radius: 25px; padding: 2rem; margin-bottom: 2rem; }
+        .dash-row { background: white; padding: 1.3rem; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border: 1px solid var(--border-line); }
+        .history-box { background: white; border: 1px solid var(--border-line); border-radius: 22px; padding: 1.8rem; margin-top: 2rem; }
+        .status-badge { padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; }
+        .successful { background: #d1fae5; color: #065f46; }
+        .pending { background: #fef3c7; color: #92400e; }
+
+        /* Modals */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
+        .modal-card { background: white; width: 100%; max-width: 440px; padding: 2.5rem; border-radius: 28px; position: relative; text-align: center; }
+        .error-msg { background: #fee2e2; color: #b91c1c; padding: 1rem; border-radius: 12px; font-weight: 700; margin-top: 1rem; border: 1px solid #fecaca; }
+        
+        .slider-container { width: 100%; height: 260px; border-radius: 24px; overflow: hidden; position: relative; margin: 0 auto 3rem; max-width: 600px; }
+        .slider-track { display: flex; transition: transform 0.6s ease-in-out; height: 100%; }
+        .slide { min-width: 100%; position: relative; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 2.5rem 1.5rem 1.5rem; color: white; font-weight: 700; font-size: 1.1rem; }
 
-        /* Catalog Layout */
-        .catalog-grid { padding: 0 1.2rem; display: flex; flex-direction: column; gap: 1.8rem; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .product-card { background: white; border-radius: 24px; border: 1px solid var(--border-line); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-        .product-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .img-box { width: 100%; height: 200px; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 1rem; right: 1rem; background: white; padding: 0.45rem 0.9rem; border-radius: 50px; font-weight: 800; font-size: 0.75rem; color: var(--primary-green); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .card-body { padding: 1.5rem; }
-        .card-body h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-dark); }
-        .read-more { width: 100%; padding: 0.9rem; margin-top: 1.2rem; border: 1px solid var(--border-line); border-radius: 12px; background: #f8fafc; font-weight: 700; cursor: pointer; color: var(--text-dark); transition: all 0.2s; }
-        .read-more:hover { background: var(--primary-green); color: white; border-color: var(--primary-green); }
-
-        /* Market Chart */
-        .market-section { background: #0f172a; padding: 4rem 1.2rem; color: white; text-align: center; }
-        .chart-box { border-radius: 20px; overflow: hidden; margin-top: 2rem; height: 365px; max-width: 600px; margin-left: auto; margin-right: auto; background: #1e293b; }
-
-        /* Container Standard */
-        .page-container { padding: 2.5rem 1.2rem; max-width: 600px; margin: 0 auto; min-height: 80vh; }
-        .info-header { font-size: 0.75rem; font-weight: 800; color: var(--primary-green); letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; text-transform: uppercase; }
-        .content-block { line-height: 1.7; color: #334155; margin-bottom: 1.2rem; font-size: 0.95rem; }
-        .content-list { margin-bottom: 1.5rem; padding-left: 1.2rem; line-height: 1.7; color: #334155; font-size: 0.95rem; }
-        .content-list li { margin-bottom: 0.5rem; }
-        .metric-box { background: #f1f5f9; padding: 1.2rem; border-radius: 16px; margin-bottom: 2rem; }
-
-        /* Beautiful Furnished Investment Page UI */
-        .premium-investment-card { background: white; border-radius: 28px; border: 1px solid var(--border-line); padding: 2.2rem 1.8rem; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04); margin-top: 1.5rem; }
-        .asset-summary-banner { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 1.2rem 1.5rem; border-radius: 16px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .investment-input-group { margin-bottom: 1.5rem; position: relative; }
-        .investment-label { display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.03em; }
-        .investment-input { width: 100%; padding: 1rem 1.2rem; border: 2px solid #e2e8f0; border-radius: 14px; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--text-dark); background: #f8fafc; transition: all 0.2s; }
-        .investment-input:focus { border-color: var(--primary-green); outline: none; background: white; }
-        .investment-input:disabled { background: #f1f5f9; color: #94a3b8; border-color: #e2e8f0; cursor: not-allowed; }
-        .premium-terms-box { border: 1px solid #cbd5e1; border-radius: 14px; padding: 1.1rem; background: #f8fafc; max-height: 110px; overflow-y: auto; font-size: 0.8rem; color: #475569; line-height: 1.6; margin-bottom: 1.2rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
-        .checkbox-label { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.88rem; font-weight: 600; color: #334155; cursor: pointer; user-select: none; line-height: 1.4; }
-        .checkbox-label input { width: 18px; height: 18px; accent-color: var(--primary-green); margin-top: 0.1rem; }
-
-        /* User Dashboard History UI */
-        .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 24px; padding: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 12px 24px rgba(5, 150, 105, 0.15); }
-        .dash-row { background: white; padding: 1.2rem; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; border: 1px solid var(--border-line); transition: all 0.2s; }
-        .dash-row:hover { border-color: #cbd5e1; transform: scale(1.01); }
-        .bonus-card { background: rgba(16, 185, 129, 0.08); border: 1px dashed var(--primary-green); padding: 1.5rem; border-radius: 18px; text-align: center; margin-bottom: 2rem; }
-        
-        .history-box { background: white; border: 1px solid var(--border-line); border-radius: 20px; padding: 1.5rem; margin-top: 2.5rem; }
-        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.88rem; }
-        .history-item:last-child { border-bottom: none; }
-        .badge-status { padding: 0.3rem 0.7rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; }
-        .status-pending { background: #fef3c7; color: #d97706; }
-        .status-success { background: #d1fae5; color: #059669; }
-
-        /* Modals & Popups Setup */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
-        .modal-card { background: white; width: 100%; max-width: 430px; padding: 2.2rem; border-radius: 26px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .close-btn { position: absolute; top: 1.2rem; right: 1.2rem; border: none; background: #f1f5f9; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .input-field { width: 100%; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; font-family: inherit; font-size: 0.95rem; }
-        
-        .submit-btn { width: 100%; padding: 1.1rem; background: var(--primary-green); color: white; border: none; border-radius: 14px; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 0.5rem; transition: all 0.2s; shadow: 0 4px 12px rgba(5, 150, 105, 0.2); }
-        .submit-btn:hover { background: #047857; }
-        .code-inputs { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 1.5rem; }
-        .code-box { width: 48px; height: 52px; border: 2px solid #cbd5e1; border-radius: 10px; text-align: center; font-size: 1.3rem; font-weight: 700; }
-
-        .btn-group { display: flex; gap: 1.2rem; margin-top: 1.8rem; }
-        .half-btn { flex: 1; padding: 1.1rem; border-radius: 14px; border: none; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; }
-
-        /* The Cancel Error Message Red Alert Box requested */
-        .error-banner { background: #fee2e2; color: #dc2626; padding: 1rem; border-radius: 12px; font-weight: 700; font-size: 0.88rem; text-align: center; margin-top: 1.2rem; border: 1px solid #fca5a5; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-
-        /* Premium Alerts */
-        .premium-alert { text-align: center; }
-        .premium-alert .icon-box {
-            width: 75px; height: 75px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); 
-            color: var(--primary-green); font-size: 2.2rem; display: flex; align-items: center; 
-            justify-content: center; margin: 0 auto 1.5rem;
-        }
-        footer { background: #020617; color: #94a3b8; padding: 3.5rem 1.2rem; text-align: center; border-top: 1px solid #1e293b; }
+        footer { background: #020617; color: #64748b; padding: 4rem 1rem; text-align: center; }
     </style>
 </head>
 <body>
@@ -161,7 +97,7 @@
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const formatNaira = (num) => "₦" + (num || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 });
+        const fmt = (n) => "₦" + Number(n).toLocaleString();
 
         function App() {
             const [view, setView] = useState('home');
@@ -169,523 +105,151 @@
             const [user, setUser] = useState(null);
             const [menuOpen, setMenuOpen] = useState(false);
             const [slideIdx, setSlideIdx] = useState(0);
-            const [alertData, setAlertData] = useState(null);
             const [activePlan, setActivePlan] = useState(null);
-
-            // Custom Form Data for Furnished Investment Page
-            const [investAmount, setInvestAmount] = useState('');
-            const [termsAgreed, setTermsAgreed] = useState(false);
-            const [errorMsg, setErrorMsg] = useState('');
-
-            // Fresh state entries for interactive transactional values
-            const [depositInput, setDepositInput] = useState('');
-            const [withdrawInput, setWithdrawInput] = useState('');
-
-            // Professional Real-time Ledger Logs
+            
+            // Inputs
+            const [amount, setAmount] = useState('');
+            const [agreed, setAgreed] = useState(false);
+            const [error, setError] = useState('');
             const [history, setHistory] = useState([
-                { type: 'Welcome Bonus Credited', amount: 10000, date: 'Initial Setup', status: 'Successful' }
+                { id: 1, label: 'Welcome Credit', val: 5000, status: 'Successful', date: 'System' }
             ]);
 
             const slides = [
-                { url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600", title: "Live Market Intelligence" },
-                { url: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600", title: "Dubai Sovereign Real Estate" },
-                { url: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600", title: "Luxury Leisure Assets" },
-                { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600", title: "Premium Residential Estates" }
+                "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600",
+                "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600",
+                "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600"
             ];
 
             useEffect(() => {
                 if (view === 'home') {
-                    const timer = setInterval(() => setSlideIdx(p => (p + 1) % slides.length), 3000);
-                    return () => clearInterval(timer);
+                    const t = setInterval(() => setSlideIdx(s => (s + 1) % slides.length), 3000);
+                    return () => clearInterval(t);
                 }
             }, [view]);
 
-            useEffect(() => {
-                if (view === 'home' && window.TradingView) {
-                    new window.TradingView.MediumWidget({
-                        "symbols": [["BTC", "BINANCE:BTCUSDT|1D"], ["Gold", "OANDA:XAUUSD|1D"], ["USD/NGN", "FX_IDC:USDNGN|1D"]],
-                        "chartOnly": false, "width": "100%", "height": 350, "locale": "en", "colorTheme": "dark",
-                        "autosize": false, "scalePosition": "right", "scaleMode": "Normal", "chartType": "line", "container_id": "chart_div"
-                    });
-                }
-            }, [view]);
+            const nav = (v) => { setView(v); setMenuOpen(false); setError(''); window.scrollTo(0,0); };
 
-            const navigate = (v) => { setView(v); setMenuOpen(false); window.scrollTo(0,0); };
-            const triggerAlert = (title, message, icon) => { setAlertData({ title, message, icon }); };
-
-            const handleLogin = () => { 
-                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 250000, bonusClaimed: true }); 
-                setModal(null); setView('dashboard'); 
-            };
-            
-            const handleSignupSubmit = () => { setModal('verification'); };
-            const handleVerificationComplete = () => { 
-                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 0, bonusClaimed: false }); 
-                setModal(null); setView('dashboard'); 
-            };
-            const logout = () => { setUser(null); setView('home'); };
-
-            const claimBonus = () => {
-                setUser(prev => ({ ...prev, balance: prev.balance + 10000, bonusClaimed: true }));
-                setHistory(prev => [{ type: 'Welcome Bonus', amount: 10000, date: 'Just now', status: 'Successful' }, ...prev]);
-                triggerAlert('Bonus Claimed!', 'Congratulations! ₦10,000 Welcome Bonus has been credited to your balance.', '🎁');
+            // Auth
+            const login = () => { 
+                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 150000 }); 
+                setModal(null); nav('dashboard'); 
             };
 
-            // Updates live calculations: Add input to balance
-            const submitDeposit = () => {
-                const amt = Number(depositInput);
-                if (!amt || amt <= 0) return;
-                setUser(prev => ({ ...prev, balance: prev.balance + amt }));
-                setHistory(prev => [{ type: 'Capital Deposit (BTC)', amount: amt, date: 'Just now', status: 'Successful' }, ...prev]);
-                setDepositInput('');
-                triggerAlert('Deposit Confirmed', `System credited ${formatNaira(amt)} to your wallet balance successfully.`, '💰');
-                navigate('dashboard');
+            // Wallet Logic
+            const doDeposit = () => {
+                const val = Number(amount);
+                if (!val || val <= 0) return;
+                setUser(u => ({ ...u, balance: u.balance + val }));
+                setHistory([{ id: Date.now(), label: 'Capital Deposit', val, status: 'Successful', date: 'Just now' }, ...history]);
+                setAmount('');
+                setModal('success-alert');
             };
 
-            // Updates live calculations: Subtract input from balance
-            const submitWithdrawal = () => {
-                const amt = Number(withdrawInput);
-                if (!amt || amt <= 0) return;
-                if (amt > user.balance) {
-                    triggerAlert('Insufficient Balance', 'You do not have enough liquidity available to execute this withdrawal request.', '❌');
-                    return;
-                }
-                setUser(prev => ({ ...prev, balance: prev.balance - amt }));
-                setHistory(prev => [{ type: 'Liquidity Withdrawal', amount: amt, date: 'Processing Routing', status: 'Pending' }, ...prev]);
-                setWithdrawInput('');
-                triggerAlert('Withdrawal Initiated', `Your processing transaction for ${formatNaira(amt)} is safely on the way!`, '✅');
-                navigate('dashboard');
+            const doWithdraw = () => {
+                const val = Number(amount);
+                if (!val || val > user.balance) { alert("Invalid Amount"); return; }
+                setUser(u => ({ ...u, balance: u.balance - val }));
+                setHistory([{ id: Date.now(), label: 'Withdrawal', val, status: 'Pending', date: 'Processing' }, ...history]);
+                setAmount('');
+                setModal('success-alert');
             };
 
-            // Setup customized Investment processing workflow
-            const openInvestmentPage = (planKey) => {
-                if (!user) { setModal('signup'); return; }
-                setActivePlan(planKey);
-                setInvestAmount('');
-                setTermsAgreed(false);
-                setErrorMsg('');
-                navigate('invest-form');
+            const initInvest = (p) => { 
+                if(!user) { setModal('signup'); return; }
+                setActivePlan(p); setAmount(''); setAgreed(false); nav('invest-form'); 
             };
 
-            const executeInvestmentSubmit = () => {
-                setErrorMsg('');
-                const amt = Number(investAmount);
-                if (!amt || amt <= 0) {
-                    setErrorMsg('Please enter a valid investment amount.'); return;
-                }
-                if (amt > user.balance) {
-                    setErrorMsg('Insufficient active wallet balance to fund this investment.'); return;
-                }
-                if (!termsAgreed) {
-                    setErrorMsg('You must review and accept the framework Terms and Conditions.'); return;
-                }
-                setModal('confirm-invest');
+            const confirmInvest = () => {
+                const val = Number(amount);
+                if (val <= 0 || val > user.balance) { setError("Check balance or amount"); return; }
+                if (!agreed) { setError("Please agree to terms"); return; }
+                setModal('confirm-final');
             };
 
-            const acceptInvestment = () => {
+            const finalizeInvest = () => {
+                const val = Number(amount);
+                setUser(u => ({ ...u, balance: u.balance - val }));
+                setHistory([{ id: Date.now(), label: `Invest: ${activePlan}`, val, status: 'Successful', date: 'Cycle Active' }, ...history]);
                 setModal(null);
-                const amt = Number(investAmount);
-                setUser(prev => ({ ...prev, balance: prev.balance - amt }));
-                setHistory(prev => [{ type: `Invested: ${activePlan.toUpperCase()}`, amount: amt, date: 'Active Cycle', status: 'Successful' }, ...prev]);
-                triggerAlert('Investment Activated', 'Thank you for trusting us, we will verify your deposit and update, kindly exercise patience.', '🛡️');
-                navigate('dashboard');
-            };
-
-            const rejectInvestment = () => {
-                setModal(null);
-                // Triggering the red error message format directly on cancellation
-                setErrorMsg('sorry ❌ Transaction cancelled by user configuration.');
+                alert("Thank you for trusting us, we will verify your deposit and update, kindly exercise patience");
+                nav('dashboard');
             };
 
             return (
                 <div>
-                    {/* TOP HEADER - IMMACULATE VISUAL SPACING */}
                     <header className="main-header">
-                        <div className="brand-logo" onClick={() => navigate(user ? 'dashboard' : 'home')}>
+                        <div className="brand-logo" onClick={() => nav('home')}>
                             <div className="logo-box">W</div>
                             <span className="brand-name">WorldWeb</span>
                         </div>
-
                         <nav className="desktop-nav">
-                            <span className="nav-link" onClick={() => navigate('home')}>Home</span>
-                            <span className="nav-link" onClick={() => navigate('about')}>About Us</span>
-                            <span className="nav-link" onClick={() => navigate('how-to-invest')}>How to Invest</span>
-                            <span className="nav-link" onClick={() => navigate('terms')}>Terms & Conditions</span>
+                            <span className="nav-link" onClick={() => nav('home')}>Home</span>
+                            <span className="nav-link" onClick={() => nav('about')}>About</span>
+                            <span className="nav-link" onClick={() => nav('terms')}>Terms</span>
                         </nav>
-
                         <div className="header-buttons">
-                            {!user ? (
-                                <>
-                                    <button className="action-btn btn-outline" onClick={() => setModal('login')}>Sign In</button>
-                                    <button className="action-btn btn-solid" onClick={() => setModal('signup')}>Get Started</button>
-                                </>
-                            ) : (
-                                <button className="action-btn btn-solid" onClick={() => navigate('dashboard')}>Dashboard</button>
-                            )}
+                            {!user ? <button className="action-btn btn-solid" onClick={() => setModal('login')}>Sign In</button> : <button className="action-btn btn-outline" onClick={() => nav('dashboard')}>Dashboard</button>}
                             <button className="menu-toggle" onClick={() => setMenuOpen(true)}>☰</button>
                         </div>
                     </header>
 
-                    {/* RIGHT-SIDED NAVIGATION MENU DRAWER */}
                     {menuOpen && (
                         <>
                             <div className="drawer-overlay" onClick={() => setMenuOpen(false)}></div>
                             <div className="right-drawer">
-                                <button className="close-btn" onClick={() => setMenuOpen(false)}>×</button>
-                                <div className="brand-logo" style={{marginBottom:'1rem'}}>
-                                    <div className="logo-box">W</div>
-                                    <span className="brand-name">WorldWeb</span>
-                                </div>
-                                <span className="nav-link" onClick={() => navigate('home')}>🏠 Home</span>
-                                <span className="nav-link" onClick={() => navigate('about')}>ℹ️ About Us</span>
-                                <span className="nav-link" onClick={() => navigate('how-to-invest')}>📖 How to Invest</span>
-                                <span className="nav-link" onClick={() => navigate('terms')}>📋 Terms & Conditions</span>
-                                <hr style={{borderColor:'#f1f5f9'}}/>
-                                {!user ? (
-                                    <>
-                                        <span className="nav-link" style={{color:'var(--primary-green)'}} onClick={() => { setMenuOpen(false); setModal('login'); }}>Sign In</span>
-                                        <span className="nav-link" style={{fontWeight:700}} onClick={() => { setMenuOpen(false); setModal('signup'); }}>Register Profile</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <span className="nav-link" style={{color:'var(--primary-green)'}} onClick={() => navigate('dashboard')}>💼 My Dashboard</span>
-                                        <span className="nav-link" style={{color:'#ef4444'}} onClick={logout}>🚪 Log Out</span>
-                                    </>
-                                )}
+                                <h3 onClick={() => setMenuOpen(false)}>Close ×</h3>
+                                <span className="nav-link" onClick={() => nav('home')}>🏠 Home</span>
+                                <span className="nav-link" onClick={() => nav('about')}>📖 About</span>
+                                <span className="nav-link" onClick={() => nav('terms')}>📋 Terms</span>
+                                {user ? <span className="nav-link" style={{color:'red'}} onClick={() => {setUser(null); nav('home');}}>Logout</span> : <span className="nav-link" onClick={() => setModal('login')}>Login</span>}
                             </div>
                         </>
                     )}
 
-                    {/* HOME MAIN PAGE */}
                     {view === 'home' && (
                         <main>
                             <section className="hero-banner">
                                 <div className="hero-motion-bg"></div>
                                 <div className="hero-overlay"></div>
                                 <div className="hero-content">
-                                    <h1 className="hero-headline">Multiply Wealth Through<br/><span>Proven Portfolios</span></h1>
-                                    <button className="action-btn btn-solid hero-btn" style={{padding:'1rem 2.5rem', fontSize:'0.9rem', marginTop:'1rem'}} onClick={() => setModal('signup')}>Start Investing Today</button>
+                                    <h1 className="hero-headline">Professional Global<br/>Investment Assets</h1>
+                                    <button className="action-btn btn-solid" style={{padding:'1rem 2rem'}} onClick={() => setModal('signup')}>Get Started</button>
                                 </div>
                             </section>
 
-                            <div className="slider-wrapper">
-                                <div className="slider-container">
-                                    <div className="slider-track" style={{ transform: `translateX(-${slideIdx * 100}%)` }}>
-                                        {slides.map((s, i) => (
-                                            <div className="slide" key={i}>
-                                                <img src={s.url} alt={s.title} />
-                                                <div className="slide-overlay">{s.title}</div>
-                                            </div>
-                                        ))}
-                                    </div>
+                            <div className="slider-container" style={{marginTop:'-50px', zIndex:5}}>
+                                <div className="slider-track" style={{ transform: `translateX(-${slideIdx * 100}%)` }}>
+                                    {slides.map((s, i) => <div className="slide" key={i}><img src={s} /></div>)}
                                 </div>
                             </div>
 
-                            <div className="catalog-grid">
-                                <div className="product-card">
-                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600" /><div className="badge">7% ROI • 3 Mos</div></div>
-                                    <div className="card-body"><h3>Agriculture Asset Matrix</h3><button className="read-more" onClick={() => navigate('agric')}>Read More Details →</button></div>
+                            <div style={{maxWidth:'600px', margin:'0 auto', padding:'2rem'}}>
+                                <div className="dash-row">
+                                    <div><strong>Agric Matrix</strong><p>7% ROI</p></div>
+                                    <button className="action-btn btn-solid" onClick={() => initInvest('Agric Matrix')}>Invest</button>
                                 </div>
-                                <div className="product-card">
-                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600" /><div className="badge">10% ROI • 3 Mos</div></div>
-                                    <div className="card-body"><h3>Prime Real Estate Assets</h3><button className="read-more" onClick={() => navigate('estate')}>Read More Details →</button></div>
-                                </div>
-                                <div className="product-card">
-                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600" /><div className="badge">13% ROI • 3 Mos</div></div>
-                                    <div className="card-body"><h3>BTC Digital Growth</h3><button className="read-more" onClick={() => navigate('btc')}>Read More Details →</button></div>
+                                <div className="dash-row">
+                                    <div><strong>Real Estate</strong><p>10% ROI</p></div>
+                                    <button className="action-btn btn-solid" onClick={() => initInvest('Real Estate')}>Invest</button>
                                 </div>
                             </div>
-
-                            <section className="market-section">
-                                <h2>Live Market Intelligence</h2>
-                                <div id="chart_div" className="chart-box"></div>
-                            </section>
                         </main>
                     )}
 
-                    {/* AGRIC DETAIL VIEW */}
-                    {view === 'agric' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>Agriculture Asset Matrix</h2>
-                            <span className="info-header" style={{marginTop:'0.5rem'}}>7% ROI in 3 Months</span>
-                            <p className="content-block">Agriculture remains one of the most stable and essential sectors in the global economy. Secure reliable and sustainable short-term investments backed by modern agronomy metrics.</p>
-                            <button className="submit-btn" onClick={() => openInvestmentPage('agriculture matrix')}>Invest in Plan Now</button>
-                        </div>
-                    )}
-
-                    {/* ESTATE DETAIL VIEW */}
-                    {view === 'estate' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>Prime Real Estate Assets</h2>
-                            <span className="info-header" style={{marginTop:'0.5rem'}}>10% ROI in 3 Months</span>
-                            <p className="content-block">Real estate has long been recognized as one of the most powerful wealth-building industries globally. Gain premium exposure to top-tier commercial models.</p>
-                            <button className="submit-btn" onClick={() => openInvestmentPage('prime real estate')}>Invest in Plan Now</button>
-                        </div>
-                    )}
-
-                    {/* BTC DETAIL VIEW */}
-                    {view === 'btc' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>BTC Digital Growth</h2>
-                            <span className="info-header" style={{marginTop:'0.5rem', color:'var(--accent-orange)'}}>13% ROI in 3 Months</span>
-                            <p className="content-block">Bitcoin continues to lead the digital financial revolution. Maximize growth trajectories through specialized algorithmic liquidity frameworks.</p>
-                            <button className="submit-btn" style={{background:'var(--accent-orange)'}} onClick={() => openInvestmentPage('bitcoin digital growth')}>Invest in Plan Now</button>
-                        </div>
-                    )}
-
-                    {/* BEAUTIFULLY FURNISHED HIGHLY ENTICING INVESTMENT PAGE */}
-                    {view === 'invest-form' && user && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--text-muted)', fontWeight:700, cursor:'pointer', fontSize:'0.9rem'}}>← Return to Dashboard</span>
-                            
-                            <div className="premium-investment-card">
-                                <h2 style={{fontSize:'1.6rem', fontWeight:800, color: 'var(--text-dark)', marginBottom:'0.3rem'}}>Capital Investment Node</h2>
-                                <p style={{fontSize:'0.88rem', color:'var(--text-muted)', marginBottom:'1.8rem'}}>Verify information entries to secure corporate asset allocation positions.</p>
-                                
-                                <div className="asset-summary-banner">
-                                    <div>
-                                        <div style={{fontSize:'0.7rem', opacity:0.8, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase'}}>Target Framework</div>
-                                        <div style={{fontSize:'1.1rem', fontWeight:800, textTransform:'capitalize'}}>{activePlan}</div>
-                                    </div>
-                                    <div style={{textAlign:'right'}}>
-                                        <div style={{fontSize:'0.7rem', opacity:0.8, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase'}}>Liquidity Limit</div>
-                                        <div style={{fontSize:'1.1rem', fontWeight:800, color:'#34d399'}}>{formatNaira(user.balance)}</div>
-                                    </div>
-                                </div>
-
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Full Name</label>
-                                    <input type="text" className="investment-input" value={user.name} disabled />
-                                </div>
-                                
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Email Address</label>
-                                    <input type="text" className="investment-input" value={user.email} disabled />
-                                </div>
-
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Amount to Invest (₦)</label>
-                                    <input type="number" placeholder="Enter amount to deploy" className="investment-input" value={investAmount} onChange={(e) => setInvestAmount(e.target.value)} style={{borderColor:'#cbd5e1', background:'white'}} />
-                                </div>
-
-                                <label className="investment-label">Investment Terms & Disclosures</label>
-                                <div className="premium-terms-box">
-                                    <strong>1. Allocation Duration:</strong> Capital commits completely into locked operational processing for exactly 3 calendar months from approval. <br/><br/>
-                                    <strong>2. Return Compounding:</strong> Yield vectors compute daily and linearly align with the specified portfolio metric matrix targets. <br/><br/>
-                                    <strong>3. Principal Security:</strong> Capital parameters remain asset-collateralized internally under sovereign physical and digital positions.
-                                </div>
-
-                                <div style={{marginTop:'1.2rem', marginBottom:'1.5rem'}}>
-                                    <label className="checkbox-label">
-                                        <input type="checkbox" checked={termsAgreed} onChange={(e) => setTermsAgreed(e.target.checked)} />
-                                        <span>I have thoroughly examined the investment rules and explicitly agree to the legal allocation lock boundaries.</span>
-                                    </label>
-                                </div>
-
-                                {errorMsg && <div className="error-banner">{errorMsg}</div>}
-
-                                <button className="submit-btn" style={{padding:'1.2rem', fontSize:'1rem', marginTop:'1rem'}} onClick={executeInvestmentSubmit}>Proceed with Investment</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* USER PROFILE DASHBOARD */}
                     {view === 'dashboard' && user && (
-                        <div className="page-container">
-                            <h2 style={{marginBottom:'1rem'}}>Welcome back, {user.name}</h2>
-                            
+                        <div style={{maxWidth:'600px', margin:'0 auto', padding:'2rem'}}>
                             <div className="naira-card">
-                                <div style={{fontSize:'0.85rem', opacity:0.85, fontWeight:600, letterSpacing:'0.02em'}}>ACTIVE WALLET LIQUIDITY</div>
-                                <div style={{fontSize:'2.4rem', fontWeight:800, margin:'0.6rem 0'}}>{formatNaira(user.balance)}</div>
+                                <p>AVAILABLE BALANCE</p>
+                                <h1 style={{fontSize:'2.5rem'}}>{fmt(user.balance)}</h1>
                             </div>
-
-                            <div style={{display:'flex', gap:'1.2rem', marginBottom:'2.5rem'}}>
-                                <button className="action-btn btn-solid" style={{flex:1, padding:'1.1rem', fontSize:'0.95rem'}} onClick={() => navigate('deposit')}>↓ Deposit Funds</button>
-                                <button className="action-btn btn-outline" style={{flex:1, padding:'1.1rem', background:'white', fontSize:'0.95rem'}} onClick={() => navigate('withdraw')}>↑ Withdraw Funds</button>
+                            <div style={{display:'flex', gap:'1rem', marginBottom:'2rem'}}>
+                                <button className="action-btn btn-solid" style={{flex:1}} onClick={() => nav('deposit')}>Deposit</button>
+                                <button className="action-btn btn-outline" style={{flex:1, background:'white'}} onClick={() => nav('withdraw')}>Withdraw</button>
                             </div>
-
-                            {!user.bonusClaimed && (
-                                <div className="bonus-card">
-                                    <h3>🎁 Welcome To The Circle!</h3>
-                                    <p style={{fontSize:'0.9rem', color:'#334155', margin:'0.5rem 0 1.2rem'}}>Instantly activate your standard welcome reward configurations.</p>
-                                    <button className="action-btn btn-solid" style={{width:'100%', padding:'1rem'}} onClick={claimBonus}>Claim ₦10,000 Reward</button>
-                                </div>
-                            )}
-
-                            <h3 style={{marginBottom:'1.2rem', fontWeight:700}}>Premium Investment Tiers</h3>
-                            <div className="dash-row" onClick={() => openInvestmentPage('agriculture matrix')} style={{cursor:'pointer'}}>
-                                <div><strong>Agriculture Asset Matrix</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>7% Yield • 3 Months Lock</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.75rem'}}>Invest</button>
-                            </div>
-                            <div className="dash-row" onClick={() => openInvestmentPage('prime real estate')} style={{cursor:'pointer'}}>
-                                <div><strong>Prime Real Estate Assets</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>10% Yield • 3 Months Lock</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.75rem'}}>Invest</button>
-                            </div>
-                            <div className="dash-row" onClick={() => openInvestmentPage('bitcoin digital growth')} style={{cursor:'pointer'}}>
-                                <div><strong>BTC Digital Growth</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>13% Yield • 3 Months Lock</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.75rem', background:'var(--accent-orange)'}}>Invest</button>
-                            </div>
-
-                            {/* LEDGER HISTORY DISPLAYING DETAILED SUCCESS / PENDING FEEDBACK */}
+                            
+                            <h3 style={{marginBottom:'1rem'}}>Active Ledger</h3>
                             <div className="history-box">
-                                <h4 style={{marginBottom:'0.6rem', fontSize:'1rem', fontWeight:700}}>Account Transaction Ledger</h4>
-                                {history.map((h, idx) => (
-                                    <div className="history-item" key={idx}>
+                                {history.map(h => (
+                                    <div className="history-item dash-row" key={h.id} style={{border:'none', borderBottom:'1px solid #eee', borderRadius:0}}>
                                         <div>
-                                            <strong style={{color:'#1e293b'}}>{h.type}</strong>
-                                            <div style={{fontSize:'0.78rem', color:'#64748b', marginTop:'0.1rem'}}>{h.date}</div>
-                                        </div>
-                                        <div style={{textAlign:'right'}}>
-                                            <div style={{fontWeight:700, marginBottom:'0.2rem', color:'#0f172a'}}>{formatNaira(h.amount)}</div>
-                                            <span className={`badge-status ${h.status === 'Pending' ? 'status-pending' : 'status-success'}`}>{h.status}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* ABOUT, HOW TO INVEST, TERMS VIEWS */}
-                    {view === 'about' && (
-                        <div className="page-container">
-                            <h2>About WorldWeb</h2>
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>Our premium multi-asset deployment platforms connect verified institutional capitals with secured high-performance physical markets cleanly.</p>
-                        </div>
-                    )}
-
-                    {view === 'how-to-invest' && (
-                        <div className="page-container">
-                            <h2>How to Invest</h2>
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>Fund your account balance through direct secure cryptocurrency protocols, browse premium opportunities, and initialize asset growth operations.</p>
-                        </div>
-                    )}
-
-                    {view === 'terms' && (
-                        <div className="page-container">
-                            <h2>Terms & Conditions</h2>
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>All funding and exit activities strictly align with transparent ledger parameters to prioritize complete capital preservation security models.</p>
-                        </div>
-                    )}
-
-                    {/* DEPOSIT FUNDS PAGE WITH DYNAMIC LIVE CALCULATIONS */}
-                    {view === 'deposit' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <h2 style={{marginTop:'1.5rem'}}>Deposit Capital (BTC)</h2>
-                            <div className="metric-box" style={{textAlign:'center', marginTop:'1.5rem'}}>
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" alt="BTC QR" style={{margin:'0 auto 1rem', display:'block', borderRadius:'10px'}} />
-                                <strong style={{fontSize:'0.9rem', wordBreak:'break-all', color:'#334155'}}>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</strong>
-                            </div>
-                            <div style={{background:'white', padding:'2rem', border"1px solid var(--border-line)", borderRadius:'20px'}}>
-                                <label className="investment-label">Amount to Deposit (₦)</label>
-                                <input type="number" placeholder="Enter deposit equivalent amount" className="input-field" value={depositInput} onChange={(e)=>setDepositInput(e.target.value)} />
-                                <input type="text" placeholder="Transaction Hash Reference" className="input-field" />
-                                <button className="submit-btn" onClick={submitDeposit}>Submit Verification Payment</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* WITHDRAW FUNDS PAGE WITH DYNAMIC LIVE CALCULATIONS */}
-                    {view === 'withdraw' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <h2 style={{marginTop:'1.5rem'}}>Withdraw Liquidity (BTC)</h2>
-                            <div style={{background:'white', padding:'2rem', border:"1px solid var(--border-line)", borderRadius:'20px', marginTop:'1.5rem'}}>
-                                <label className="investment-label">Amount to Withdraw (₦)</label>
-                                <input type="number" placeholder="Enter withdrawal amount" className="input-field" value={withdrawInput} onChange={(e)=>setWithdrawInput(e.target.value)} />
-                                <label className="investment-label">External Wallet Destination Address</label>
-                                <input type="text" placeholder="bc1q..." className="input-field" />
-                                <button className="submit-btn" onClick={submitWithdrawal}>Confirm Processing Launch</button>
-                            </div>
-                        </div>
-                    )}
-
-                    <footer>
-                        <h3>WorldWeb</h3>
-                        <p style={{marginTop:'1.5rem'}}>© 2026 WorldWeb International Inc.</p>
-                    </footer>
-
-                    {/* AUTH ENTRY CONFIG MODALS */}
-                    {modal === 'login' && (
-                        <div className="modal-overlay">
-                            <div className="modal-card">
-                                <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2>Welcome Back</h2>
-                                <input type="email" placeholder="Email Address" className="input-field" style={{marginTop:'1rem'}} />
-                                <input type="password" placeholder="Account Password" className="input-field" />
-                                <button className="submit-btn" onClick={handleLogin}>Log In</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {modal === 'signup' && (
-                        <div className="modal-overlay">
-                            <div className="modal-card">
-                                <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2>Create Account</h2>
-                                <input type="text" placeholder="Full Name" className="input-field" style={{marginTop:'1rem'}} />
-                                <input type="email" placeholder="Email" className="input-field" />
-                                <input type="password" placeholder="Create Password" className="input-field" />
-                                <input type="password" placeholder="Confirm Password" className="input-field" />
-                                <button className="submit-btn" onClick={handleSignupSubmit}>Register Profile</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {modal === 'verification' && (
-                        <div className="modal-overlay">
-                            <div className="modal-card" style={{textAlign:'center'}}>
-                                <h2>Verify Email Entry</h2>
-                                <div className="code-inputs" style={{marginTop:'1.5rem'}}>
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="5" />
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="7" />
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="1" />
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="4" />
-                                </div>
-                                <button className="submit-btn" onClick={handleVerificationComplete}>Complete Verification</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* MULTI-STAGE STAKING REPLACED COMPLETELY BY THE PREMIUM INVESTMENT WORKFLOW MODAL */}
-                    {modal === 'confirm-invest' && (
-                        <div className="modal-overlay">
-                            <div className="modal-card" style={{textAlign:'center'}}>
-                                <h2 style={{fontSize:'1.4rem'}}>Are you sure you want to continue?</h2>
-                                <p style={{margin:'1rem 0 1.5rem', color:'#475569', fontSize:'0.95rem'}}>
-                                    Confirming allocation of {formatNaira(Number(investAmount))} directly to the active {activePlan} growth framework.
-                                </p>
-                                <div className="btn-group">
-                                    <button className="half-btn btn-solid" onClick={acceptInvestment}>Yes</button>
-                                    <button className="half-btn btn-danger" onClick={rejectInvestment}>No</button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* CUSTOM CENTRAL PREMIUM ALERT ENGINE */}
-                    {alertData && (
-                        <div className="modal-overlay">
-                            <div className="modal-card premium-alert">
-                                <div className="icon-box">{alertData.icon}</div>
-                                <h2>{alertData.title}</h2>
-                                <p style={{fontSize:'0.95rem', color:'#334155', margin:'1rem 0 1.5rem', lineHeight:1.6}}>{alertData.message}</p>
-                                <button className="submit-btn" onClick={() => setAlertData(null)}>Acknowledge</button>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
-        }
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
-</body>
-</html>
