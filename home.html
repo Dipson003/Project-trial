@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldWeb | Unified Capital Framework</title>
+    <title>WorldWeb | Complete Capital Framework</title>
     
-    <!-- Stable High-Availability React & Babel Components -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -22,668 +21,398 @@
             --text-muted: #64748b;
             --border-line: #e2e8f0;
             --accent-orange: #ea580c;
+            --danger-red: #dc2626;
         }
         
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            color: var(--text-dark); 
-            background-color: var(--bg-color); 
-            -webkit-font-smoothing: antialiased; 
-            overflow-x: hidden;
-        }
-
-        /* Fixed Premium Header Spacing */
-        .main-header { 
-            height: 85px; 
-            background: var(--surface-white); 
-            border-bottom: 1px solid var(--border-line); 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 0 2rem; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-        }
-        .brand-logo { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; margin-right: 2rem; }
-        .logo-box { width: 40px; height: 40px; background: var(--primary-green); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.25rem; }
-        .brand-name { font-weight: 800; font-size: 1.25rem; color: var(--text-dark); letter-spacing: -0.03em; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-dark); background-color: var(--bg-color); -webkit-font-smoothing: antialiased; }
         
-        /* Generous link separation to fix jam-packed screenshot display issues */
-        .desktop-nav { display: none; gap: 2.5rem; align-items: center; margin-right: auto; padding-left: 1rem; }
-        .nav-link { color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
-        .nav-link:hover { color: var(--primary-green); }
+        /* Layout Header */
+        .main-header { height: 85px; background: var(--surface-white); border-bottom: 1px solid var(--border-line); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: 0; z-index: 1000; }
+        .logo-box { width: 40px; height: 40px; background: var(--primary-green); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.2rem; cursor: pointer; }
         
-        .header-buttons { display: flex; gap: 1.2rem; align-items: center; }
-        .menu-toggle { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-dark); padding: 0.2rem; display: flex; align-items: center; justify-content: center; }
+        /* Hero Banner Styling */
+        .hero-banner { position: relative; padding: 6rem 1rem; text-align: center; background-color: #0f172a; color: white; overflow: hidden; margin-bottom: 1rem; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(15, 23, 42, 0.9)); z-index: 1; }
+        .hero-title { position: relative; z-index: 2; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
         
-        @media(min-width: 950px) { .desktop-nav { display: flex; } }
-
-        .action-btn { font-family: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.6rem 1.2rem; border-radius: 10px; cursor: pointer; border: none; transition: all 0.2s; }
-        .btn-outline { color: var(--primary-green); background: rgba(5, 150, 105, 0.06); border: 1px solid var(--primary-green); }
-        .btn-solid { background: var(--primary-green); color: white; }
-        .btn-solid:hover { background: #047857; transform: translateY(-1px); }
-        .btn-danger { background: #ef4444; color: white; }
-        .btn-danger:hover { background: #dc2626; }
-
-        /* Right-Sided Navigation Menu Drawer */
-        .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; backdrop-filter: blur(2px); }
-        .right-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 300px; background: white; z-index: 1600; padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: -5px 0 25px rgba(0,0,0,0.15); transform: translateX(100%); transition: transform 0.3s ease-out; }
-        .right-drawer.open { transform: translateX(0); }
-
-        /* Hero Layout with Motion Pan Background */
-        .hero-banner { position: relative; padding: 7rem 1.5rem; text-align: center; overflow: hidden; margin-bottom: 2rem; background-color: #0f172a; }
-        .hero-motion-bg { 
-            position: absolute; inset: 0; 
-            background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover; background-position: center;
-            opacity: 0.35;
-        }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(15, 23, 42, 0.9)); }
-        .hero-content { position: relative; z-index: 1; }
-        .hero-headline { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; color: white; letter-spacing: -0.02em; }
-        .hero-headline span { color: #34d399; }
-        
-        /* Slider Components */
-        .slider-wrapper { max-width: 600px; margin: 0 auto 3rem; padding: 0 1.2rem; }
-        .slider-container { width: 100%; height: 260px; border-radius: 24px; overflow: hidden; position: relative; border: 1px solid var(--border-line); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
-        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s ease-in-out; }
-        .slide { min-width: 100%; height: 100%; position: relative; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 2.5rem 1.5rem 1.5rem; color: white; font-weight: 700; font-size: 1.1rem; }
-
-        /* Catalog Layout */
-        .catalog-grid { padding: 0 1.2rem; display: flex; flex-direction: column; gap: 1.8rem; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .product-card { background: white; border-radius: 24px; border: 1px solid var(--border-line); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-        .product-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        /* Catalog Content Layouts */
+        .catalog-grid { padding: 2rem 1rem; display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto; }
+        .product-card { background: white; border-radius: 20px; border: 1px solid var(--border-line); overflow: hidden; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03); }
         .img-box { width: 100%; height: 200px; position: relative; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 1rem; right: 1rem; background: white; padding: 0.45rem 0.9rem; border-radius: 50px; font-weight: 800; font-size: 0.75rem; color: var(--primary-green); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .badge { position: absolute; top: 1rem; right: 1rem; background: white; padding: 0.4rem 0.8rem; border-radius: 50px; font-weight: 800; font-size: 0.75rem; color: var(--primary-green); box-shadow: 0 2px 4px rgba(0,0,0,0.05); z-index: 2; }
         .card-body { padding: 1.5rem; }
-        .card-body h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-dark); }
-        .read-more { width: 100%; padding: 0.9rem; margin-top: 1.2rem; border: 1px solid var(--border-line); border-radius: 12px; background: #f8fafc; font-weight: 700; cursor: pointer; color: var(--text-dark); transition: all 0.2s; }
-        .read-more:hover { background: var(--primary-green); color: white; border-color: var(--primary-green); }
+        .card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark); }
 
-        /* General Containers */
-        .page-container { padding: 2.5rem 1.2rem; max-width: 600px; margin: 0 auto; min-height: 80vh; }
-        .info-header { font-size: 0.75rem; font-weight: 800; color: var(--primary-green); letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; text-transform: uppercase; }
-        .content-block { line-height: 1.7; color: #334155; margin-bottom: 1.2rem; font-size: 0.95rem; }
-        .metric-box { background: #f1f5f9; padding: 1.2rem; border-radius: 16px; margin-bottom: 2rem; }
+        /* Document View Containers */
+        .page-container { padding: 2rem 1.2rem; max-width: 600px; margin: 0 auto; min-height: 80vh; }
+        .view-title { font-size: 1.8rem; font-weight: 800; margin-top: 1rem; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .metric-box { background: #f1f5f9; padding: 1.2rem; border-radius: 16px; margin: 1.5rem 0; display: flex; justify-content: space-around; border: 1px solid var(--border-line); }
+        .metric-unit { text-align: center; }
+        .metric-unit span { display: block; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.2rem; }
+        .metric-unit strong { font-size: 1rem; color: var(--text-dark); font-weight: 700; }
+        .content-block { line-height: 1.6; color: #334155; margin-bottom: 1.5rem; font-size: 0.95rem; text-align: justify; }
 
-        /* Premium Investment Form Layouts */
-        .premium-investment-card { background: white; border-radius: 28px; border: 1px solid var(--border-line); padding: 2.2rem 1.8rem; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04); margin-top: 1.5rem; }
-        .asset-summary-banner { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 1.2rem 1.5rem; border-radius: 16px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .investment-input-group { margin-bottom: 1.2rem; position: relative; }
-        .investment-label { display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.03em; }
-        .investment-input { width: 100%; padding: 1rem 1.2rem; border: 2px solid #e2e8f0; border-radius: 14px; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--text-dark); background: #f8fafc; transition: all 0.2s; }
-        .investment-input:focus { border-color: var(--primary-green); outline: none; background: white; }
-        .investment-input:disabled { background: #f1f5f9; color: #94a3b8; border-color: #e2e8f0; cursor: not-allowed; }
-        .premium-terms-box { border: 1px solid #cbd5e1; border-radius: 14px; padding: 1.1rem; background: #f8fafc; height: 110px; overflow-y: auto; font-size: 0.8rem; color: #475569; line-height: 1.6; margin-bottom: 1.2rem; }
-        .checkbox-label { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.85rem; font-weight: 600; color: #334155; cursor: pointer; user-select: none; line-height: 1.4; }
-        .checkbox-label input { width: 18px; height: 18px; accent-color: var(--primary-green); margin-top: 0.1rem; }
-
-        /* Dashboard UI Elements */
-        .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 24px; padding: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 12px 24px rgba(5, 150, 105, 0.15); }
-        .dash-row { background: white; padding: 1.2rem; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; border: 1px solid var(--border-line); transition: all 0.2s; }
-        .bonus-card { background: rgba(16, 185, 129, 0.08); border: 1px dashed var(--primary-green); padding: 1.5rem; border-radius: 18px; text-align: center; margin-bottom: 2rem; }
-        
-        .history-box { background: white; border: 1px solid var(--border-line); border-radius: 20px; padding: 1.5rem; margin-top: 2.5rem; }
-        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.88rem; }
-        .badge-status { padding: 0.3rem 0.7rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
-        .status-pending { background: #fef3c7; color: #d97706; }
-        .status-success { background: #d1fae5; color: #059669; }
-
-        /* Modals Setup */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; overflow-y: auto; }
-        .modal-card { background: white; width: 100%; max-width: 440px; padding: 2.2rem; border-radius: 26px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.15); margin: auto; }
-        .close-btn { position: absolute; top: 1.2rem; right: 1.2rem; border: none; background: #f1f5f9; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
-        .input-field { width: 100%; padding: 1rem; border: 1px solid #cbd5e1; border-radius: 12px; margin-bottom: 1rem; font-family: inherit; font-size: 0.95rem; font-weight: 500; background: #f8fafc; }
-        .input-field:focus { border-color: var(--primary-green); outline: none; background: white; }
-        
-        .submit-btn { width: 100%; padding: 1.1rem; background: var(--primary-green); color: white; border: none; border-radius: 14px; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 0.5rem; transition: all 0.2s; }
+        /* Interactive Inputs & Button System */
+        .input-field { width: 100%; padding: 0.85rem 1rem; border: 1px solid #cbd5e1; border-radius: 12px; margin-bottom: 1.25rem; font-family: inherit; font-size: 1rem; background: #f8fafc; transition: all 0.2s; }
+        .input-field:focus { outline: none; border-color: var(--primary-green); background: var(--surface-white); }
+        .submit-btn { width: 100%; padding: 1rem; background: var(--primary-green); color: white; border: none; border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; justify-content: center; }
         .submit-btn:hover { background: #047857; }
-        .code-inputs { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 1.5rem; }
-        .code-box { width: 48px; height: 52px; border: 2px solid #cbd5e1; border-radius: 10px; text-align: center; font-size: 1.3rem; font-weight: 700; }
-
-        .btn-group { display: flex; gap: 1.2rem; margin-top: 1.8rem; }
-        .half-btn { flex: 1; padding: 1.1rem; border-radius: 14px; border: none; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
-
-        /* Error/Alert Banners */
-        .error-banner { background: #fee2e2; color: #dc2626; padding: 1rem; border-radius: 12px; font-weight: 700; font-size: 0.88rem; text-align: center; margin-top: 0.8rem; margin-bottom: 0.8rem; border: 1px solid #fca5a5; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-        .premium-alert { text-align: center; }
-        .premium-alert .icon-box { width: 75px; height: 75px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); color: var(--primary-green); font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+        .back-nav-btn { background: none; border: none; color: var(--primary-green); font-weight: 700; font-size: 0.95rem; cursor: pointer; display: inline-flex; align-items: center; margin-bottom: 1rem; }
         
-        footer { background: #020617; color: #94a3b8; padding: 3.5rem 1.2rem; text-align: center; border-top: 1px solid #1e293b; }
+        .investment-label { display: block; font-size: 0.75rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .error-banner { background: #fee2e2; color: var(--danger-red); padding: 0.8rem 1rem; border-radius: 12px; margin-bottom: 1.25rem; font-size: 0.85rem; text-align: center; border: 1px solid #fca5a5; font-weight: 600; }
+
+        /* Dynamic Private User Interface */
+        .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 24px; padding: 1.75rem; margin-bottom: 2rem; box-shadow: 0 10px 15px -3px rgba(4, 120, 87, 0.2); }
+        .naira-label { opacity: 0.85; font-size: 0.9rem; font-weight: 500; }
+        .naira-amount { font-size: 2.3rem; font-weight: 800; margin-top: 0.25rem; letter-spacing: -1px; }
+        
+        .dash-row { background: white; padding: 1.2rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border: 1px solid var(--border-line); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .dash-row:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .dash-info h4 { font-size: 1rem; font-weight: 700; color: var(--text-dark); }
+        .dash-info span { font-size: 0.8rem; color: var(--text-muted); }
+        .view-action-tag { color: var(--primary-green); font-weight: 700; font-size: 0.9rem; }
+        
+        .empty-portfolio-box { text-align: center; padding: 2rem 1rem; border: 2px dashed var(--border-line); border-radius: 16px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; background: white; }
+
+        /* Overlay Layout Modals */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
+        .modal-card { background: white; width: 100%; max-width: 440px; padding: 2.25rem; border-radius: 28px; position: relative; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .modal-close-trigger { position: absolute; top: 1.25rem; right: 1.25rem; border: none; background: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; line-height: 1; }
+        .modal-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        .modal-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
-        const formatNaira = (num) => "₦" + (num || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 });
+        const { useState } = React;
+
+        const formatNaira = (num) => "₦" + Number(num || 0).toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+        const INVESTMENT_REGISTRY = {
+            agric: {
+                title: "Agriculture Asset Matrix",
+                roi: "7%",
+                duration: "3 Months",
+                min: 50000,
+                img: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=600",
+                description: "Capital is allocated directly into automated poultry operations, advanced crop cultivation setups, and modern logistics structures across carefully selected regions. Our robust system ensures ultimate capital safety while maximizing output yields through optimized supply chain management, mitigating seasonal weather constraints via technologically driven greenhouses."
+            },
+            estate: {
+                title: "Prime Real Estate Assets",
+                roi: "10%",
+                duration: "3 Months",
+                min: 150000,
+                img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600",
+                description: "Gain exposure to premium luxury acquisitions, high-yield commercial property developments, and tactical residential property restorations in rapidly expanding corporate hubs and high-demand metropolitan zones across Nigeria. Your funds back real estate development transformations that lock in steady, reliable value growth over a disciplined multi-month horizon."
+            },
+            btc: {
+                title: "BTC Digital Growth Plan",
+                roi: "13%",
+                duration: "3 Months",
+                min: 200000,
+                img: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=600",
+                description: "An algorithmic deployment that taps into dynamic digital asset trading execution strategies and high-efficiency liquidity provisions. This system systematically capitalizes on market momentum shifts under the close supervision of certified execution experts, ensuring structured risk containment protocols while generating stable decentralized returns."
+            }
+        };
 
         function App() {
             const [view, setView] = useState('home');
             const [modal, setModal] = useState(null);
             const [user, setUser] = useState(null);
-            const [menuOpen, setMenuOpen] = useState(false);
-            const [slideIdx, setSlideIdx] = useState(0);
-            const [alertData, setAlertData] = useState(null);
-            const [activePlan, setActivePlan] = useState(null);
-
-            // Allocation Inputs
-            const [investAmount, setInvestAmount] = useState('');
-            const [termsAgreed, setTermsAgreed] = useState(false);
+            const [activePlanKey, setActivePlanKey] = useState(null);
             const [errorMsg, setErrorMsg] = useState('');
+            const [fundingAmount, setFundingAmount] = useState('');
 
-            // Registration Form Secure Elements
+            // Registration Account Inputs
             const [regName, setRegName] = useState('');
             const [regEmail, setRegEmail] = useState('');
-            const [regPassword, setRegPassword] = useState('');
-            const [regConfirmPassword, setRegConfirmPassword] = useState('');
-            const [regAgreed, setRegAgreed] = useState(false);
+            const [regPass, setRegPass] = useState('');
+            const [regConfirm, setRegConfirm] = useState('');
 
-            // Wallet Action Entries
-            const [depositInput, setDepositInput] = useState('');
-            const [withdrawInput, setWithdrawInput] = useState('');
-
-            const [history, setHistory] = useState([
-                { type: 'Welcome Bonus Credited', amount: 10000, date: 'Initial Setup', status: 'Successful' }
-            ]);
-
-            const slides = [
-                { url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600", title: "Live Market Intelligence" },
-                { url: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600", title: "Dubai Sovereign Real Estate" },
-                { url: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600", title: "Luxury Leisure Assets" }
-            ];
-
-            useEffect(() => {
-                if (view === 'home') {
-                    const timer = setInterval(() => setSlideIdx(p => (p + 1) % slides.length), 3000);
-                    return () => clearInterval(timer);
-                }
-            }, [view]);
-
-            const navigate = (v) => { setView(v); setMenuOpen(false); window.scrollTo(0,0); };
-            const triggerAlert = (title, message, icon) => { setAlertData({ title, message, icon }); };
-
-            const handleLogin = () => { 
-                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 250000, bonusClaimed: true }); 
-                setModal(null); setView('dashboard'); 
+            const navigateTo = (targetView) => {
+                setView(targetView);
+                window.scrollTo(0, 0);
             };
-            
-            const handleSignupSubmit = () => { 
+
+            const triggerSignupAction = (e) => {
+                e.preventDefault();
                 setErrorMsg('');
-                if (!regName || !regEmail || !regPassword || !regConfirmPassword) {
-                    setErrorMsg('All registration entry segments are strictly required.');
+
+                if (!regName || !regEmail || !regPass || !regConfirm) {
+                    setErrorMsg('All registration parameters are explicitly required.');
                     return;
                 }
-                if (regPassword !== regConfirmPassword) {
-                    setErrorMsg('Security matching mismatch: Passwords do not align.');
+                if (regPass !== regConfirm) {
+                    setErrorMsg('Security access validation passwords do not match.');
                     return;
                 }
-                if (regPassword.length < 6) {
-                    setErrorMsg('Security threshold failed: Password must be at least 6 characters.');
-                    return;
-                }
-                if (!regAgreed) {
-                    setErrorMsg('You must agree to the data protection system architecture rules.');
-                    return;
-                }
-                setErrorMsg('');
-                setModal('verification'); 
-            };
 
-            const handleVerificationComplete = () => { 
-                setUser({ name: regName || 'Ijaola Oluwatosin', email: regEmail || 'ijaola@worldweb.io', balance: 0, bonusClaimed: false }); 
-                setModal(null); setView('dashboard'); 
-            };
-
-            const logout = () => { setUser(null); setView('home'); };
-
-            const claimBonus = () => {
-                setUser(prev => ({ ...prev, balance: prev.balance + 10000, bonusClaimed: true }));
-                setHistory(prev => [{ type: 'Welcome Bonus', amount: 10000, date: 'Just now', status: 'Successful' }, ...prev]);
-                triggerAlert('Bonus Claimed!', 'Congratulations! ₦10,000 Welcome Bonus has been credited.', '🎁');
-            };
-
-            const submitDeposit = () => {
-                const amt = Number(depositInput);
-                if (!amt || amt <= 0) return;
-                setUser(prev => ({ ...prev, balance: prev.balance + amt }));
-                setHistory(prev => [{ type: 'Capital Deposit', amount: amt, date: 'Just now', status: 'Successful' }, ...prev]);
-                setDepositInput('');
-                triggerAlert('Deposit Confirmed', `System credited ${formatNaira(amt)} to your wallet balance.`, '💰');
-                navigate('dashboard');
-            };
-
-            const submitWithdrawal = () => {
-                const amt = Number(withdrawInput);
-                if (!amt || amt <= 0) return;
-                if (amt > user.balance) {
-                    triggerAlert('Insufficient Balance', 'You do not have enough liquidity available to execute this withdrawal.', '❌');
-                    return;
-                }
-                setUser(prev => ({ ...prev, balance: prev.balance - amt }));
-                setHistory(prev => [{ type: 'Liquidity Withdrawal', amount: amt, date: 'Processing Routing', status: 'Pending' }, ...prev]);
-                setWithdrawInput('');
-                triggerAlert('Withdrawal Initiated', `Your processing transaction for ${formatNaira(amt)} is on the way!`, '✅');
-                navigate('dashboard');
-            };
-
-            const openInvestmentPage = (planKey) => {
-                if (!user) { setModal('signup'); return; }
-                setActivePlan(planKey);
-                setInvestAmount('');
-                setTermsAgreed(false);
-                setErrorMsg('');
-                navigate('invest-form');
-            };
-
-            const executeInvestmentSubmit = () => {
-                setErrorMsg('');
-                const amt = Number(investAmount);
-                if (!amt || amt <= 0) { setErrorMsg('Please enter a valid investment amount.'); return; }
-                if (amt > user.balance) { setErrorMsg('Insufficient active wallet balance to fund this investment.'); return; }
-                if (!termsAgreed) { setErrorMsg('You must review and accept the framework Terms and Conditions.'); return; }
-                setModal('confirm-invest');
-            };
-
-            const acceptInvestment = () => {
+                // Provisioning test account structure with standard platform initial test limits
+                setUser({
+                    name: regName,
+                    email: regEmail,
+                    balance: 750000.00,
+                    portfolio: []
+                });
+                
                 setModal(null);
-                const amt = Number(investAmount);
-                setUser(prev => ({ ...prev, balance: prev.balance - amt }));
-                setHistory(prev => [{ type: `Invested: ${activePlan.toUpperCase()}`, amount: amt, date: 'Active Cycle', status: 'Successful' }, ...prev]);
-                triggerAlert('Investment Activated', 'Thank you for trusting us, we will verify your deposit and update, kindly exercise patience.', '🛡️');
-                navigate('dashboard');
+                navigateTo('dashboard');
+            };
+
+            const runCapitalDeployment = (e) => {
+                e.preventDefault();
+                const selectedAsset = INVESTMENT_REGISTRY[activePlanKey];
+                const allocationPrincipal = parseFloat(fundingAmount);
+
+                if (isNaN(allocationPrincipal) || allocationPrincipal <= 0) {
+                    alert("Please enter a valid numeric configuration for your funding order.");
+                    return;
+                }
+                if (allocationPrincipal < selectedAsset.min) {
+                    alert(`The structural entry floor required for this asset position is ${formatNaira(selectedAsset.min)}`);
+                    return;
+                }
+                if (allocationPrincipal > user.balance) {
+                    alert("Execution halted: Your current balance framework is insufficient for this funding order.");
+                    return;
+                }
+
+                setUser(prevUser => ({
+                    ...prevUser,
+                    balance: prevUser.balance - allocationPrincipal,
+                    portfolio: [...prevUser.portfolio, {
+                        assetTitle: selectedAsset.title,
+                        principalFunded: allocationPrincipal,
+                        projectedYield: selectedAsset.roi,
+                        executionTimestamp: new Date().toLocaleDateString()
+                    }]
+                }));
+
+                alert(`Asset Allocation Complete: ${formatNaira(allocationPrincipal)} has been successfully deployed into ${selectedAsset.title}.`);
+                setFundingAmount('');
+                navigateTo('dashboard');
+            };
+
+            const initiateInvestmentFlow = (planKey) => {
+                setActivePlanKey(planKey);
+                if (!user) {
+                    setErrorMsg('');
+                    setModal('signup');
+                } else {
+                    navigateTo('invest-form');
+                }
             };
 
             return (
                 <div>
-                    {/* SPACED MAIN HEADER CONTAINER */}
+                    {/* CORPORATE NAVIGATION BLOCK */}
                     <header className="main-header">
-                        <div className="brand-logo" onClick={() => navigate(user ? 'dashboard' : 'home')}>
-                            <div className="logo-box">W</div>
-                            <span className="brand-name">WorldWeb</span>
-                        </div>
-
-                        <nav className="desktop-nav">
-                            <span className="nav-link" onClick={() => navigate('home')}>Home</span>
-                            <span className="nav-link" onClick={() => navigate('about')}>About Us</span>
-                            <span className="nav-link" onClick={() => navigate('terms')}>Terms & Conditions</span>
-                        </nav>
-
-                        <div className="header-buttons">
+                        <div className="logo-box" onClick={() => navigateTo('home')}>W</div>
+                        <div>
                             {!user ? (
-                                <>
-                                    <button className="action-btn btn-outline" onClick={() => { setErrorMsg(''); setModal('login'); }}>Sign In</button>
-                                    <button className="action-btn btn-solid" onClick={() => { setErrorMsg(''); setModal('signup'); }}>Get Started</button>
-                                </>
+                                <button className="submit-btn" style={{padding: '0.6rem 1.2rem', borderRadius: '10px', fontSize: '0.9rem'}} onClick={() => { setErrorMsg(''); setModal('signup'); }}>Join Framework</button>
                             ) : (
-                                <button className="action-btn btn-solid" onClick={() => navigate('dashboard')}>Dashboard</button>
+                                <button className="submit-btn" style={{padding: '0.6rem 1.2rem', borderRadius: '10px', fontSize: '0.9rem'}} onClick={() => navigateTo('dashboard')}>Account Portal</button>
                             )}
-                            <button className="menu-toggle" onClick={() => setMenuOpen(true)}>☰</button>
                         </div>
                     </header>
 
-                    {/* RIGHT-SIDED STYLED SLIDE MENU DRAWER */}
-                    {menuOpen && <div className="drawer-overlay" onClick={() => setMenuOpen(false)}></div>}
-                    <div className={`right-drawer ${menuOpen ? 'open' : ''}`}>
-                        <button className="close-btn" onClick={() => setMenuOpen(false)}>×</button>
-                        <div className="brand-logo" style={{marginBottom:'1rem'}}>
-                            <div className="logo-box">W</div>
-                            <span className="brand-name">WorldWeb</span>
-                        </div>
-                        <span className="nav-link" onClick={() => navigate('home')}>🏠 Home</span>
-                        <span className="nav-link" onClick={() => navigate('about')}>ℹ️ About Us</span>
-                        <span className="nav-link" onClick={() => navigate('terms')}>📋 Our Terms</span>
-                        <hr style={{borderColor:'#f1f5f9'}}/>
-                        {user ? (
-                            <>
-                                <span className="nav-link" style={{color:'var(--primary-green)'}} onClick={() => navigate('dashboard')}>💼 My Dashboard</span>
-                                <span className="nav-link" style={{color:'#ef4444'}} onClick={logout}>🚪 Log Out</span>
-                            </>
-                        ) : (
-                            <span className="nav-link" onClick={() => { setMenuOpen(false); setErrorMsg(''); setModal('login'); }}>Sign In</span>
-                        )}
-                    </div>
-
-                    {/* HOME PAGE MAIN INTERFACE ROUTE */}
+                    {/* VIEW: CATALOGUE FRONT FACE */}
                     {view === 'home' && (
                         <main>
                             <section className="hero-banner">
-                                <div className="hero-motion-bg"></div>
                                 <div className="hero-overlay"></div>
-                                <div className="hero-content">
-                                    <h1 className="hero-headline">Multiply Capital Through<br/><span>Proven Portfolios</span></h1>
-                                    <button className="action-btn btn-solid" style={{padding:'1rem 2.5rem', fontSize:'0.9rem', marginTop:'1rem'}} onClick={() => { setErrorMsg(''); setModal('signup'); }}>Start Investing Today</button>
-                                </div>
+                                <h1 className="hero-title">Secure Your Financial Future</h1>
                             </section>
-
-                            <div className="slider-wrapper">
-                                <div className="slider-container">
-                                    <div className="slider-track" style={{ transform: `translateX(-${slideIdx * 100}%)` }}>
-                                        {slides.map((s, i) => (
-                                            <div className="slide" key={i}>
-                                                <img src={s.url} alt={s.title} />
-                                                <div className="slide-overlay">{s.title}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
+                            
                             <div className="catalog-grid">
-                                <div className="product-card">
-                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600" /><div className="badge">7% ROI • 3 Mos</div></div>
-                                    <div className="card-body"><h3>Agriculture Asset Matrix</h3><button className="read-more" onClick={() => navigate('agric')}>Read More Details →</button></div>
-                                </div>
-                                <div className="product-card">
-                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600" /><div className="badge">10% ROI • 3 Mos</div></div>
-                                    <div className="card-body"><h3>Prime Real Estate Assets</h3><button className="read-more" onClick={() => navigate('estate')}>Read More Details →</button></div>
-                                </div>
-                                <div className="product-card">
-                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600" /><div className="badge">13% ROI • 3 Mos</div></div>
-                                    <div className="card-body"><h3>BTC Digital Growth</h3><button className="read-more" onClick={() => navigate('btc')}>Read More Details →</button></div>
-                                </div>
-                            </div>
-                        </main>
-                    )}
-
-                    {/* AGRIC DISCLOSURE VIEW - RESTORED INVESTMENT INFO */}
-                    {view === 'agric' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>Agriculture Asset Matrix</h2>
-                            <span className="info-header" style={{marginTop:'0.5rem'}}>7% ROI in 3 Months</span>
-                            
-                            <div className="metric-box">
-                                <p className="content-block" style={{marginBottom: '0.5rem'}}><strong>Minimum Funding Limit:</strong> ₦50,000.00</p>
-                                <p className="content-block" style={{marginBottom: 0}}><strong>Payout Interval:</strong> End of 90 Days Cycle Lockup</p>
-                            </div>
-                            
-                            <p className="content-block">Secure reliable and sustainable short-term investments backed by modern agronomy metrics. Capital is allocated systematically into automated poultry configurations, commercial cash-crop cultivation systems, and strategic regional distribution pipelines designed to hedge inflation risks cleanly.</p>
-                            <p className="content-block">By utilizing optimized supply chain routes, our network ensures capital safety while maximizing continuous crop yields over standard quarter blocks.</p>
-                            
-                            <button className="submit-btn" onClick={() => openInvestmentPage('agriculture matrix')}>Invest in Plan Now</button>
-                        </div>
-                    )}
-
-                    {/* ESTATE DISCLOSURE VIEW - RESTORED INVESTMENT INFO */}
-                    {view === 'estate' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>Prime Real Estate Assets</h2>
-                            <span className="info-header" style={{marginTop:'0.5rem'}}>10% ROI in 3 Months</span>
-                            
-                            <div className="metric-box">
-                                <p className="content-block" style={{marginBottom: '0.5rem'}}><strong>Minimum Funding Limit:</strong> ₦150,000.00</p>
-                                <p className="content-block" style={{marginBottom: 0}}><strong>Payout Interval:</strong> End of 90 Days Cycle Lockup</p>
-                            </div>
-
-                            <p className="content-block">Gain premium exposure to top-tier commercial development frameworks models globally. Capital resources back physical luxury acquisitions, hospitality developments, and high-yield property renovations in thriving corporate zones.</p>
-                            <p className="content-block">This tier provides an insulated investment infrastructure that protects standard principal parameters while deploying equity structures into fractional real estate portfolios.</p>
-                            
-                            <button className="submit-btn" onClick={() => openInvestmentPage('prime real estate')}>Invest in Plan Now</button>
-                        </div>
-                    )}
-
-                    {/* BTC DISCLOSURE VIEW - RESTORED INVESTMENT INFO */}
-                    {view === 'btc' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800" style={{width:'100%', borderRadius:'20px', margin:'1.5rem 0'}} />
-                            <h2>BTC Digital Growth</h2>
-                            <span className="info-header" style={{marginTop:'0.5rem', color:'var(--accent-orange)'}}>13% ROI in 3 Months</span>
-                            
-                            <div className="metric-box" style={{background: 'rgba(234, 88, 12, 0.05)'}}>
-                                <p className="content-block" style={{marginBottom: '0.5rem'}}><strong>Minimum Funding Limit:</strong> ₦200,000.00</p>
-                                <p className="content-block" style={{marginBottom: 0}}><strong>Payout Interval:</strong> End of 90 Days Cycle Lockup</p>
-                            </div>
-
-                            <p className="content-block">Maximize allocation growth trajectories through specialized algorithmic crypto frameworks. Funds feed high-frequency automated liquidity pools and collateralized lending networks across major decentralized financial institutions.</p>
-                            <p className="content-block">Our digital pipeline manages volatility parameters directly, allowing standard users to collect premium block rewards seamlessly without tracking spot price shifts.</p>
-                            
-                            <button className="submit-btn" style={{background:'var(--accent-orange)'}} onClick={() => openInvestmentPage('bitcoin digital growth')}>Invest in Plan Now</button>
-                        </div>
-                    )}
-
-                    {/* PREMIUM FURNISHED ENTICING INVESTMENT CARD ALLOCATION VIEW */}
-                    {view === 'invest-form' && user && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color(--text-muted)', fontWeight:700, cursor:'pointer', fontSize:'0.9rem'}}>← Return to Dashboard</span>
-                            
-                            <div className="premium-investment-card">
-                                <h2 style={{fontSize:'1.6rem', fontWeight:800, color: 'var(--text-dark)', marginBottom:'0.3rem'}}>Capital Investment Node</h2>
-                                <p style={{fontSize:'0.88rem', color:'var(--text-muted)', marginBottom:'1.8rem'}}>Verify information entries to secure corporate asset allocation positions.</p>
-                                
-                                <div className="asset-summary-banner">
-                                    <div>
-                                        <div style={{fontSize:'0.7rem', opacity:0.8, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase'}}>Target Portfolio</div>
-                                        <div style={{fontSize:'1.1rem', fontWeight:800, textTransform:'capitalize'}}>{activePlan}</div>
-                                    </div>
-                                    <div style={{textAlign:'right'}}>
-                                        <div style={{fontSize:'0.7rem', opacity:0.8, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase'}}>Available Balance</div>
-                                        <div style={{fontSize:'1.1rem', fontWeight:800, color:'#34d399'}}>{formatNaira(user.balance)}</div>
-                                    </div>
-                                </div>
-
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Full Account Name</label>
-                                    <input type="text" className="investment-input" value={user.name} disabled />
-                                </div>
-                                
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Corporate Email Address</label>
-                                    <input type="text" className="investment-input" value={user.email} disabled />
-                                </div>
-
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Amount to Invest (₦)</label>
-                                    <input type="number" placeholder="Enter amount to deploy" className="investment-input" value={investAmount} onChange={(e) => setInvestAmount(e.target.value)} style={{borderColor:'#cbd5e1', background:'white'}} />
-                                </div>
-
-                                <label className="investment-label">Investment Terms & Disclosures</label>
-                                <div className="premium-terms-box">
-                                    <strong>1. Allocation Duration:</strong> Capital commits completely into locked operational processing for exactly 3 calendar months from approval. <br/><br/>
-                                    <strong>2. Return Compounding:</strong> Yield vectors compute daily and linearly align with target asset metrics. <br/><br/>
-                                    <strong>3. Principal Security:</strong> Capital parameters remain asset-collateralized internally under sovereign physical and digital positions.
-                                </div>
-
-                                <div style={{marginTop:'1.2rem', marginBottom:'1.5rem'}}>
-                                    <label className="checkbox-label">
-                                        <input type="checkbox" checked={termsAgreed} onChange={(e) => setTermsAgreed(e.target.checked)} />
-                                        <span>I have thoroughly examined the investment rules and explicitly agree to the legal allocation lock boundaries.</span>
-                                    </label>
-                                </div>
-
-                                {errorMsg && <div className="error-banner">{errorMsg}</div>}
-
-                                <button className="submit-btn" style={{padding:'1.2rem', fontSize:'1rem', marginTop:'1rem'}} onClick={executeInvestmentSubmit}>Proceed with Investment</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* USER PROFILE ACCOUNT DASHBOARD */}
-                    {view === 'dashboard' && user && (
-                        <div className="page-container">
-                            <h2 style={{marginBottom:'1rem'}}>Welcome back, {user.name}</h2>
-                            
-                            <div className="naira-card">
-                                <div style={{fontSize:'0.85rem', opacity:0.85, fontWeight:600, letterSpacing:'0.02em'}}>ACTIVE WALLET LIQUIDITY</div>
-                                <div style={{fontSize:'2.4rem', fontWeight:800, margin:'0.6rem 0'}}>{formatNaira(user.balance)}</div>
-                            </div>
-
-                            <div style={{display:'flex', gap:'1.2rem', marginBottom:'2.5rem'}}>
-                                <button className="action-btn btn-solid" style={{flex:1, padding:'1.1rem', fontSize:'0.95rem'}} onClick={() => navigate('deposit')}>↓ Deposit Funds</button>
-                                <button className="action-btn btn-outline" style={{flex:1, padding:'1.1rem', background:'white', fontSize:'0.95rem'}} onClick={() => navigate('withdraw')}>↑ Withdraw Funds</button>
-                            </div>
-
-                            {!user.bonusClaimed && (
-                                <div className="bonus-card">
-                                    <h3>🎁 Welcome To The Circle!</h3>
-                                    <p style={{fontSize:'0.9rem', color:'#334155', margin:'0.5rem 0 1.2rem'}}>Instantly activate your standard welcome reward configurations.</p>
-                                    <button className="action-btn btn-solid" style={{width:'100%', padding:'1rem'}} onClick={claimBonus}>Claim ₦10,000 Reward</button>
-                                </div>
-                            )}
-
-                            <h3 style={{marginBottom:'1.2rem', fontWeight:700}}>Premium Investment Tiers</h3>
-                            <div className="dash-row" onClick={() => openInvestmentPage('agriculture matrix')} style={{cursor:'pointer'}}>
-                                <div><strong>Agriculture Asset Matrix</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>7% Yield • 3 Months Lock</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.75rem'}}>Invest</button>
-                            </div>
-                            <div className="dash-row" onClick={() => openInvestmentPage('prime real estate')} style={{cursor:'pointer'}}>
-                                <div><strong>Prime Real Estate Assets</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>10% Yield • 3 Months Lock</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.75rem'}}>Invest</button>
-                            </div>
-
-                            <div className="history-box">
-                                <h4 style={{marginBottom:'0.6rem', fontSize:'1rem', fontWeight:700}}>Account Transaction Ledger</h4>
-                                {history.map((h, idx) => (
-                                    <div className="history-item" key={idx}>
-                                        <div>
-                                            <strong style={{color:'#1e293b'}}>{h.type}</strong>
-                                            <div style={{fontSize:'0.78rem', color:'#64748b', marginTop:'0.1rem'}}>{h.date}</div>
+                                {Object.keys(INVESTMENT_REGISTRY).map(key => (
+                                    <div className="product-card" key={key}>
+                                        <div className="img-box">
+                                            <img src={INVESTMENT_REGISTRY[key].img} alt={INVESTMENT_REGISTRY[key].title} />
+                                            <span className="badge">{INVESTMENT_REGISTRY[key].roi} Yield</span>
                                         </div>
-                                        <div style={{textAlign:'right'}}>
-                                            <div style={{fontWeight:700, marginBottom:'0.2rem', color:'#0f172a'}}>{formatNaira(h.amount)}</div>
-                                            <span className={`badge-status status-success`}>{h.status}</span>
+                                        <div className="card-body">
+                                            <h3 className="card-title">{INVESTMENT_REGISTRY[key].title}</h3>
+                                            <p className="content-block" style={{WebkitLineClamp: 2, display: '-webkit-box', WebkitBoxOrient: 'vertical', overflow: 'hidden', margin: '0.5rem 0 1.25rem 0'}}>
+                                                {INVESTMENT_REGISTRY[key].description}
+                                            </p>
+                                            <button className="submit-btn" onClick={() => { setActivePlanKey(key); navigateTo(key); }}>
+                                                View Analysis Details
+                                            </button>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </main>
                     )}
 
-                    {/* DEPOSIT ROUTE WITH ACTIVE BALANCE ADDITION */}
-                    {view === 'deposit' && (
+                    {/* VIEW: AGRICULTURE ANALYSIS METRICS */}
+                    {view === 'agric' && (
                         <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <h2 style={{marginTop:'1.5rem'}}>Deposit Capital</h2>
-                            <div style={{background:'white', padding:'2rem', border:"1px solid var(--border-line)", borderRadius:'20px', marginTop:'1.5rem'}}>
-                                <label className="investment-label">Amount to Deposit (₦)</label>
-                                <input type="number" placeholder="Enter deposit equivalent amount" className="input-field" value={depositInput} onChange={(e)=>setDepositInput(e.target.value)} />
-                                <button className="submit-btn" onClick={submitDeposit}>Submit Verification Payment</button>
+                            <button className="back-nav-btn" onClick={() => navigateTo('home')}>← Return to Catalog</button>
+                            <div className="img-box" style={{borderRadius: '16px', overflow: 'hidden'}}><img src={INVESTMENT_REGISTRY.agric.img} alt="Agric Matrix" /></div>
+                            <h2 className="view-title">{INVESTMENT_REGISTRY.agric.title}</h2>
+                            
+                            <div className="metric-box">
+                                <div className="metric-unit"><span>Projected Yield</span><strong>{INVESTMENT_REGISTRY.agric.roi} ROI</strong></div>
+                                <div className="metric-unit"><span>Lock Duration</span><strong>{INVESTMENT_REGISTRY.agric.duration}</strong></div>
+                                <div className="metric-unit"><span>Minimum Entry</span><strong>₦{INVESTMENT_REGISTRY.agric.min.toLocaleString()}</strong></div>
                             </div>
+                            
+                            <p className="content-block">{INVESTMENT_REGISTRY.agric.description}</p>
+                            <button className="submit-btn" onClick={() => initiateInvestmentFlow('agric')}>Invest Now</button>
                         </div>
                     )}
 
-                    {/* WITHDRAW ROUTE WITH ACTIVE BALANCE SUBTRACTION */}
-                    {view === 'withdraw' && (
+                    {/* VIEW: REAL ESTATE ANALYSIS METRICS */}
+                    {view === 'estate' && (
                         <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
-                            <h2 style={{marginTop:'1.5rem'}}>Withdraw Liquidity</h2>
-                            <div style={{background:'white', padding:'2rem', border:"1px solid var(--border-line)", borderRadius:'20px', marginTop:'1.5rem'}}>
-                                <label className="investment-label">Amount to Withdraw (₦)</label>
-                                <input type="number" placeholder="Enter withdrawal amount" className="input-field" value={withdrawInput} onChange={(e)=>setWithdrawInput(e.target.value)} />
-                                <button className="submit-btn" onClick={submitWithdrawal}>Confirm Processing Launch</button>
+                            <button className="back-nav-btn" onClick={() => navigateTo('home')}>← Return to Catalog</button>
+                            <div className="img-box" style={{borderRadius: '16px', overflow: 'hidden'}}><img src={INVESTMENT_REGISTRY.estate.img} alt="Real Estate Portfolio" /></div>
+                            <h2 className="view-title">{INVESTMENT_REGISTRY.estate.title}</h2>
+                            
+                            <div className="metric-box">
+                                <div className="metric-unit"><span>Projected Yield</span><strong>{INVESTMENT_REGISTRY.estate.roi} ROI</strong></div>
+                                <div className="metric-unit"><span>Lock Duration</span><strong>{INVESTMENT_REGISTRY.estate.duration}</strong></div>
+                                <div className="metric-unit"><span>Minimum Entry</span><strong>₦{INVESTMENT_REGISTRY.estate.min.toLocaleString()}</strong></div>
+                            </div>
+                            
+                            <p className="content-block">{INVESTMENT_REGISTRY.estate.description}</p>
+                            <button className="submit-btn" onClick={() => initiateInvestmentFlow('estate')}>Invest Now</button>
+                        </div>
+                    )}
+
+                    {/* VIEW: BITCOIN FRAMEWORK METRICS */}
+                    {view === 'btc' && (
+                        <div className="page-container">
+                            <button className="back-nav-btn" onClick={() => navigateTo('home')}>← Return to Catalog</button>
+                            <div className="img-box" style={{borderRadius: '16px', overflow: 'hidden'}}><img src={INVESTMENT_REGISTRY.btc.img} alt="BTC Allocation" /></div>
+                            <h2 className="view-title">{INVESTMENT_REGISTRY.btc.title}</h2>
+                            
+                            <div className="metric-box">
+                                <div className="metric-unit"><span>Projected Yield</span><strong>{INVESTMENT_REGISTRY.btc.roi} ROI</strong></div>
+                                <div className="metric-unit"><span>Lock Duration</span><strong>{INVESTMENT_REGISTRY.btc.duration}</strong></div>
+                                <div className="metric-unit"><span>Minimum Entry</span><strong>₦{INVESTMENT_REGISTRY.btc.min.toLocaleString()}</strong></div>
+                            </div>
+                            
+                            <p className="content-block">{INVESTMENT_REGISTRY.btc.description}</p>
+                            <button className="submit-btn" onClick={() => initiateInvestmentFlow('btc')}>Invest Now</button>
+                        </div>
+                    )}
+
+                    {/* VIEW: PRIVILEGED PRIVATE PORTFOLIO DASHBOARD */}
+                    {view === 'dashboard' && user && (
+                        <div className="page-container">
+                            <h2 className="view-title">Welcome back, {user.name}</h2>
+                            
+                            <div className="naira-card">
+                                <p className="naira-label">Total Liquid Wallet Balance</p>
+                                <h1 className="naira-amount">{formatNaira(user.balance)}</h1>
+                            </div>
+
+                            <h3 style={{fontSize: '1.2rem', fontWeight: 700, marginBottom: '1rem'}}>Active Capital Asset Commitments</h3>
+                            
+                            {user.portfolio.length === 0 ? (
+                                <div className="empty-portfolio-box">
+                                    No active asset frameworks currently registered. Allocate funding into market items to initialize returns.
+                                </div>
+                            ) : (
+                                user.portfolio.map((item, index) => (
+                                    <div className="dash-row" key={index} onClick={() => {
+                                        // Auto-mapping backward link logic matching the key patterns
+                                        const keyRef = item.assetTitle.includes("Agric") ? 'agric' : item.assetTitle.includes("Estate") ? 'estate' : 'btc';
+                                        setActivePlanKey(keyRef);
+                                        navigateTo(keyRef);
+                                    }}>
+                                        <div className="dash-info">
+                                            <h4>{item.assetTitle}</h4>
+                                            <span>Allocated on: {item.executionTimestamp}</span>
+                                        </div>
+                                        <div style={{textAlign: 'right'}}>
+                                            <strong style={{display: 'block', color: 'var(--primary-green)', fontWeight: 700}}>{formatNaira(item.principalFunded)}</strong>
+                                            <span style={{fontSize: '0.75rem', background: '#d1fae5', color: '#065f46', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: 700}}>{item.projectedYield} Target</span>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+
+                            <button className="submit-btn" style={{background: 'transparent', border: '1px solid var(--border-line)', color: 'var(--text-dark)', marginTop: '0.5rem'}} onClick={() => navigateTo('home')}>
+                                + Explore Alternative Market Frameworks
+                            </button>
+                        </div>
+                    )}
+
+                    {/* VIEW: FUNDING STAGING FORM */}
+                    {view === 'invest-form' && activePlanKey && (
+                        <div className="page-container">
+                            <button className="back-nav-btn" onClick={() => navigateTo(activePlanKey)}>← Return to Asset Analysis</button>
+                            
+                            <div style={{background: 'white', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-line)', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'}}>
+                                <h3 className="card-title" style={{fontSize: '1.5rem'}}>Deploy Tactical Capital</h3>
+                                <p style={{color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1.5rem'}}>
+                                    Target Portfolio Allocation: <strong>{INVESTMENT_REGISTRY[activePlanKey].title}</strong>
+                                </p>
+                                
+                                <form onSubmit={runCapitalDeployment}>
+                                    <div style={{marginBottom: '1.25rem'}}>
+                                        <label className="investment-label">Principal Funding Input (₦)</label>
+                                        <input 
+                                            type="number" 
+                                            className="input-field" 
+                                            placeholder="0.00" 
+                                            value={fundingAmount}
+                                            onChange={e => setFundingAmount(e.target.value)}
+                                            required 
+                                        />
+                                    </div>
+                                    
+                                    <div style={{background: '#f8fafc', padding: '1rem', borderRadius: '12px', fontSize: '0.85rem', color: '#475569', marginBottom: '1.5rem', border: '1px dashed var(--border-line)'}}>
+                                        Liquid Vault Capital Available: <strong>{formatNaira(user.balance)}</strong><br />
+                                        Minimum Requirement Plan Threshold: <strong>{formatNaira(INVESTMENT_REGISTRY[activePlanKey].min)}</strong>
+                                    </div>
+                                    
+                                    <button type="submit" className="submit-btn">Confirm Core Deployment Order</button>
+                                </form>
                             </div>
                         </div>
                     )}
 
-                    {/* GLOBAL ACCOUNT ACCESS OVERLAYS */}
-                    {modal === 'login' && (
-                        <div className="modal-overlay">
-                            <div className="modal-card">
-                                <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2 style={{marginBottom:'0.5rem'}}>Welcome Back</h2>
-                                <p style={{fontSize:'0.85rem', color:'var(--text-muted)', marginBottom:'1.5rem'}}>Access your private investment dashboard environment.</p>
-                                <input type="email" placeholder="Email Address" className="input-field" />
-                                <input type="password" placeholder="Account Password" className="input-field" />
-                                <button className="submit-btn" onClick={handleLogin}>Log In</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* HIGH-SECURITY REGISTER MODAL CONFIGURATION */}
+                    {/* DYNAMIC SECURE SYSTEM MODAL */}
                     {modal === 'signup' && (
                         <div className="modal-overlay">
-                            <div className="modal-card">
-                                <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2 style={{fontSize:'1.4rem', fontWeight:800, marginBottom:'0.3rem'}}>Create Corporate Account</h2>
-                                <p style={{fontSize:'0.85rem', color:'var(--text-muted)', marginBottom:'1.5rem'}}>Establish standard encrypted capital node profiles.</p>
+                            <form className="modal-card" onSubmit={triggerSignupAction}>
+                                <button type="button" className="modal-close-trigger" onClick={() => setModal(null)}>×</button>
+                                <h2 className="modal-title">Open Security Account</h2>
+                                <p className="modal-subtitle">Authorize parameters to construct your local capital registry account node.</p>
                                 
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Full Account Legal Name</label>
-                                    <input type="text" placeholder="e.g. John Doe" className="input-field" value={regName} onChange={(e)=>setRegName(e.target.value)} style={{marginBottom:0}} />
-                                </div>
-
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Corporate Email Node</label>
-                                    <input type="email" placeholder="name@domain.com" className="input-field" value={regEmail} onChange={(e)=>setRegEmail(e.target.value)} style={{marginBottom:0}} />
-                                </div>
-
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Account Security Password</label>
-                                    <input type="password" placeholder="Choose strong secure password" className="input-field" value={regPassword} onChange={(e)=>setRegPassword(e.target.value)} style={{marginBottom:0}} />
-                                </div>
-
-                                <div className="investment-input-group">
-                                    <label className="investment-label">Confirm Passkey String</label>
-                                    <input type="password" placeholder="Repeat security password string" className="input-field" value={regConfirmPassword} onChange={(e)=>setRegConfirmPassword(e.target.value)} style={{marginBottom:0}} />
-                                </div>
-
-                                <div style={{margin:'1rem 0'}}>
-                                    <label className="checkbox-label">
-                                        <input type="checkbox" checked={regAgreed} onChange={(e)=>setRegAgreed(e.target.checked)} />
-                                        <span>I certify registration requirements and agree to full internal database ledger protocols.</span>
-                                    </label>
-                                </div>
-
                                 {errorMsg && <div className="error-banner">{errorMsg}</div>}
-
-                                <button className="submit-btn" onClick={handleSignupSubmit}>Register Profile</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {modal === 'verification' && (
-                        <div className="modal-overlay">
-                            <div className="modal-card" style={{textAlign:'center'}}>
-                                <h2>Verify Email Entry</h2>
-                                <p style={{fontSize:'0.85rem', color:'var(--text-muted)', marginTop:'0.5rem'}}>A security sequence code token has been generated below.</p>
-                                <div className="code-inputs" style={{marginTop:'1.5rem'}}>
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="5" readOnly />
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="7" readOnly />
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="1" readOnly />
-                                    <input type="text" maxLength="1" className="code-box" defaultValue="4" readOnly />
+                                
+                                <div style={{marginBottom: '0.2rem'}}>
+                                    <label className="investment-label">Full Legal Name</label>
+                                    <input type="text" className="input-field" placeholder="John Doe" value={regName} onChange={e => setRegName(e.target.value)} required />
                                 </div>
-                                <button className="submit-btn" onClick={handleVerificationComplete}>Complete Verification</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {modal === 'confirm-invest' && (
-                        <div className="modal-overlay">
-                            <div className="modal-card" style={{textAlign:'center'}}>
-                                <h2 style={{fontSize:'1.4rem'}}>Confirm Investment?</h2>
-                                <p style={{margin:'1rem 0 1.5rem', color:'#475569'}}>Deploying {formatNaira(Number(investAmount))} to the active {activePlan} target loop.</p>
-                                <div className="btn-group">
-                                    <button className="half-btn btn-solid" onClick={acceptInvestment}>Yes</button>
-                                    <button className="half-btn btn-danger" onClick={() => { setModal(null); setErrorMsg('sorry ❌ Transaction cancelled by user configuration.'); }}>No</button>
+                                <div style={{marginBottom: '0.2rem'}}>
+                                    <label className="investment-label">Email Node Address</label>
+                                    <input type="email" className="input-field" placeholder="johndoe@worldweb.com" value={regEmail} onChange={e => setRegEmail(e.target.value)} required />
                                 </div>
-                            </div>
+                                <div style={{marginBottom: '0.2rem'}}>
+                                    <label className="investment-label">Security Access Password</label>
+                                    <input type="password" className="input-field" placeholder="••••••••" value={regPass} onChange={e => setRegPass(e.target.value)} required />
+                                </div>
+                                <div style={{marginBottom: '0.5rem'}}>
+                                    <label className="investment-label">Confirm Password Verification</label>
+                                    <input type="password" className="input-field" placeholder="••••••••" value={regConfirm} onChange={e => setRegConfirm(e.target.value)} required />
+                                </div>
+                                
+                                <button type="submit" className="submit-btn" style={{marginTop: '0.5rem'}}>Authorize Account Initialization</button>
+                            </form>
                         </div>
                     )}
-
-                    {alertData && (
-                        <div className="modal-overlay">
-                            <div className="modal-card premium-alert">
-                                <div className="icon-box">{alertData.icon}</div>
-                                <h2>{alertData.title}</h2>
-                                <p style={{fontSize:'0.95rem', color:'#334155', margin:'1rem 0 1.5rem'}}>{alertData.message}</p>
-                                <button className="submit-btn" onClick={() => setAlertData(null)}>Acknowledge</button>
-                            </div>
-                        </div>
-                    )}
-
-                    <footer>
-                        <h3>WorldWeb</h3>
-                        <p style={{marginTop:'1.5rem'}}>© 2026 WorldWeb International Inc.</p>
-                    </footer>
                 </div>
             );
         }
