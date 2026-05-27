@@ -34,11 +34,10 @@
         .nav-link:hover { color: var(--primary-green); }
         
         .header-buttons { display: flex; gap: 0.5rem; align-items: center; }
-        .menu-toggle { display: block; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-dark); margin-left: 0.5rem; }
+        .menu-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-dark); }
         
         @media(min-width: 900px) {
             .desktop-nav { display: flex; }
-            .menu-toggle { display: none; }
         }
 
         .action-btn { font-family: inherit; font-size: 0.8rem; font-weight: 700; padding: 0.5rem 0.9rem; border-radius: 8px; cursor: pointer; border: none; }
@@ -47,36 +46,39 @@
         .btn-solid:hover { background: #047857; }
         .btn-danger { background: #ef4444; color: white; }
 
-        /* Mobile Menu Dropdown */
-        .mobile-menu { position: absolute; top: 70px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border-line); padding: 1rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 10px 15px rgba(0,0,0,0.05); z-index: 999; }
+        /* Left-Sided Mobile Menu Drawer */
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; backdrop-filter: blur(2px); }
+        .left-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; background: white; z-index: 1600; padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; box-shadow: 5px 0 25px rgba(0,0,0,0.15); animation: slideLeft 0.3s ease-out; }
+        @keyframes slideLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 
-        /* Hero Section */
-        .hero-banner { position: relative; padding: 5rem 1.2rem; text-align: center; background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; overflow: hidden; margin-bottom: 2rem; }
-        .hero-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.8); }
-        .hero-content { position: relative; z-index: 1; }
-        .hero-headline { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; color: white; }
-        .hero-headline span { color: #34d399; display: inline-block; }
-
-        /* Motion Image Second Div (Moving Cars) */
-        .motion-div {
-            width: 100%; max-width: 600px; margin: 0 auto 3rem; height: 250px; border-radius: 20px;
-            overflow: hidden; position: relative; border: 1px solid var(--border-line);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            /* High quality sports car image with CSS background animation to create a moving effect */
+        /* Hero Section with Motion Background (Nice Moving Cars) */
+        .hero-banner { position: relative; padding: 6rem 1.2rem; text-align: center; overflow: hidden; margin-bottom: 2rem; background-color: #0f172a; }
+        .hero-motion-bg { 
+            position: absolute; inset: 0; 
             background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-repeat: no-repeat;
-            animation: panBackground 20s linear infinite alternate;
+            background-size: cover; background-position: center;
+            animation: panBackground 25s linear infinite alternate;
+            opacity: 0.35;
         }
-        .motion-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); display: flex; align-items: flex-end; padding: 1.5rem; }
-        .motion-text { color: white; font-size: 1.2rem; font-weight: 800; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(15, 23, 42, 0.9)); }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-headline { font-size: 2.3rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; color: white; }
+        .hero-headline span { color: #34d399; }
         
         @keyframes panBackground {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+            0% { background-position: left center; transform: scale(1); }
+            100% { background-position: right center; transform: scale(1.1); }
         }
 
-        /* Catalog */
+        /* Slider */
+        .slider-wrapper { max-width: 550px; margin: 0 auto 3rem; padding: 0 1.2rem; }
+        .slider-container { width: 100%; height: 250px; border-radius: 20px; overflow: hidden; position: relative; border: 1px solid var(--border-line); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s ease-in-out; }
+        .slide { min-width: 100%; height: 100%; position: relative; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 2rem 1rem 1rem; color: white; font-weight: 700; }
+
+        /* Catalog Layout */
         .catalog-grid { padding: 0 1.2rem; display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto; }
         .product-card { background: white; border-radius: 24px; border: 1px solid var(--border-line); overflow: hidden; }
         .img-box { width: 100%; height: 190px; position: relative; }
@@ -90,7 +92,7 @@
         .market-section { background: #0f172a; padding: 3rem 1.2rem; color: white; text-align: center; }
         .chart-box { border-radius: 16px; overflow: hidden; margin-top: 1.5rem; height: 350px; max-width: 600px; margin-left: auto; margin-right: auto; background: #1e293b; }
 
-        /* Detailed Views & Generic Pages */
+        /* Container Standard */
         .page-container { padding: 2rem 1.2rem; max-width: 600px; margin: 0 auto; min-height: 80vh; }
         .info-header { font-size: 0.75rem; font-weight: 800; color: var(--primary-green); letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; text-transform: uppercase; }
         .content-block { line-height: 1.7; color: #334155; margin-bottom: 1.2rem; font-size: 0.95rem; }
@@ -98,31 +100,42 @@
         .content-list li { margin-bottom: 0.5rem; }
         .metric-box { background: #f1f5f9; padding: 1.2rem; border-radius: 16px; margin-bottom: 2rem; }
 
-        /* Dashboard */
+        /* User Dashboard History UI */
         .naira-card { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; border-radius: 20px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .dash-row { background: white; padding: 1.1rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; border: 1px solid var(--border-line); }
         .bonus-card { background: rgba(16, 185, 129, 0.08); border: 1px dashed var(--primary-green); padding: 1.5rem; border-radius: 16px; text-align: center; margin-bottom: 2rem; }
         
-        /* Modals & Inputs */
+        .history-box { background: white; border: 1px solid var(--border-line); border-radius: 18px; padding: 1.2rem; margin-top: 2rem; }
+        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; }
+        .history-item:last-child { border-bottom: none; }
+        .badge-status { padding: 0.25rem 0.6rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .status-pending { background: #fef3c7; color: #d97706; }
+        .status-success { background: #d1fae5; color: #059669; }
+
+        /* Modals & Popups Setup */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
-        .modal-card { background: white; width: 100%; max-width: 400px; padding: 2rem; border-radius: 24px; position: relative; }
+        .modal-card { background: white; width: 100%; max-width: 420px; padding: 2rem; border-radius: 24px; position: relative; }
         .close-btn { position: absolute; top: 1rem; right: 1rem; border: none; background: #f1f5f9; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer; }
         .input-field { width: 100%; padding: 0.9rem; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 1rem; font-family: inherit; font-size: 0.95rem; }
+        
         .submit-btn { width: 100%; padding: 1rem; background: var(--primary-green); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; transition: 0.2s; }
         .submit-btn:hover { background: #047857; }
         .code-inputs { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
         .code-box { width: 45px; height: 50px; border: 1px solid #cbd5e1; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: 700; }
 
-        /* Premium Centered Success/Action Alert Popup */
-        .premium-alert {
-            text-align: center;
-        }
+        .btn-group { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .half-btn { flex: 1; padding: 1rem; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; }
+
+        /* Red Error Message Styling */
+        .error-banner { background: #fee2e2; color: #dc2626; padding: 1rem; border-radius: 12px; font-weight: 700; font-size: 0.9rem; text-align: center; margin-top: 1rem; border: 1px solid #fca5a5; }
+
+        /* Premium Alerts */
+        .premium-alert { text-align: center; }
         .premium-alert .icon-box {
             width: 70px; height: 70px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); 
             color: var(--primary-green); font-size: 2rem; display: flex; align-items: center; 
             justify-content: center; margin: 0 auto 1.5rem;
         }
-
         footer { background: #020617; color: #94a3b8; padding: 3rem 1.2rem; text-align: center; }
     </style>
 </head>
@@ -138,9 +151,34 @@
             const [modal, setModal] = useState(null);
             const [user, setUser] = useState(null);
             const [menuOpen, setMenuOpen] = useState(false);
-            const [alertData, setAlertData] = useState(null); // Custom premium alert modal
+            const [slideIdx, setSlideIdx] = useState(0);
+            const [alertData, setAlertData] = useState(null);
+            const [activePlan, setActivePlan] = useState(null);
 
-            // Initialize TradingView widget on home page
+            // Custom Form Data for Staking Pages
+            const [stakeAmount, setStakeAmount] = useState('');
+            const [termsAgreed, setTermsAgreed] = useState(false);
+            const [errorMsg, setErrorMsg] = useState('');
+
+            // Core mock tracking state logs
+            const [history, setHistory] = useState([
+                { type: 'Bonus', amount: 10000, date: 'Just now', status: 'Successful' }
+            ]);
+
+            const slides = [
+                { url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600", title: "Live Market Intelligence" },
+                { url: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?auto=format&fit=crop&w=600", title: "Dubai Sovereign Real Estate" },
+                { url: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600", title: "Luxury Leisure Assets" },
+                { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600", title: "Premium Residential Estates" }
+            ];
+
+            useEffect(() => {
+                if (view === 'home') {
+                    const timer = setInterval(() => setSlideIdx(p => (p + 1) % slides.length), 3000);
+                    return () => clearInterval(timer);
+                }
+            }, [view]);
+
             useEffect(() => {
                 if (view === 'home' && window.TradingView) {
                     new window.TradingView.MediumWidget({
@@ -151,48 +189,80 @@
                 }
             }, [view]);
 
-            // Navigation Helpers
-            const navigate = (v) => { 
-                setView(v); 
-                setMenuOpen(false); 
-                window.scrollTo(0,0); 
-            };
+            const navigate = (v) => { setView(v); setMenuOpen(false); window.scrollTo(0,0); };
+            const triggerAlert = (title, message, icon) => { setAlertData({ title, message, icon }); };
 
-            const triggerAlert = (title, message, icon) => {
-                setAlertData({ title, message, icon });
+            const handleLogin = () => { 
+                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 0, bonusClaimed: false }); 
+                setModal(null); setView('dashboard'); 
             };
-
-            // Auth Functions
-            const handleLogin = () => { setUser({ name: 'Investor', balance: 0, bonusClaimed: false }); setModal(null); setView('dashboard'); window.scrollTo(0,0); };
+            
             const handleSignupSubmit = () => { setModal('verification'); };
-            const handleVerificationComplete = () => { setUser({ name: 'Investor', balance: 0, bonusClaimed: false }); setModal(null); setView('dashboard'); window.scrollTo(0,0); };
-            const logout = () => { setUser(null); setView('home'); window.scrollTo(0,0); };
+            const handleVerificationComplete = () => { 
+                setUser({ name: 'Ijaola Oluwatosin', email: 'ijaola@worldweb.io', balance: 0, bonusClaimed: false }); 
+                setModal(null); setView('dashboard'); 
+            };
+            const logout = () => { setUser(null); setView('home'); };
 
-            // Transaction Actions triggering the new Premium Popups
             const claimBonus = () => {
                 setUser(prev => ({ ...prev, balance: prev.balance + 10000, bonusClaimed: true }));
                 triggerAlert('Bonus Claimed!', 'Congratulations! ₦10,000 Welcome Bonus has been credited to your balance.', '🎁');
             };
 
             const submitDeposit = () => {
-                triggerAlert('Pending Confirmation', 'Your deposit evidence has been received. Please note that confirmation of deposits typically takes 3 to 4 minutes to reflect in your dashboard.', '⏳');
-                setTimeout(() => navigate('dashboard'), 500); // Redirect silently behind modal
+                setHistory(prev => [{ type: 'Deposit (BTC)', amount: 45000, date: 'Pending Verification', status: 'Pending' }, ...prev]);
+                triggerAlert('Pending Confirmation', 'Your deposit evidence has been received. Confirmation takes 3 to 4 minutes to reflect.', '⏳');
+                navigate('dashboard');
             };
 
             const submitWithdrawal = () => {
-                triggerAlert('Withdrawal Initiated', 'Your money is on the way! Please note that the withdrawal processing time takes up to 24 hours to reach your external wallet.', '✅');
-                setTimeout(() => navigate('dashboard'), 500); // Redirect silently behind modal
+                setHistory(prev => [{ type: 'Withdrawal (BTC)', amount: 15000, date: 'Processing Launch', status: 'Pending' }, ...prev]);
+                triggerAlert('Withdrawal Initiated', 'Your money is on the way! Processing times take up to 24 hours to reach your external wallet.', '✅');
+                navigate('dashboard');
+            };
+
+            // Setup custom investment processing workflow 
+            const openInvestmentPage = (planKey) => {
+                if (!user) { setModal('signup'); return; }
+                setActivePlan(planKey);
+                setStakeAmount('');
+                setTermsAgreed(false);
+                setErrorMsg('');
+                navigate('invest-form');
+            };
+
+            const executeInvestmentSubmit = () => {
+                if (!stakeAmount || Number(stakeAmount) <= 0) {
+                    setErrorMsg('Please enter a valid allocation amount.'); return;
+                }
+                if (!termsAgreed) {
+                    setErrorMsg('You must read and accept the terms and conditions to proceed.'); return;
+                }
+                setErrorMsg('');
+                setModal('confirm-stake');
+            };
+
+            const acceptStake = () => {
+                setModal(null);
+                setHistory(prev => [{ type: `Stake (${activePlan.toUpperCase()})`, amount: Number(stakeAmount), date: 'Active Cycle', status: 'Successful' }, ...prev]);
+                triggerAlert('Investment Activated', 'Thank you for trusting us, we will verify your deposit and update, kindly exercise patience.', '🛡️');
+                navigate('dashboard');
+            };
+
+            const rejectStake = () => {
+                setModal(null);
+                setErrorMsg('Transaction aborted. Action declined by investor.');
             };
 
             return (
                 <div>
+                    {/* TOP HEADER */}
                     <header className="main-header">
                         <div className="brand-logo" onClick={() => navigate(user ? 'dashboard' : 'home')}>
                             <div className="logo-box">W</div>
                             <span className="brand-name">WorldWeb</span>
                         </div>
 
-                        {/* Desktop Navigation */}
                         <nav className="desktop-nav">
                             <span className="nav-link" onClick={() => navigate('home')}>Home</span>
                             <span className="nav-link" onClick={() => navigate('about')}>About Us</span>
@@ -203,31 +273,52 @@
                         <div className="header-buttons">
                             {!user ? (
                                 <>
-                                    <button className="action-btn btn-outline" style={{display: window.innerWidth > 600 ? 'block' : 'none'}} onClick={() => setModal('login')}>Sign In</button>
+                                    <button className="action-btn btn-outline" onClick={() => setModal('login')}>Sign In</button>
                                     <button className="action-btn btn-solid" onClick={() => setModal('signup')}>Get Started</button>
                                 </>
                             ) : (
                                 <button className="action-btn btn-solid" onClick={() => navigate('dashboard')}>Dashboard</button>
                             )}
-                            <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>☰</button>
+                            <button className="menu-toggle" onClick={() => setMenuOpen(true)}>☰</button>
                         </div>
                     </header>
 
-                    {/* Mobile Dropdown Menu */}
+                    {/* LEFT-SIDED NAVIGATION MENU DRAWER */}
                     {menuOpen && (
-                        <div className="mobile-menu">
-                            <span className="nav-link" onClick={() => navigate('home')}>Home</span>
-                            <span className="nav-link" onClick={() => navigate('about')}>About Us</span>
-                            <span className="nav-link" onClick={() => navigate('how-to-invest')}>How to Invest</span>
-                            <span className="nav-link" onClick={() => navigate('terms')}>Terms & Conditions</span>
-                            {user && <span className="nav-link" style={{color: 'red'}} onClick={logout}>Log Out</span>}
-                        </div>
+                        <>
+                            <div className="drawer-overlay" onClick={() => setMenuOpen(false)}></div>
+                            <div className="left-drawer">
+                                <button className="close-btn" onClick={() => setMenuOpen(false)}>×</button>
+                                <div className="brand-logo" style={{marginBottom:'1rem'}}>
+                                    <div className="logo-box">W</div>
+                                    <span className="brand-name">WorldWeb</span>
+                                </div>
+                                <span className="nav-link" onClick={() => navigate('home')}>🏠 Home</span>
+                                <span className="nav-link" onClick={() => navigate('about')}>ℹ️ About Us</span>
+                                <span className="nav-link" onClick={() => navigate('how-to-invest')}>📖 How to Invest</span>
+                                <span className="nav-link" onClick={() => navigate('terms')}>📋 Terms & Conditions</span>
+                                <hr style={{borderColor:'#f1f5f9'}}/>
+                                {!user ? (
+                                    <>
+                                        <span className="nav-link" style={{color:'var(--primary-green)'}} onClick={() => { setMenuOpen(false); setModal('login'); }}>Sign In</span>
+                                        <span className="nav-link" style={{fontWeight:700}} onClick={() => { setMenuOpen(false); setModal('signup'); }}>Register Account</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="nav-link" style={{color:'var(--primary-green)'}} onClick={() => navigate('dashboard')}>💼 Dashboard</span>
+                                        <span className="nav-link" style={{color:'#ef4444'}} onClick={logout}>🚪 Log Out</span>
+                                    </>
+                                )}
+                            </div>
+                        </>
                     )}
 
-                    {/* HOME PAGE */}
+                    {/* HOME MAIN PAGE */}
                     {view === 'home' && (
                         <main>
+                            {/* Hero Container showcasing Motion Cars Image Background Animation */}
                             <section className="hero-banner">
+                                <div className="hero-motion-bg"></div>
                                 <div className="hero-overlay"></div>
                                 <div className="hero-content">
                                     <h1 className="hero-headline">Multiply Wealth Through<br/><span>Proven Portfolios</span></h1>
@@ -235,40 +326,43 @@
                                 </div>
                             </section>
 
-                            {/* Motion Image Section replacing the static slider */}
-                            <div className="motion-div">
-                                <div className="motion-overlay">
-                                    <div className="motion-text">Premium Lifestyle & Asset Growth</div>
+                            {/* Preserved Visual Multi-Slide Catalog */}
+                            <div className="slider-wrapper">
+                                <div className="slider-container">
+                                    <div className="slider-track" style={{ transform: `translateX(-${slideIdx * 100}%)` }}>
+                                        {slides.map((s, i) => (
+                                            <div className="slide" key={i}>
+                                                <img src={s.url} alt={s.title} />
+                                                <div className="slide-overlay">{s.title}</div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="catalog-grid">
-                                {/* Agric Card */}
                                 <div className="product-card">
                                     <div className="img-box"><img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600" /><div className="badge">7% ROI • 3 Mos</div></div>
                                     <div className="card-body"><h3>Agriculture Asset Matrix</h3><button className="read-more" onClick={() => navigate('agric')}>Read More Details →</button></div>
                                 </div>
-                                {/* Estate Card */}
                                 <div className="product-card">
                                     <div className="img-box"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600" /><div className="badge">10% ROI • 3 Mos</div></div>
                                     <div className="card-body"><h3>Prime Real Estate Assets</h3><button className="read-more" onClick={() => navigate('estate')}>Read More Details →</button></div>
                                 </div>
-                                {/* BTC Card */}
                                 <div className="product-card">
-                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600" /><div className="badge" style={{color:'var(--accent-orange)'}}>13% ROI • 3 Mos</div></div>
+                                    <div className="img-box"><img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=600" /><div className="badge">13% ROI • 3 Mos</div></div>
                                     <div className="card-body"><h3>BTC Digital Growth</h3><button className="read-more" onClick={() => navigate('btc')}>Read More Details →</button></div>
                                 </div>
                             </div>
 
                             <section className="market-section">
                                 <h2>Live Market Intelligence</h2>
-                                <p style={{fontSize:'0.85rem', color:'#94a3b8', marginTop:'0.5rem'}}>Real-time data feeds from global markets</p>
                                 <div id="chart_div" className="chart-box"></div>
                             </section>
                         </main>
                     )}
 
-                    {/* AGRIC INVESTMENT PAGE */}
+                    {/* AGRIC DETAIL VIEW */}
                     {view === 'agric' && (
                         <div className="page-container">
                             <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
@@ -276,7 +370,7 @@
                             <h2>Agriculture Asset Matrix</h2>
                             <span className="info-header" style={{marginTop:'0.5rem'}}>7% ROI in 3 Months</span>
                             
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>Agriculture remains one of the most stable and essential sectors in the global economy. As populations continue to grow, the demand for food production, storage, and agricultural infrastructure increases every year. The Agriculture Asset Matrix investment opportunity is designed for individuals seeking a reliable and sustainable short-term investment with measurable returns.</p>
+                            <p className="content-block">Agriculture remains one of the most stable and essential sectors in the global economy. As populations continue to grow, the demand for food production, storage, and agricultural infrastructure increases every year. The Agriculture Asset Matrix investment opportunity is designed for individuals seeking a reliable and sustainable short-term investment with measurable returns.</p>
                             <p className="content-block">This investment focuses on carefully selected agricultural operations including crop cultivation, farm expansion, produce distribution, and agribusiness support systems. By combining modern farming practices, strategic partnerships, and efficient supply management, the project creates steady revenue cycles that support investor profitability.</p>
                             
                             <h3 style={{margin:'1.5rem 0 1rem'}}>Why Invest in Agriculture Asset Matrix?</h3>
@@ -288,22 +382,11 @@
                                 <li><strong>Short-Term Profitability:</strong> Earn 7% ROI within 3 months, creating a balance between stability and attractive returns.</li>
                             </ul>
 
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>Investor Benefits</h3>
-                            <ul className="content-list">
-                                <li>Secure and structured investment model</li>
-                                <li>Transparent operational strategy</li>
-                                <li>Opportunity to grow wealth through real-world assets</li>
-                                <li>Suitable for both new and experienced investors</li>
-                                <li>Fixed return timeline for predictable earnings</li>
-                            </ul>
-
-                            <p className="content-block">Whether you are looking to diversify your portfolio or build consistent passive income, Agriculture Asset Matrix offers a practical and growth-oriented investment solution backed by one of the world’s most important industries.</p>
-
-                            <button className="submit-btn" onClick={() => user ? navigate('dashboard') : setModal('signup')}>Invest Now</button>
+                            <button className="submit-btn" onClick={() => openInvestmentPage('agriculture')}>Invest Now</button>
                         </div>
                     )}
 
-                    {/* ESTATE INVESTMENT PAGE */}
+                    {/* ESTATE DETAIL VIEW */}
                     {view === 'estate' && (
                         <div className="page-container">
                             <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
@@ -311,34 +394,21 @@
                             <h2>Prime Real Estate Assets</h2>
                             <span className="info-header" style={{marginTop:'0.5rem'}}>10% ROI in 3 Months</span>
                             
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>Real estate has long been recognized as one of the most powerful wealth-building industries globally. Prime Real Estate Assets offers investors access to high-value property opportunities capable of generating strong short-term returns while being backed by tangible assets.</p>
+                            <p className="content-block">Real estate has long been recognized as one of the most powerful wealth-building industries globally. Prime Real Estate Assets offers investors access to high-value property opportunities capable of generating strong short-term returns while being backed by tangible assets.</p>
                             <p className="content-block">This investment focuses on premium residential and commercial developments located in strategic growth areas with increasing market demand. Through property appreciation, development opportunities, rental value potential, and strategic asset management, investors benefit from a carefully structured real estate model designed for profitability.</p>
                             
                             <h3 style={{margin:'1.5rem 0 1rem'}}>Why Invest in Prime Real Estate Assets?</h3>
                             <ul className="content-list">
                                 <li><strong>Tangible Asset Security:</strong> Real estate is backed by physical properties with intrinsic value.</li>
                                 <li><strong>Growing Property Demand:</strong> Urban development and population growth continue to increase property value globally.</li>
-                                <li><strong>Capital Appreciation:</strong> Premium properties historically gain value over time.</li>
-                                <li><strong>Income Potential:</strong> Real estate creates multiple earning opportunities through development and leasing structures.</li>
                                 <li><strong>Strong Returns:</strong> Earn a competitive 10% ROI in just 3 months.</li>
                             </ul>
 
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>Investor Advantages</h3>
-                            <ul className="content-list">
-                                <li>Exposure to premium property opportunities</li>
-                                <li>Professionally managed investment structure</li>
-                                <li>Balanced combination of growth and stability</li>
-                                <li>Portfolio diversification through real-world assets</li>
-                                <li>Predictable short-term investment cycle</li>
-                            </ul>
-
-                            <p className="content-block">Prime Real Estate Assets is ideal for investors seeking a stronger return while maintaining confidence in an industry known for long-term wealth preservation and financial security.</p>
-
-                            <button className="submit-btn" onClick={() => user ? navigate('dashboard') : setModal('signup')}>Invest Now</button>
+                            <button className="submit-btn" onClick={() => openInvestmentPage('real estate')}>Invest Now</button>
                         </div>
                     )}
 
-                    {/* BTC INVESTMENT PAGE */}
+                    {/* BTC DETAIL VIEW */}
                     {view === 'btc' && (
                         <div className="page-container">
                             <span onClick={() => navigate(user ? 'dashboard' : 'home')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
@@ -346,136 +416,47 @@
                             <h2>BTC Digital Growth</h2>
                             <span className="info-header" style={{marginTop:'0.5rem', color:'var(--accent-orange)'}}>13% ROI in 3 Months</span>
                             
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>Bitcoin continues to lead the digital financial revolution as the world’s most recognized and influential cryptocurrency. BTC Digital Growth provides investors with access to the expanding digital asset market through a structured investment model focused on Bitcoin-related opportunities and strategic market positioning.</p>
+                            <p className="content-block">Bitcoin continues to lead the digital financial revolution as the world’s most recognized and influential cryptocurrency. BTC Digital Growth provides investors with access to the expanding digital asset market through a structured investment model focused on Bitcoin-related opportunities and strategic market positioning.</p>
                             <p className="content-block">As global adoption of digital currencies increases among institutions, businesses, and individuals, Bitcoin has evolved beyond a speculative asset into a recognized store of value and financial innovation. BTC Digital Growth is designed for investors seeking higher-yield opportunities within the fast-growing digital economy.</p>
-                            
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>Why Invest in BTC Digital Growth?</h3>
-                            <ul className="content-list">
-                                <li><strong>High Growth Potential:</strong> Bitcoin remains one of the best-performing digital assets over the last decade.</li>
-                                <li><strong>Global Adoption:</strong> Increasing acceptance by institutions and financial systems continues to strengthen market confidence.</li>
-                                <li><strong>Digital Economy Expansion:</strong> Cryptocurrency is shaping the future of finance, payments, and asset ownership.</li>
-                                <li><strong>Strategic Market Participation:</strong> Structured investment approach focused on maximizing opportunities within the Bitcoin ecosystem.</li>
-                                <li><strong>Premium Returns:</strong> Earn an impressive 13% ROI within 3 months.</li>
-                            </ul>
 
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>Investor Benefits</h3>
-                            <ul className="content-list">
-                                <li>Opportunity to participate in the digital financial revolution</li>
-                                <li>Higher short-term earning potential</li>
-                                <li>Access to one of the world’s fastest-growing financial sectors</li>
-                                <li>Diversification into digital assets</li>
-                                <li>Structured and performance-driven investment strategy</li>
-                            </ul>
-
-                            <p className="content-block">BTC Digital Growth is best suited for individuals seeking stronger returns and exposure to the rapidly expanding world of cryptocurrency and blockchain-powered finance.</p>
-
-                            <button className="submit-btn" style={{background:'var(--accent-orange)'}} onClick={() => user ? navigate('dashboard') : setModal('signup')}>Invest Now</button>
+                            <button className="submit-btn" style={{background:'var(--accent-orange)'}} onClick={() => openInvestmentPage('bitcoin growth')}>Invest Now</button>
                         </div>
                     )}
 
-                    {/* NEW STATIC PAGES */}
-                    {view === 'about' && (
+                    {/* NEW CUSTOM INVESTMENT FORM PAGE */}
+                    {view === 'invest-form' && user && (
                         <div className="page-container">
-                            <h2>About WorldWeb</h2>
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>At WorldWeb, our mission is to provide accessible, transparent, and growth-driven investment opportunities across multiple industries. We understand that every investor has different goals, which is why we offer diversified investment options designed to balance profitability, opportunity, and confidence.</p>
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>What Sets Us Apart?</h3>
-                            <ul className="content-list">
-                                <li>Professionally structured investment opportunities</li>
-                                <li>Short-term ROI cycles</li>
-                                <li>Diversified sectors for balanced investing</li>
-                                <li>Investor-focused experience</li>
-                                <li>Growth-oriented financial strategies</li>
-                            </ul>
-                            <p className="content-block">Whether your interest is in stable agricultural growth, premium real estate assets, or high-potential digital investments, WorldWeb provides a pathway toward smarter wealth creation and financial growth.</p>
-                        </div>
-                    )}
-
-                    {view === 'how-to-invest' && (
-                        <div className="page-container">
-                            <h2>How to Invest</h2>
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>Getting started with WorldWeb is simple, secure, and designed to put your capital to work quickly.</p>
-                            <ul className="content-list">
-                                <li><strong>1. Create an Account:</strong> Register securely via our platform and verify your email.</li>
-                                <li><strong>2. Claim Your Bonus:</strong> New investors instantly receive a ₦10,000 welcome bonus to kickstart their portfolio.</li>
-                                <li><strong>3. Fund Your Wallet:</strong> Navigate to the dashboard and select 'Deposit' to fund your account via secure BTC transfer.</li>
-                                <li><strong>4. Choose an Asset:</strong> Select from Agriculture, Real Estate, or BTC Digital Growth based on your ROI goals.</li>
-                                <li><strong>5. Monitor & Withdraw:</strong> Watch your gains grow and withdraw to your external wallet securely at the end of your cycle.</li>
-                            </ul>
-                            <button className="submit-btn" onClick={() => navigate('home')}>View Investment Plans</button>
-                        </div>
-                    )}
-
-                    {view === 'terms' && (
-                        <div className="page-container">
-                            <h2>Terms & Conditions</h2>
-                            <p className="content-block" style={{marginTop:'1.5rem'}}>Welcome to WorldWeb Investments. By utilizing our platform, you agree to the following operational guidelines ensuring fairness, security, and transparency for all investors.</p>
+                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Abort Strategy</span>
+                            <h2 style={{marginTop:'1.5rem', marginBottom:'0.5rem'}}>Secure Portfolio Commitment</h2>
+                            <p style={{fontSize:'0.9rem', color:'#64748b', marginBottom:'1.5rem'}}>Deploy balance liquidity directly to the {activePlan} framework block.</p>
                             
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>1. Investment Execution</h3>
-                            <p className="content-block">All stated ROIs (7%, 10%, and 13%) are fixed for the specified duration of 3 months. Capital is locked into the respective asset pools for the duration of the cycle to ensure the promised yield is achieved.</p>
-
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>2. Deposits & Funding</h3>
-                            <p className="content-block">Platform funding is conducted via verified external wallet transfers. <strong>Please note that confirmation of deposits generally takes 3 to 4 minutes to reflect on your dashboard</strong> following network verification.</p>
-
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>3. Withdrawals & Payouts</h3>
-                            <p className="content-block">Investors may request withdrawals of their available balance at any time. For security, compliance, and liquidity routing, <strong>all withdrawal processes take up to 24 hours to be completed</strong> and delivered to the user's provided destination address.</p>
-                            
-                            <h3 style={{margin:'1.5rem 0 1rem'}}>4. Welcome Bonus Protocol</h3>
-                            <p className="content-block">The ₦10,000 welcome bonus is applied strictly to a user's initial portfolio scaling and is subject to our minimum staking requirements before it can be independently withdrawn.</p>
-                        </div>
-                    )}
-
-                    {/* DEPOSIT PAGE */}
-                    {view === 'deposit' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back to Dashboard</span>
-                            <h2 style={{marginTop:'1.5rem', marginBottom:'0.5rem'}}>Deposit Funds (BTC)</h2>
-                            <p style={{fontSize:'0.9rem', color:'#64748b', marginBottom:'1.5rem'}}>Send Bitcoin to the secure network address below to fund your wallet.</p>
-                            
-                            <div className="metric-box" style={{textAlign:'center'}}>
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" alt="BTC QR" style={{margin:'0 auto 1rem', display:'block', borderRadius:'10px', border:'4px solid white'}} />
-                                <span style={{fontSize:'0.8rem', color:'#64748b', display:'block', marginBottom:'0.3rem'}}>Official BTC Deposit Address</span>
-                                <strong style={{fontSize:'0.95rem', wordBreak:'break-all', userSelect:'all', color:'var(--text-dark)'}}>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</strong>
-                            </div>
-
                             <div style={{background:'white', padding:'1.5rem', borderRadius:'16px', border:'1px solid var(--border-line)'}}>
-                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', display:'block'}}>Transaction Hash (TxID)</label>
-                                <input type="text" placeholder="Paste your TX Hash here" className="input-field" />
+                                <label style={{fontSize:'0.85rem', fontWeight:700, display:'block', marginBottom:'0.4rem'}}>Investor Full Name</label>
+                                <input type="text" className="input-field" value={user.name} disabled style={{background:'#f1f5f9', color:'#64748b'}} />
                                 
-                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', marginTop:'0.5rem', display:'block'}}>Upload Payment Evidence</label>
-                                <input type="file" className="input-field" accept="image/*" style={{padding:'0.6rem'}} />
-                                
-                                <button className="submit-btn" style={{marginTop:'1rem'}} onClick={submitDeposit}>Submit Verification</button>
-                                <p style={{textAlign:'center', marginTop:'1rem', fontSize:'0.75rem', color:'#64748b'}}>Deposit confirmation takes 3 to 4 minutes.</p>
+                                <label style={{fontSize:'0.85rem', fontWeight:700, display:'block', marginBottom:'0.4rem'}}>Verified Profile Email Address</label>
+                                <input type="text" className="input-field" value={user.email} disabled style={{background:'#f1f5f9', color:'#64748b'}} />
+
+                                <label style={{fontSize:'0.85rem', fontWeight:700, display:'block', marginBottom:'0.4rem'}}>Amount to Invest (₦)</label>
+                                <input type="number" placeholder="Enter stake amount" className="input-field" value={stakeAmount} onChange={(e) => setStakeAmount(e.target.value)} />
+
+                                <div style={{border:'1px solid var(--border-line)', borderRadius:'12px', padding:'1rem', background:'#f8fafc', height:'120px', overflowY:'scroll', fontSize:'0.8rem', color:'#475569', marginBottom:'1rem'}}>
+                                    <strong>Plan Agreement Matrix:</strong> All assets under deployment are locked in 3-month yield processing contracts. Capital is collateralized under real-world positions. Early liquidations are subject to standard operational review. Returns compute linearly.
+                                </div>
+
+                                <label style={{display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'0.85rem', fontWeight:600, cursor:'pointer'}}>
+                                    <input type="checkbox" checked={termsAgreed} onChange={(e) => setTermsAgreed(e.target.checked)} />
+                                    I completely agree to the listed terms and asset lock guidelines.
+                                </label>
+
+                                {errorMsg && <div className="error-banner">{errorMsg}</div>}
+
+                                <button className="submit-btn" style={{marginTop:'1.5rem'}} onClick={executeInvestmentSubmit}>Proceed Allocation</button>
                             </div>
                         </div>
                     )}
 
-                    {/* WITHDRAW PAGE */}
-                    {view === 'withdraw' && (
-                        <div className="page-container">
-                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back to Dashboard</span>
-                            <h2 style={{marginTop:'1.5rem', marginBottom:'0.5rem'}}>Withdraw Funds (BTC)</h2>
-                            <p style={{fontSize:'0.9rem', color:'#64748b', marginBottom:'1.5rem'}}>Securely withdraw your available balance to an external BTC wallet.</p>
-
-                            <div className="naira-card" style={{marginBottom:'1.5rem'}}>
-                                <div style={{fontSize:'0.8rem', opacity:0.8}}>AVAILABLE TO WITHDRAW</div>
-                                <div style={{fontSize:'2.2rem', fontWeight:800, margin:'0.5rem 0'}}>{formatNaira(user?.balance)}</div>
-                            </div>
-
-                            <div style={{background:'white', padding:'1.5rem', borderRadius:'16px', border:'1px solid var(--border-line)'}}>
-                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', display:'block'}}>Withdrawal Amount (₦)</label>
-                                <input type="number" placeholder="Enter amount to withdraw" className="input-field" />
-
-                                <label style={{fontSize:'0.85rem', fontWeight:700, marginBottom:'0.5rem', marginTop:'1rem', display:'block'}}>Destination BTC Address</label>
-                                <input type="text" placeholder="Enter your external BTC address" className="input-field" />
-                                
-                                <button className="submit-btn" style={{marginTop:'1.5rem'}} onClick={submitWithdrawal}>Confirm Withdrawal</button>
-                                <p style={{textAlign:'center', marginTop:'1rem', fontSize:'0.75rem', color:'#64748b'}}>Withdrawal process takes up to 24 hours.</p>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* DASHBOARD */}
+                    {/* PROFILE DASHBOARD WITH HISTORY STATUS FEED */}
                     {view === 'dashboard' && user && (
                         <div className="page-container">
                             <h2 style={{marginBottom:'1rem'}}>Welcome back, {user.name}</h2>
@@ -483,56 +464,133 @@
                             <div className="naira-card">
                                 <div style={{fontSize:'0.8rem', opacity:0.8}}>WALLET BALANCE</div>
                                 <div style={{fontSize:'2.2rem', fontWeight:800, margin:'0.5rem 0'}}>{formatNaira(user.balance)}</div>
-                                <div style={{display:'flex', gap:'1.5rem', borderTop:'1px solid rgba(255,255,255,0.2)', paddingTop:'1rem'}}>
-                                    <div><small>STAKED</small><div>₦0.00</div></div>
-                                    <div><small>TOTAL GAINS</small><div style={{color:'#34d399'}}>₦0.00</div></div>
-                                </div>
                             </div>
 
                             <div style={{display:'flex', gap:'1rem', marginBottom:'2rem'}}>
-                                <button className="action-btn btn-solid" style={{flex:1, padding:'1rem', fontSize:'0.95rem'}} onClick={() => navigate('deposit')}>↓ Deposit</button>
-                                <button className="action-btn btn-outline" style={{flex:1, padding:'1rem', fontSize:'0.95rem', background:'white'}} onClick={() => navigate('withdraw')}>↑ Withdraw</button>
+                                <button className="action-btn btn-solid" style={{flex:1, padding:'1rem'}} onClick={() => navigate('deposit')}>↓ Deposit</button>
+                                <button className="action-btn btn-outline" style={{flex:1, padding:'1rem', background:'white'}} onClick={() => navigate('withdraw')}>↑ Withdraw</button>
                             </div>
 
                             {!user.bonusClaimed && (
                                 <div className="bonus-card">
-                                    <h3 style={{color:'var(--primary-green)', marginBottom:'0.5rem'}}>🎁 Welcome to WorldWeb!</h3>
-                                    <p style={{fontSize:'0.9rem', color:'#334155', marginBottom:'1.2rem'}}>Claim your new investor registration bonus to start your portfolio.</p>
-                                    <button className="action-btn btn-solid" style={{width:'100%', padding:'1rem', fontSize:'1rem'}} onClick={claimBonus}>Claim ₦10,000 Bonus Now</button>
+                                    <h3>🎁 Welcome to WorldWeb!</h3>
+                                    <p style={{fontSize:'0.9rem', color:'#334155', margin:'0.5rem 0 1.2rem'}}>Claim your initial investor bonus configuration setup.</p>
+                                    <button className="action-btn btn-solid" style={{width:'100%', padding:'1rem'}} onClick={claimBonus}>Claim ₦10,000 Bonus Now</button>
                                 </div>
                             )}
-                            
+
                             <h3 style={{marginBottom:'1rem'}}>Investment Marketplace</h3>
-                            <div className="dash-row" onClick={() => navigate('agric')} style={{cursor:'pointer'}}>
+                            <div className="dash-row" onClick={() => openInvestmentPage('agriculture')} style={{cursor:'pointer'}}>
                                 <div><strong>Agriculture Matrix</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>7% ROI • 3 Mos</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem'}}>View</button>
+                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem'}}>Staking Link</button>
                             </div>
-                            <div className="dash-row" onClick={() => navigate('estate')} style={{cursor:'pointer'}}>
+                            <div className="dash-row" onClick={() => openInvestmentPage('real estate')} style={{cursor:'pointer'}}>
                                 <div><strong>Real Estate Assets</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>10% ROI • 3 Mos</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem'}}>View</button>
+                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem'}}>Staking Link</button>
                             </div>
-                            <div className="dash-row" onClick={() => navigate('btc')} style={{cursor:'pointer'}}>
+                            <div className="dash-row" onClick={() => openInvestmentPage('bitcoin growth')} style={{cursor:'pointer'}}>
                                 <div><strong>BTC Growth Plan</strong><div style={{fontSize:'0.8rem', color:'#64748b'}}>13% ROI • 3 Mos</div></div>
-                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem', background:'var(--accent-orange)'}}>View</button>
+                                <button className="action-btn btn-solid" style={{fontSize:'0.7rem', background:'var(--accent-orange)'}}>Staking Link</button>
+                            </div>
+
+                            {/* CORE TRANSACTION HISTORY TRACKER COMPONENT */}
+                            <div className="history-box">
+                                <h4 style={{marginBottom:'0.5rem'}}>Platform History Ledger</h4>
+                                {history.map((h, idx) => (
+                                    <div className="history-item" key={idx}>
+                                        <div>
+                                            <strong>{h.type}</strong>
+                                            <div style={{fontSize:'0.75rem', color:'#64748b'}}>{h.date}</div>
+                                        </div>
+                                        <div style={{textAlign:'right'}}>
+                                            <div style={{fontWeight:700, marginBottom:'0.2rem'}}>{formatNaira(h.amount)}</div>
+                                            <span className={`badge-status ${h.status === 'Pending' ? 'status-pending' : 'status-success'}`}>{h.status}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ABOUT US, HOW TO INVEST, TERMS & CONDITIONS STATIC VIEWS */}
+                    {view === 'about' && (
+                        <div className="page-container">
+                            <h2>About WorldWeb</h2>
+                            <p className="content-block" style={{marginTop:'1.5rem'}}>At WorldWeb, our mission is to provide accessible, transparent, and growth-driven investment opportunities across multiple industries.</p>
+                            <h3 style={{margin:'1.5rem 0 1rem'}}>What Sets Us Apart?</h3>
+                            <ul className="content-list">
+                                <li>Professionally structured investment opportunities</li>
+                                <li>Short-term ROI cycles</li>
+                                <li>Diversified sectors for balanced investing</li>
+                            </ul>
+                        </div>
+                    )}
+
+                    {view === 'how-to-invest' && (
+                        <div className="page-container">
+                            <h2>How to Invest</h2>
+                            <ul className="content-list" style={{marginTop:'1.5rem'}}>
+                                <li><strong>1. Create an Account:</strong> Register securely via our platform.</li>
+                                <li><strong>2. Claim Your Bonus:</strong> Instantly unlock ₦10,000 credit configuration.</li>
+                                <li><strong>3. Fund Your Wallet:</strong> Transfer capital securely utilizing BTC ledger addresses.</li>
+                            </ul>
+                        </div>
+                    )}
+
+                    {view === 'terms' && (
+                        <div className="page-container">
+                            <h2>Terms & Conditions</h2>
+                            <h3 style={{margin:'1.5rem 0 1rem'}}>Deposits & Funding</h3>
+                            <p className="content-block">Platform funding is conducted via verified external wallet transfers. <strong>Please note that confirmation of deposits generally takes 3 to 4 minutes to reflect on your dashboard</strong> following network verification.</p>
+                            <h3 style={{margin:'1.5rem 0 1rem'}}>Withdrawals & Payouts</h3>
+                            <p className="content-block">Investors may request withdrawals at any time. For liquidity routing, <strong>all withdrawal processes take up to 24 hours to be completed</strong> and delivered to the provided wallet destination.</p>
+                        </div>
+                    )}
+
+                    {/* DEPOSIT PAGE */}
+                    {view === 'deposit' && (
+                        <div className="page-container">
+                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
+                            <h2>Deposit Funds (BTC)</h2>
+                            <div className="metric-box" style={{textAlign:'center', marginTop:'1.5rem'}}>
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" alt="BTC QR" style={{margin:'0 auto 1rem', display:'block', borderRadius:'10px'}} />
+                                <strong style={{fontSize:'0.95rem', wordBreak:'break-all'}}>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</strong>
+                            </div>
+                            <div style={{background:'white', padding:'1.5rem', borderRadius:'16px', border:'1px solid var(--border-line)'}}>
+                                <input type="text" placeholder="Transaction Hash" className="input-field" />
+                                <input type="file" className="input-field" accept="image/*" style={{padding:'0.6rem'}} />
+                                <button className="submit-btn" onClick={submitDeposit}>Submit Verification</button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* WITHDRAW PAGE */}
+                    {view === 'withdraw' && (
+                        <div className="page-container">
+                            <span onClick={() => navigate('dashboard')} style={{color:'var(--primary-green)', fontWeight:800, cursor:'pointer'}}>← Back</span>
+                            <h2>Withdraw Funds (BTC)</h2>
+                            <div style={{background:'white', padding:'1.5rem', borderRadius:'16px', border:'1px solid var(--border-line)', marginTop:'1.5rem'}}>
+                                <input type="number" placeholder="Withdrawal Amount" className="input-field" />
+                                <input type="text" placeholder="External Wallet Destination Address" className="input-field" />
+                                <button className="submit-btn" onClick={submitWithdrawal}>Confirm Withdrawal</button>
                             </div>
                         </div>
                     )}
 
                     <footer>
-                        <h3 style={{color:'white'}}>WorldWeb</h3>
+                        <h3>WorldWeb</h3>
                         <p style={{marginTop:'1.5rem'}}>© 2026 WorldWeb International Inc.</p>
                     </footer>
 
-                    {/* AUTH MODALS */}
+                    {/* AUTH ENTRY CONFIG MODALS */}
                     {modal === 'login' && (
                         <div className="modal-overlay">
                             <div className="modal-card">
                                 <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2 style={{marginBottom:'0.5rem'}}>Welcome Back</h2>
-                                <p style={{fontSize:'0.85rem', color:'#64748b', marginBottom:'1.5rem'}}>Enter your credentials to access your portfolio.</p>
-                                <input type="email" placeholder="Email Address" className="input-field" />
+                                <h2>Welcome Back</h2>
+                                <input type="email" placeholder="Email Address" className="input-field" style={{marginTop:'1rem'}} />
                                 <input type="password" placeholder="Account Password" className="input-field" />
-                                <button className="submit-btn" onClick={handleLogin}>Log In to Dashboard</button>
+                                <button className="submit-btn" onClick={handleLogin}>Log In</button>
                             </div>
                         </div>
                     )}
@@ -541,13 +599,12 @@
                         <div className="modal-overlay">
                             <div className="modal-card">
                                 <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2 style={{marginBottom:'0.5rem'}}>Create Account</h2>
-                                <p style={{fontSize:'0.85rem', color:'#64748b', marginBottom:'1.5rem'}}>Join the global investment framework.</p>
-                                <input type="text" placeholder="Full Name" className="input-field" />
-                                <input type="email" placeholder="Email Address" className="input-field" />
+                                <h2>Create Account</h2>
+                                <input type="text" placeholder="Full Name" className="input-field" style={{marginTop:'1rem'}} />
+                                <input type="email" placeholder="Email" className="input-field" />
                                 <input type="password" placeholder="Create Password" className="input-field" />
                                 <input type="password" placeholder="Confirm Password" className="input-field" />
-                                <button className="submit-btn" onClick={handleSignupSubmit}>Create Account</button>
+                                <button className="submit-btn" onClick={handleSignupSubmit}>Register Profile</button>
                             </div>
                         </div>
                     )}
@@ -555,27 +612,41 @@
                     {modal === 'verification' && (
                         <div className="modal-overlay">
                             <div className="modal-card" style={{textAlign:'center'}}>
-                                <button className="close-btn" onClick={() => setModal(null)}>×</button>
-                                <h2 style={{marginBottom:'0.5rem'}}>Verify Email</h2>
-                                <p style={{fontSize:'0.85rem', color:'#64748b', marginBottom:'1.5rem'}}>We sent a secure 4-digit pin to your email.</p>
-                                <div className="code-inputs">
+                                <h2>Verify Email Entry</h2>
+                                <div className="code-inputs" style={{marginTop:'1.5rem'}}>
                                     <input type="text" maxLength="1" className="code-box" defaultValue="4" />
                                     <input type="text" maxLength="1" className="code-box" defaultValue="8" />
                                     <input type="text" maxLength="1" className="code-box" defaultValue="2" />
                                     <input type="text" maxLength="1" className="code-box" defaultValue="9" />
                                 </div>
-                                <button className="submit-btn" onClick={handleVerificationComplete}>Verify & Access</button>
+                                <button className="submit-btn" onClick={handleVerificationComplete}>Complete Verification</button>
                             </div>
                         </div>
                     )}
 
-                    {/* NEW PREMIUM SUCCESS / ACTION ALERTS */}
+                    {/* INTERACTIVE MULTI-STAGE STAKING FLOW CONFIRMATION ENGINE */}
+                    {modal === 'confirm-stake' && (
+                        <div className="modal-overlay">
+                            <div className="modal-card" style={{textAlign:'center'}}>
+                                <h2>Transaction Verification</h2>
+                                <p style={{margin:'1rem 0 1.5rem', color:'#475569', fontSize:'0.95rem'}}>
+                                    Are you entirely sure you want to continue staking {formatNaira(Number(stakeAmount))} into the {activePlan} framework?
+                                </p>
+                                <div className="btn-group">
+                                    <button className="half-btn btn-solid" onClick={acceptStake}>Yes</button>
+                                    <button className="half-btn btn-danger" onClick={rejectStake}>No</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* CUSTOM CENTRAL ALERT ENGINE */}
                     {alertData && (
                         <div className="modal-overlay">
                             <div className="modal-card premium-alert">
                                 <div className="icon-box">{alertData.icon}</div>
-                                <h2 style={{marginBottom:'1rem', fontSize:'1.4rem'}}>{alertData.title}</h2>
-                                <p style={{fontSize:'0.95rem', color:'#334155', lineHeight:1.6, marginBottom:'1.5rem'}}>{alertData.message}</p>
+                                <h2>{alertData.title}</h2>
+                                <p style={{fontSize:'0.95rem', color:'#334155', margin:'1rem 0 1.5rem', lineHeight:1.6}}>{alertData.message}</p>
                                 <button className="submit-btn" onClick={() => setAlertData(null)}>Acknowledge</button>
                             </div>
                         </div>
